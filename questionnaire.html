@@ -520,7 +520,7 @@ textarea.inp{resize:vertical;min-height:90px;font-size:13px;line-height:1.65;}
             </div>
             <div style="display:flex;gap:.75rem;align-items:flex-start;padding:.75rem 1rem;background:var(--cta-pale);border-radius:7px;border:1px solid rgba(26,107,69,.15)">
               <span style="color:var(--cta);font-weight:700;flex-shrink:0">✓</span>
-              <div><strong style="font-size:13px;color:var(--ink)">Stratégie d'entrée personnalisée</strong><div style="font-size:12px;color:var(--text3);font-weight:300;margin-top:2px">One shot ou DCA mensuel avec montants indicatifs</div></div>
+              <div><strong style="font-size:13px;color:var(--ink)">Strategie d entree personnalisee</strong><div style="font-size:12px;color:var(--text3);font-weight:300;margin-top:2px">One shot ou DCA mensuel avec montants indicatifs</div></div>
             </div>
             <div style="display:flex;gap:.75rem;align-items:flex-start;padding:.75rem 1rem;background:var(--cta-pale);border-radius:7px;border:1px solid rgba(26,107,69,.15)">
               <span style="color:var(--cta);font-weight:700;flex-shrink:0">✓</span>
@@ -733,7 +733,7 @@ function showConfirmation(){
       <div style="padding:0 2rem 1.75rem">
         <div style="font-size:9px;color:var(--gold);font-family:'DM Mono',monospace;letter-spacing:.16em;text-transform:uppercase;margin-bottom:1rem">Ce que vous allez recevoir</div>
         <div style="display:grid;gap:.5rem">
-          ${['Portefeuille 4 à 6 ETF sélectionnés sur mesure','Répartition précise en % — prête à exécuter','Rôle détaillé de chaque ETF','Stratégie d'entrée personnalisée','3 scénarios de marché : prudent / neutre / dynamique','Plan de suivi et rééquilibrage','Note fiscale adaptée à votre enveloppe','Ordres précis à passer chez votre courtier'].map(item=>`<div style="display:flex;gap:.75rem;align-items:center;font-size:13px;color:var(--text2);font-weight:300;padding:.5rem .875rem;background:var(--cta-pale);border-radius:6px"><span style="color:var(--cta);font-weight:700;flex-shrink:0">✓</span>${item}</div>`).join('')}
+          ${['Portefeuille 4 à 6 ETF sélectionnés sur mesure','Répartition précise en % — prête à exécuter','Rôle détaillé de chaque ETF','Strategie d entree personnalisee','3 scénarios de marché : prudent / neutre / dynamique','Plan de suivi et rééquilibrage','Note fiscale adaptée à votre enveloppe','Ordres précis à passer chez votre courtier'].map(item=>`<div style="display:flex;gap:.75rem;align-items:center;font-size:13px;color:var(--text2);font-weight:300;padding:.5rem .875rem;background:var(--cta-pale);border-radius:6px"><span style="color:var(--cta);font-weight:700;flex-shrink:0">✓</span>${item}</div>`).join('')}
         </div>
       </div>
       <div style="background:var(--dark);padding:1.25rem 2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem">
@@ -800,12 +800,12 @@ PROFIL CLIENT :
 - Formule souscrite : ${answers.formule}
 
 STRUCTURE ATTENDUE DE TA RÉPONSE :
-1. Un paragraphe d'introduction (profil résumé, logique de construction)
+1. Un paragraphe d’introduction (profil resume, logique de construction)
 2. Le portefeuille : entre 4 et 6 ETF avec ticker, nom, allocation % et rôle précis (utilise les div class="etf-row")
-3. La stratégie d'entrée (one shot ou DCA, montants indicatifs)
+3. La strategie d’entree (one shot ou DCA, montants indicatifs)
 4. 3 scénarios : prudent / neutre / dynamique avec rendements estimés sur ${answers.q2}
-5. Conseils de suivi (fréquence de rééquilibrage, seuils d'alerte)
-6. Note fiscale adaptée à l'enveloppe ${map.q5[answers.q5] || answers.q5}
+5. Conseils de suivi (frequence de reequilibrage, seuils d’alerte)
+6. Note fiscale adaptee a l’enveloppe ${map.q5[answers.q5] || answers.q5}
 
 Sois précis sur les tickers (MSCI World = CW8 sur PEA, IWDA sur CTO, etc.).`;
 }
