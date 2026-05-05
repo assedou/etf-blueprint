@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ETF Blueprint — Finaliser votre commande</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@200;300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://js.stripe.com/v3/"></script>
+<style>
+:root {
+  --ink: #0A0A0A;
+  --paper: #FFFFFF;
+  --paper2: #F8F6F2;
+  --paper3: #F0EDE6;
+  --gold: #9B7D3A;
+  --gold2: #C4A35A;
+  --gold-pale: #FBF6EA;
+  --gold-border: rgba(196,163,90,0.25);
+  --text: #1A1814;
+  --text2: #4A4540;
+  --text3: #8A8278;
+  --green: #2D6A4F;
+  --green-pale: #F0FAF5;
+  --border: rgba(0,0,0,0.08);
+  --border2: rgba(0,0,0,0.05);
+  --shadow: 0 2px 20px rgba(0,0,0,0.06);
+  --shadow-lg: 0 8px 48px rgba(0,0,0,0.10);
+  --cta:#1A6B45;--cta2:#145436;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Jost', sans-serif;
+  background: var(--paper2);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── HEADER ── */
+.header {
+  background: #1E1A12;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(196,163,90,0.3);
+}
+.header-brand { display: flex; flex-direction: column; }
+.header-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--gold2);
+  letter-spacing: .04em;
+}
+.header-sub {
+  font-size: 9px;
+  color: rgba(196,163,90,0.55);
+  letter-spacing: .12em;
+  font-style: italic;
+  font-family: 'Cormorant Garamond', serif;
+  margin-top: 1px;
+}
+.header-secure {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  color: rgba(196,163,90,0.6);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.header-secure svg { opacity: .7; }
+
+/* ── BREADCRUMB ── */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  padding: 1.25rem 2rem;
+  background: white;
+  border-bottom: 1px solid var(--border2);
+}
+.step {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 10px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--text3);
+  font-weight: 400;
+}
+.step.active { color: var(--gold); }
+.step.done { color: var(--green); }
+.step-num {
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 9px;
+  font-family: 'DM Mono', monospace;
+  background: var(--paper3);
+  color: var(--text3);
+  flex-shrink: 0;
+}
+.step.active .step-num { background: var(--gold2); color: white; }
+.step.done .step-num { background: var(--green); color: white; }
+.step-sep { width: 32px; height: 1px; background: var(--border); margin: 0 .75rem; }
+
+/* ── MAIN LAYOUT ── */
+.main {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 0;
+  max-width: 1000px;
+  margin: 2.5rem auto;
+  width: 100%;
+  padding: 0 1.5rem;
+  align-items: start;
+}
+
+/* ── LEFT — FORM ── */
+.form-panel {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  margin-right: 1.5rem;
+}
+
+.form-section {
+  padding: 1.75rem 2rem;
+  border-bottom: 1px solid var(--border2);
+}
+.form-section:last-child { border-bottom: none; }
+
+.section-label {
+  font-size: 9px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-family: 'DM Mono', monospace;
+  margin-bottom: 1.125rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--gold-border);
+}
+
+/* Formule selector */
+.formule-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: .875rem;
+}
+.formule-card {
+  border: 1.5px solid var(--border);
+  border-radius: 7px;
+  padding: 1.125rem 1.25rem;
+  cursor: pointer;
+  transition: all .2s;
+  position: relative;
+  background: white;
+}
+.formule-card:hover { border-color: var(--gold-border); }
+.formule-card.selected {
+  border-color: var(--gold2);
+  background: var(--gold-pale);
+}
+.formule-card.selected.premium {
+  border-color: var(--gold2);
+  background: var(--gold-pale);
+}
+.formule-tag {
+  font-size: 8px;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: var(--text3);
+  margin-bottom: .375rem;
+  font-family: 'DM Mono', monospace;
+}
+.formule-card.selected .formule-tag,
+.formule-card.premium .formule-tag { color: var(--gold); }
+.formule-price {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 32px;
+  font-weight: 400;
+  color: var(--ink);
+  line-height: 1;
+  margin-bottom: .25rem;
+}
+.formule-card.premium .formule-price { color: var(--gold); }
+.formule-desc {
+  font-size: 10px;
+  color: var(--text3);
+  line-height: 1.5;
+  font-weight: 300;
+}
+.formule-badge {
+  position: absolute;
+  top: -10px;
+  right: 12px;
+  background: var(--gold2);
+  color: var(--ink);
+  font-size: 7px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-family: 'DM Mono', monospace;
+  white-space: nowrap;
+}
+.check-circle {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  border: 1.5px solid var(--border);
+  background: white;
+  display: flex; align-items: center; justify-content: center;
+  transition: all .2s;
+}
+.formule-card.selected .check-circle {
+  background: var(--gold2);
+  border-color: var(--gold2);
+}
+
+/* Input fields */
+.field { margin-bottom: 1.125rem; }
+.field:last-child { margin-bottom: 0; }
+.field label {
+  display: block;
+  font-size: 10px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--text2);
+  margin-bottom: .5rem;
+  font-weight: 500;
+}
+.field input {
+  width: 100%;
+  padding: .75rem 1rem;
+  border: 1.5px solid var(--border);
+  border-radius: 6px;
+  font-family: 'Jost', sans-serif;
+  font-size: 14px;
+  color: var(--text);
+  background: white;
+  transition: border-color .2s;
+  outline: none;
+}
+.field input:focus { border-color: var(--gold2); }
+.field input::placeholder { color: var(--text3); font-weight: 300; }
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; }
+
+/* Stripe element */
+.stripe-container {
+  border: 1.5px solid var(--border);
+  border-radius: 6px;
+  padding: .75rem 1rem;
+  background: white;
+  transition: border-color .2s;
+  min-height: 44px;
+}
+.stripe-container.StripeElement--focus { border-color: var(--gold2); }
+.stripe-container.StripeElement--invalid { border-color: #e53e3e; }
+
+.stripe-row { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; margin-top: .75rem; }
+
+/* Pay button */
+.pay-btn {
+  width: 100%;
+  padding: 14px;
+  background: var(--cta);
+  color: white;
+  font-family: 'Jost', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all .2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 1.5rem;
+}
+.pay-btn:hover { background: var(--cta2); transform: translateY(-1px); box-shadow: 0 4px 20px rgba(0,0,0,0.15); }
+.pay-btn:active { transform: translateY(0); }
+.pay-btn.loading { opacity: .7; cursor: not-allowed; }
+.pay-btn .amount-badge {
+  background: rgba(255,255,255,0.15);
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-family: 'DM Mono', monospace;
+  letter-spacing: .05em;
+}
+
+.pay-guarantee {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: .875rem;
+  font-size: 10px;
+  color: var(--text3);
+  letter-spacing: .04em;
+}
+
+/* ── RIGHT — SUMMARY ── */
+.summary-panel {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  position: sticky;
+  top: 1.5rem;
+}
+.summary-head {
+  background: #1E1A12;
+  padding: 1.25rem 1.5rem;
+}
+.summary-head-label {
+  font-size: 8px;
+  color: rgba(196,163,90,0.5);
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  font-family: 'DM Mono', monospace;
+  margin-bottom: .375rem;
+}
+.summary-formule {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  color: var(--gold2);
+  font-weight: 500;
+}
+.summary-body { padding: 1.25rem 1.5rem; }
+
+.summary-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: var(--text2);
+  margin-bottom: .625rem;
+}
+.summary-line:last-child { margin-bottom: 0; }
+.summary-line.total {
+  border-top: 1px solid var(--border);
+  padding-top: .875rem;
+  margin-top: .875rem;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--text);
+}
+.summary-line.total .val {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  color: var(--ink);
+}
+
+.summary-includes {
+  background: var(--paper2);
+  border-top: 1px solid var(--border2);
+  padding: 1.125rem 1.5rem;
+}
+.summary-includes-title {
+  font-size: 8px;
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  color: var(--gold);
+  font-family: 'DM Mono', monospace;
+  margin-bottom: .75rem;
+}
+.include-item {
+  display: flex;
+  gap: 7px;
+  font-size: 11px;
+  color: var(--text2);
+  margin-bottom: .5rem;
+  font-weight: 300;
+  line-height: 1.45;
+}
+.include-item span:first-child { color: var(--green); flex-shrink: 0; margin-top: 1px; }
+
+.summary-process {
+  border-top: 1px solid var(--border2);
+  padding: 1.125rem 1.5rem;
+}
+.process-title {
+  font-size: 8px;
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  color: var(--text3);
+  font-family: 'DM Mono', monospace;
+  margin-bottom: .875rem;
+}
+.process-step {
+  display: flex;
+  gap: 10px;
+  margin-bottom: .75rem;
+  align-items: flex-start;
+}
+.process-step:last-child { margin-bottom: 0; }
+.process-num {
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  background: var(--paper3);
+  font-size: 9px;
+  font-family: 'DM Mono', monospace;
+  color: var(--text3);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.process-text { font-size: 11px; color: var(--text2); font-weight: 300; line-height: 1.5; }
+.process-text strong { font-weight: 500; color: var(--text); }
+
+/* ── SUCCESS STATE ── */
+.success-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(10,10,10,0.6);
+  z-index: 200;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+.success-overlay.show { display: flex; animation: fadeIn .3s ease; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+.success-card {
+  background: white;
+  border-radius: 12px;
+  padding: 3rem 2.5rem;
+  max-width: 460px;
+  width: 100%;
+  text-align: center;
+  box-shadow: var(--shadow-lg);
+  animation: slideUp .35s ease;
+}
+@keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+.success-icon {
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  background: var(--green-pale);
+  border: 2px solid var(--green);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 1.5rem;
+  font-size: 28px;
+}
+.success-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: .625rem;
+}
+.success-sub {
+  font-size: 13px;
+  color: var(--text2);
+  font-weight: 300;
+  line-height: 1.8;
+  margin-bottom: 1.75rem;
+}
+.success-sub strong { color: var(--ink); font-weight: 500; }
+.success-steps {
+  background: var(--paper2);
+  border-radius: 8px;
+  padding: 1.125rem 1.25rem;
+  text-align: left;
+}
+.success-step {
+  display: flex;
+  gap: 10px;
+  margin-bottom: .625rem;
+  align-items: center;
+  font-size: 12px;
+  color: var(--text2);
+}
+.success-step:last-child { margin-bottom: 0; }
+.ss-num {
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  background: var(--gold2);
+  color: white;
+  font-size: 9px;
+  font-family: 'DM Mono', monospace;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ── ERROR ── */
+.error-msg {
+  display: none;
+  background: #FFF5F5;
+  border: 1px solid #FED7D7;
+  border-radius: 5px;
+  padding: .625rem 1rem;
+  font-size: 12px;
+  color: #C53030;
+  margin-top: .875rem;
+}
+.error-msg.show { display: block; }
+
+/* ── FOOTER ── */
+footer {
+  text-align: center;
+  padding: 1.5rem;
+  font-size: 10px;
+  color: var(--text3);
+  letter-spacing: .06em;
+  border-top: 1px solid var(--border2);
+  margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+  .main { grid-template-columns: 1fr; padding: 0 1rem; }
+  .form-panel { margin-right: 0; margin-bottom: 1rem; }
+  .formule-cards { grid-template-columns: 1fr 1fr; }
+  .summary-panel { position: static; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-brand">
+    <div class="header-name">ETF Blueprint</div>
+    <div class="header-sub">Build your own ETF portfolio</div>
+  </div>
+  <div class="header-secure">
+    <svg width="12" height="14" viewBox="0 0 12 14" fill="none">
+      <path d="M6 1L1 3v4c0 3.1 2.1 5.9 5 6.9 2.9-1 5-3.8 5-6.9V3L6 1z" stroke="#C4A35A" stroke-width="1.2" fill="none"/>
+    </svg>
+    Paiement 100% sécurisé · Stripe
+  </div>
+</header>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <div class="step done">
+    <div class="step-num">✓</div>
+    Choix de la formule
+  </div>
+  <div class="step-sep"></div>
+  <div class="step active">
+    <div class="step-num">2</div>
+    Paiement
+  </div>
+  <div class="step-sep"></div>
+  <div class="step">
+    <div class="step-num">3</div>
+    Questionnaire
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- LEFT: FORM -->
+  <div class="form-panel">
+
+    <!-- Choix formule -->
+    <div class="form-section">
+      <div class="section-label">Votre formule</div>
+      <div class="formule-cards">
+        <div class="formule-card" id="card-essentiel" onclick="selectFormule('essentiel')">
+          <div class="check-circle" id="check-essentiel"></div>
+          <div style="padding-left:1.5rem">
+            <div class="formule-tag">Essentiel</div>
+            <div class="formule-price">45€</div>
+            <div class="formule-desc">Portefeuille sur mesure · livraison 48h</div>
+          </div>
+        </div>
+        <div class="formule-card premium selected" id="card-premium" onclick="selectFormule('premium')">
+          <div class="formule-badge">Le plus demandé</div>
+          <div class="check-circle" id="check-premium">
+            <svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div style="padding-left:1.5rem">
+            <div class="formule-tag">Premium</div>
+            <div class="formule-price">70€</div>
+            <div class="formule-desc">Portefeuille + site web dédié · 48-72h</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Coordonnées -->
+    <div class="form-section">
+      <div class="section-label">Vos coordonnées</div>
+      <div class="field-row">
+        <div class="field">
+          <label>Prénom</label>
+          <input type="text" id="inp-prenom" placeholder="Jean" autocomplete="given-name">
+        </div>
+        <div class="field">
+          <label>Nom</label>
+          <input type="text" id="inp-nom" placeholder="Dupont" autocomplete="family-name">
+        </div>
+      </div>
+      <div class="field">
+        <label>Adresse email</label>
+        <input type="email" id="inp-email" placeholder="jean.dupont@email.com" autocomplete="email">
+        <div style="font-size:10px;color:var(--text3);margin-top:5px;font-weight:300">
+          📋 Le questionnaire de 10 questions vous sera envoyé ici après paiement
+        </div>
+      </div>
+    </div>
+
+    <!-- Paiement -->
+    <div class="form-section">
+      <div style="background:var(--cta-pale, #E8F5EE);border:1px solid rgba(26,107,69,0.2);border-radius:6px;padding:.875rem 1.125rem;margin-bottom:1.25rem;display:flex;align-items:center;gap:.75rem">
+        <span style="font-size:20px">🎯</span>
+        <div>
+          <div style="font-size:12px;font-weight:500;color:#145436">Votre allocation est en cours de préparation</div>
+          <div style="font-size:11px;color:var(--text2);font-weight:300;margin-top:2px">Finalisez votre commande — vous recevrez le questionnaire sous 30 min</div>
+        </div>
+      </div>
+      <div class="section-label">Paiement sécurisé</div>
+
+      <div class="field">
+        <label>Numéro de carte</label>
+        <div class="stripe-container" id="card-number-element"></div>
+      </div>
+      <div class="stripe-row">
+        <div class="field" style="margin-bottom:0">
+          <label>Date d'expiration</label>
+          <div class="stripe-container" id="card-expiry-element"></div>
+        </div>
+        <div class="field" style="margin-bottom:0">
+          <label>CVC</label>
+          <div class="stripe-container" id="card-cvc-element"></div>
+        </div>
+      </div>
+
+      <div class="error-msg" id="error-msg"></div>
+
+      <button class="pay-btn" id="pay-btn" onclick="handlePayment()">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <path d="M7 1L1 4v3.5c0 3.6 2.6 6.9 6 7.5 3.4-.6 6-3.9 6-7.5V4L7 1z" stroke="white" stroke-width="1.2" fill="none"/>
+        </svg>
+        Payer maintenant
+        <span class="amount-badge" id="btn-amount">70€</span>
+      </button>
+
+      <div style="display:flex;align-items:center;justify-content:center;gap:1.25rem;margin-top:1rem;padding:.75rem;background:var(--paper2);border-radius:5px;border:1px solid var(--border2)">
+        <div style="display:flex;align-items:center;gap:5px;font-size:10px;color:var(--text3)">🔒 SSL 256-bit</div>
+        <div style="width:1px;height:14px;background:var(--border)"></div>
+        <div style="display:flex;align-items:center;gap:5px;font-size:10px;color:var(--text3)">💳 Stripe Payments</div>
+        <div style="width:1px;height:14px;background:var(--border)"></div>
+        <div style="display:flex;align-items:center;gap:5px;font-size:10px;color:var(--text3)">🛡️ Aucune donnée stockée</div>
+      </div>
+      <div class="pay-guarantee">
+        <svg width="10" height="11" viewBox="0 0 10 11" fill="none">
+          <rect x=".5" y="3.5" width="9" height="7" rx="1" stroke="#8A8278" stroke-width="1"/>
+          <path d="M3 3.5V3a2 2 0 014 0v.5" stroke="#8A8278" stroke-width="1" stroke-linecap="round"/>
+        </svg>
+        Cryptage SSL · Aucune donnée bancaire stockée · Powered by Stripe
+      </div>
+    </div>
+
+  </div>
+
+  <!-- RIGHT: SUMMARY -->
+  <div class="summary-panel">
+    <div class="summary-head">
+      <div class="summary-head-label">Récapitulatif</div>
+      <div class="summary-formule" id="summary-formule-name">Formule Premium</div>
+    </div>
+
+    <div class="summary-body">
+      <div class="summary-line">
+        <span id="summary-item">Portefeuille ETF sur mesure + site web</span>
+        <span id="summary-price-line">70€</span>
+      </div>
+      <div class="summary-line">
+        <span>Livraison</span>
+        <span style="color:var(--green);font-weight:500">48-72h</span>
+      </div>
+      <div class="summary-line">
+        <span>Paiement récurrent</span>
+        <span style="color:var(--green);font-weight:500">Aucun</span>
+      </div>
+      <div class="summary-line total">
+        <span>Total</span>
+        <span class="val" id="summary-total">70€</span>
+      </div>
+    </div>
+
+    <div class="summary-includes">
+      <div class="summary-includes-title" id="summary-includes-title">Ce qui est inclus</div>
+      <div id="summary-includes-list">
+        <div class="include-item"><span>✓</span><span>Tout de la formule Essentiel (7 livrables)</span></div>
+        <div class="include-item"><span>✓</span><span>Site web dédié à votre nom</span></div>
+        <div class="include-item"><span>✓</span><span>Simulateur interactif personnalisé</span></div>
+        <div class="include-item"><span>✓</span><span>Projection sur 10 ans avec vos chiffres</span></div>
+        <div class="include-item"><span>✓</span><span>Lien privé partageable bilingue FR/EN</span></div>
+      </div>
+    </div>
+
+    <div style="background:var(--paper2);border-top:1px solid var(--border2);padding:1rem 1.5rem">
+        <div style="font-size:9px;color:var(--gold);text-transform:uppercase;letter-spacing:.12em;font-family:'DM Mono',monospace;margin-bottom:.625rem">Ce que vous allez recevoir</div>
+        <div style="font-size:11px;color:var(--text2);font-weight:300;line-height:1.7">Un document complet et actionnable : votre profil analysé, votre allocation en % prête à exécuter, les raisons de chaque choix, et les ordres précis à passer chez votre courtier. <strong style="color:var(--text)">Paiement unique · Aucun abonnement.</strong></div>
+      </div>
+      <div class="summary-process">
+      <div class="process-title">Ce qui se passe ensuite</div>
+      <div class="process-step">
+        <div class="process-num">1</div>
+        <div class="process-text"><strong>Confirmation immédiate</strong> par email</div>
+      </div>
+      <div class="process-step">
+        <div class="process-num">2</div>
+        <div class="process-text"><strong>Questionnaire de 10 questions</strong> envoyé sous 30 min</div>
+      </div>
+      <div class="process-step">
+        <div class="process-num">3</div>
+        <div class="process-text"><strong>Livraison de votre portefeuille</strong> sous 48-72h</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- BOUTON RETOUR -->
+<div style="text-align:center;padding:.75rem;margin-top:-.5rem;margin-bottom:1rem">
+  <a href="index_v8.html" style="font-size:11px;color:var(--text3);text-decoration:none;letter-spacing:.08em;display:inline-flex;align-items:center;gap:5px;transition:color .2s" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--text3)'">
+    ← Retour au site · Annuler la commande
+  </a>
+</div>
+
+
+<!-- BOUTON TEST — BYPASS PAIEMENT -->
+<div style="max-width:1000px;margin:0 auto 2rem;padding:0 1.5rem">
+  <div style="border:1.5px dashed rgba(196,163,90,0.45);border-radius:8px;padding:1.125rem 1.5rem;background:rgba(251,246,234,0.5);display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap">
+    <div style="display:flex;align-items:center;gap:.75rem">
+      <span style="font-size:20px">🧪</span>
+      <div>
+        <div style="font-size:11px;font-weight:600;color:#1A1814;letter-spacing:.04em">Mode démonstration</div>
+        <div style="font-size:11px;color:#8A8278;font-weight:300;margin-top:2px">Passer le paiement et accéder directement au questionnaire</div>
+      </div>
+    </div>
+    <a href="questionnaire.html?formule=premium" id="test-bypass-btn"
+       style="padding:10px 22px;background:#1A6B45;color:white;font-family:'Jost',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;border-radius:5px;text-decoration:none;white-space:nowrap;transition:background .2s"
+       onmouseover="this.style.background='#145436'" onmouseout="this.style.background='#1A6B45'">
+      Passer cette étape →
+    </a>
+  </div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var btn = document.getElementById('test-bypass-btn');
+  var c1 = document.getElementById('card-essentiel');
+  var c2 = document.getElementById('card-premium');
+  if(c1) c1.addEventListener('click', function(){ btn.href='questionnaire.html?formule=essentiel'; });
+  if(c2) c2.addEventListener('click', function(){ btn.href='questionnaire.html?formule=premium'; });
+});
+</script>
+
+<!-- SUCCESS OVERLAY -->
+<div class="success-overlay" id="success-overlay">
+  <div class="success-card">
+    <div class="success-icon">✓</div>
+    <div class="success-title">Paiement confirmé !</div>
+    <div class="success-sub">
+      Merci <strong id="success-name">Jean</strong> — votre commande est bien enregistrée.<br>
+      Vérifiez votre boîte mail : le questionnaire vous attend.
+    </div>
+    <div class="success-steps">
+      <div class="success-step"><div class="ss-num">1</div>Confirmation envoyée à <strong id="success-email">votre email</strong></div>
+      <div class="success-step"><div class="ss-num">2</div>Questionnaire de 10 questions dans votre boîte sous 30 min</div>
+      <div class="success-step"><div class="ss-num">3</div>Votre portefeuille livré sous 48-72h</div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  ETF Blueprint · Michael · CGP · IAS · AMF · France &nbsp;·&nbsp; Paiement sécurisé par Stripe &nbsp;·&nbsp; contact@etf-blueprint.fr
+</footer>
+
+<script>
+// ── STRIPE INIT ──
+// ⚠️ Remplace 'pk_test_...' par ta clé publique Stripe
+const stripe = Stripe('pk_test_REMPLACE_PAR_TA_CLE_PUBLIQUE_STRIPE');
+const elements = stripe.elements({
+  fonts: [{ cssSrc: 'https://fonts.googleapis.com/css2?family=Jost:wght@300;400&display=swap' }]
+});
+const style = {
+  base: {
+    fontFamily: "'Jost', sans-serif",
+    fontSize: '14px',
+    color: '#1A1814',
+    fontWeight: '300',
+    '::placeholder': { color: '#8A8278' }
+  },
+  invalid: { color: '#C53030' }
+};
+
+const cardNumber = elements.create('cardNumber', { style });
+const cardExpiry = elements.create('cardExpiry', { style });
+const cardCvc   = elements.create('cardCvc',   { style });
+
+cardNumber.mount('#card-number-element');
+cardExpiry.mount('#card-expiry-element');
+cardCvc.mount('#card-cvc-element');
+
+[cardNumber, cardExpiry, cardCvc].forEach(el => {
+  el.on('focus',  () => el._element.closest('.stripe-container').style.borderColor = '#C4A35A');
+  el.on('blur',   () => el._element.closest('.stripe-container').style.borderColor = 'rgba(0,0,0,0.08)');
+  el.on('change', e => { if (e.error) showError(e.error.message); else hideError(); });
+});
+
+// ── FORMULE SELECTION ──
+let selectedFormule = 'premium';
+
+const formuleData = {
+  essentiel: {
+    price: '45€', amount: 4500,
+    name: 'Formule Essentiel',
+    item: 'Portefeuille ETF sur mesure',
+    delivery: '48h',
+    includes: [
+      'Analyse de profil investisseur',
+      'Portefeuille 4 à 6 ETF sur mesure',
+      'Allocation en % prête à investir',
+      'Rôle de chaque ETF expliqué',
+      'Stratégie d\'entrée + 3 scénarios de marché',
+    ]
+  },
+  premium: {
+    price: '70€', amount: 7000,
+    name: 'Formule Premium',
+    item: 'Portefeuille ETF + site web dédié',
+    delivery: '48-72h',
+    includes: [
+      'Tout de la formule Essentiel (7 livrables)',
+      'Site web dédié à votre nom',
+      'Simulateur interactif personnalisé',
+      'Projection sur 10 ans avec vos chiffres',
+      'Lien privé partageable bilingue FR/EN',
+    ]
+  }
+};
+
+function selectFormule(f) {
+  selectedFormule = f;
+  const d = formuleData[f];
+
+  // Cards UI
+  document.getElementById('card-essentiel').classList.toggle('selected', f === 'essentiel');
+  document.getElementById('card-premium').classList.toggle('selected', f === 'premium');
+  document.getElementById('check-essentiel').innerHTML = f === 'essentiel'
+    ? '<svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>' : '';
+  document.getElementById('check-premium').innerHTML = f === 'premium'
+    ? '<svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>' : '';
+
+  // Summary update
+  document.getElementById('summary-formule-name').textContent = d.name;
+  document.getElementById('summary-item').textContent = d.item;
+  document.getElementById('summary-price-line').textContent = d.price;
+  document.getElementById('summary-total').textContent = d.price;
+  document.getElementById('btn-amount').textContent = d.price;
+
+  // Includes list
+  const list = document.getElementById('summary-includes-list');
+  list.innerHTML = d.includes.map(i =>
+    `<div class="include-item"><span>✓</span><span>${i}</span></div>`
+  ).join('');
+}
+
+// ── PAYMENT HANDLER ──
+async function handlePayment() {
+  const prenom = document.getElementById('inp-prenom').value.trim();
+  const nom    = document.getElementById('inp-nom').value.trim();
+  const email  = document.getElementById('inp-email').value.trim();
+
+  if (!prenom || !nom) return showError('Merci de renseigner votre prénom et nom.');
+  if (!email || !email.includes('@')) return showError('Veuillez entrer une adresse email valide.');
+
+  const btn = document.getElementById('pay-btn');
+  btn.classList.add('loading');
+  btn.textContent = 'Traitement en cours…';
+  hideError();
+
+  // ── INTÉGRATION STRIPE ──
+  // Pour aller en production, tu dois :
+  // 1. Créer un PaymentIntent côté serveur (Node/Python/PHP) qui retourne un client_secret
+  // 2. Remplacer le bloc ci-dessous par un appel à ton backend :
+  //    const res = await fetch('/create-payment-intent', { method:'POST', body: JSON.stringify({ amount, email }) })
+  //    const { clientSecret } = await res.json()
+  //    const { error } = await stripe.confirmCardPayment(clientSecret, { ... })
+
+  // SIMULATION (démo — à remplacer par le vrai flux backend)
+  setTimeout(() => {
+    btn.classList.remove('loading');
+    btn.innerHTML = `<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1L1 4v3.5c0 3.6 2.6 6.9 6 7.5 3.4-.6 6-3.9 6-7.5V4L7 1z" stroke="white" stroke-width="1.2" fill="none"/></svg> Payer maintenant <span class="amount-badge">${formuleData[selectedFormule].price}</span>`;
+    showSuccess(prenom, email);
+  }, 1800);
+}
+
+function showSuccess(prenom, email) {
+  document.getElementById('success-name').textContent  = prenom;
+  document.getElementById('success-email').textContent = email;
+  document.getElementById('success-overlay').classList.add('show');
+}
+
+function showError(msg) {
+  const el = document.getElementById('error-msg');
+  el.textContent = msg;
+  el.classList.add('show');
+}
+function hideError() {
+  document.getElementById('error-msg').classList.remove('show');
+}
+
+// Pré-sélection depuis URL param (?formule=essentiel)
+const params = new URLSearchParams(window.location.search);
+if (params.get('formule') === 'essentiel') selectFormule('essentiel');
+</script>
+</body>
+</html>
