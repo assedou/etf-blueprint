@@ -238,22 +238,11 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.3)}
 </header>
 
 <nav class="nav">
-  <button class="nav-btn active" id="nav-accueil" onclick="show('accueil',this)" id="nav-accueil">Accueil</button>
+  <button class="nav-btn active" id="nav-accueil" onclick="show('accueil',this)">Accueil</button>
   <button class="nav-btn" id="nav-comment" onclick="show('comment',this)">Comment ça marche</button>
   <button class="nav-btn" id="nav-tarifs" onclick="show('tarifs',this)">Nos offres</button>
   <button class="nav-btn" id="nav-contact" onclick="show('contact',this)" style="color:var(--gold2)">✉ Contact</button>
 </nav>
-</div>
-<!-- Nav experte cachée — accessible via footer -->
-<div id="expert-nav" style="display:none">
-  <nav class="nav" style="background:#111;border-top:1px solid rgba(196,163,90,0.1)">
-    <div style="padding:0 1rem;display:flex;align-items:center;gap:.5rem;font-size:9px;color:rgba(196,163,90,0.4);letter-spacing:.12em;text-transform:uppercase;white-space:nowrap">Vue experte ·</div>
-    <button class="nav-btn" id="nav-etfs-btn" onclick="show('etfs',this)">Les ETFs</button>
-    <button class="nav-btn" id="nav-lomb-btn" onclick="show('lombard',this)">Stratégie Lombard</button>
-    <button class="nav-btn" id="nav-arb-btn" onclick="show('arbitrage',this)">Arbitrage</button>
-    <button class="nav-btn" id="nav-frais-btn" onclick="show('frais',this)">Frais détaillés</button>
-    <button class="nav-btn" id="nav-versions" onclick="show('versions',this)">Versions du portefeuille</button>
-  </nav>
 </div>
 
 <!-- ACCUEIL -->
@@ -262,19 +251,19 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.3)}
   <!-- HERO COMPACT -->
   <div style="text-align:center;padding:1.75rem 1rem 1.5rem;margin-bottom:1.5rem;position:relative">
     <div style="font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:.625rem;font-weight:300" id="acc-eyebrow">CGP indépendant · 25 ans d'expérience · Certifié IAS · AMF</div>
-    <h1 style="font-family:'Cormorant Garamond',serif;font-size:clamp(26px,3.5vw,46px);font-weight:400;line-height:1.1;color:var(--ink);margin-bottom:.75rem" id="acc-h1">Recevez votre allocation <em style="color:var(--gold)">ETF sur mesure</em><br><span style="font-size:.65em;font-style:normal;color:var(--text2);font-weight:300">4 à 6 ETF optimisés · rendement cible 8,95%/an · frais 0,09%</span></h1>
-    <p style="font-size:14px;color:var(--text2);max-width:600px;margin:0 auto .5rem;font-weight:300;line-height:1.85" id="acc-p">Faites travailler votre capital à <strong>8,95%/an</strong> avec une gestion simple, indépendante et sans frais cachés. Paiement unique — pas d'abonnement, pas de commission, pas de conflit d'intérêt.</p>
+    <h1 style="font-family:'Cormorant Garamond',serif;font-size:clamp(26px,3.5vw,46px);font-weight:400;line-height:1.1;color:var(--ink);margin-bottom:.75rem" id="acc-h1">Recevez votre allocation <em style="color:var(--gold)">ETF sur mesure</em><br><span style="font-size:.65em;font-style:normal;color:var(--text2);font-weight:300">4 à 6 ETF sélectionnés à la main · livrés en 48h</span></h1>
+        <p style="font-size:13px;color:var(--gold);max-width:580px;margin:0 auto .75rem;font-weight:400;line-height:1.7;font-style:italic" id="acc-accroche">Il existe plus de 11 000 ETF dans le monde. Savoir lesquels choisir, dans quelles proportions et pour quel profil — c'est précisément notre métier.</p>
+    <p style="font-size:14px;color:var(--text2);max-width:600px;margin:0 auto .5rem;font-weight:300;line-height:1.85" id="acc-p">Paiement unique — pas d'abonnement, pas de commission, pas de conflit d'intérêt.</p>
     <div style="font-size:11px;color:var(--text3);font-weight:300;margin-bottom:1.125rem;font-style:italic" id="acc-p2">Retraite · Revenus complémentaires · Constitution de patrimoine · Transmission · Trésorerie · Indépendance financière</div>
     <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
       <button onclick="window.location.href='checkout.html?formule=essentiel'" style="padding:13px 28px;background:var(--cta);color:white;font-family:'Jost',sans-serif;font-size:12px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;border:none;border-radius:4px;cursor:pointer;transition:all .2s;box-shadow:0 4px 14px rgba(26,107,69,0.35)" onmouseover="this.style.background='var(--cta2)';this.style.transform='translateY(-1px)'" onmouseout="this.style.background='var(--cta)';this.style.transform='translateY(0)'" id="acc-cta1">Recevoir mon allocation personnalisée →</button>
-      <button onclick="window.location.href='checkout.html?formule=essentiel'" style="padding:11px 24px;background:transparent;color:var(--text2);font-family:'Jost',sans-serif;font-size:11px;font-weight:400;letter-spacing:.12em;text-transform:uppercase;border:1px solid var(--border);border-radius:3px;cursor:pointer" id="acc-cta2">Prendre contact →</button>
+      <button onclick="show('contact',document.getElementById('nav-contact'))" style="padding:11px 24px;background:transparent;color:var(--text2);font-family:'Jost',sans-serif;font-size:11px;font-weight:400;letter-spacing:.12em;text-transform:uppercase;border:1px solid var(--border);border-radius:3px;cursor:pointer" id="acc-cta2">Prendre contact →</button>
     </div>
     <div style="position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:40px;height:1px;background:var(--gold2)"></div>
   </div>
 
-
   <!-- BLOC CRÉDIBILITÉ -->
-  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:.625rem;margin-bottom:1.75rem;padding:.875rem 1.25rem;background:white;border:1px solid var(--border2);border-radius:6px">
+  <div style="display:grid;grid-template-columns:repeat(4,minmax(140px,1fr));gap:.625rem;margin-bottom:1.75rem;padding:.875rem 1.25rem;background:white;border:1px solid var(--border2);border-radius:6px">
     <div style="text-align:center;padding:.5rem">
       <div style="font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--gold);font-weight:500;line-height:1">25 ans</div>
       <div style="font-size:10px;color:var(--text3);margin-top:3px;font-weight:300">d'expérience CGP</div>
@@ -293,466 +282,64 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.3)}
     </div>
   </div>
 
-  <!-- 4 PILIERS -->
-  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:.875rem;margin-bottom:1.75rem">
+
+  <!-- 4 PILIERS — REDESIGN -->
+  <div style="display:grid;grid-template-columns:repeat(4,minmax(160px,1fr));gap:.875rem;margin-bottom:1.75rem">
+
+    <!-- Carte 1 : 11 000 ETF filtrés pour vous -->
     <div style="background:white;border:1px solid var(--border2);border-radius:4px;padding:1.125rem;position:relative;overflow:hidden">
       <div style="position:absolute;top:0;left:0;width:100%;height:3px;background:var(--gold2)"></div>
-      <div style="font-size:22px;margin-bottom:.625rem">🎯</div>
-      <div style="font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:600;color:var(--ink);margin-bottom:.5rem" id="acc-s1-t">Sur mesure · 4 à 6 ETFs</div>
-      <div style="font-size:11px;color:var(--text2);font-weight:300;line-height:1.75" id="acc-s1-b">Votre allocation est construite selon votre profil, votre âge, vos projets de vie et votre fiscalité. Pas de solution standard.</div>
+      <div style="font-size:22px;margin-bottom:.625rem">🔍</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:600;color:var(--ink);margin-bottom:.5rem" id="acc-s1-t">11 000 ETF. 4 à 6 pour vous.</div>
+      <div style="font-size:11px;color:var(--text2);font-weight:300;line-height:1.75" id="acc-s1-b">On scanne l'univers entier des ETF disponibles pour isoler ceux qui correspondent exactement à votre profil, votre horizon et votre fiscalité.</div>
     </div>
+
+    <!-- Carte 2 : Livré prêt à investir -->
     <div style="background:white;border:1px solid var(--border2);border-radius:4px;padding:1.125rem;position:relative;overflow:hidden">
       <div style="position:absolute;top:0;left:0;width:100%;height:3px;background:var(--green)"></div>
-      <div style="font-size:22px;margin-bottom:.625rem">🎓</div>
-      <div style="font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:600;color:var(--ink);margin-bottom:.5rem" id="acc-s2-t">Aucune connaissance requise</div>
-      <div style="font-size:11px;color:var(--text2);font-weight:300;line-height:1.75" id="acc-s2-b">Vous n'avez pas besoin de connaître les ETFs. Chaque ligne est expliquée simplement. Vous comprenez ce que vous possédez et pourquoi.</div>
+      <div style="font-size:22px;margin-bottom:.625rem">📦</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:600;color:var(--ink);margin-bottom:.5rem" id="acc-s2-t">Prêt à investir en 48h</div>
+      <div style="font-size:11px;color:var(--text2);font-weight:300;line-height:1.75" id="acc-s2-b">Vous recevez un portefeuille complet avec les ordres exacts à passer chez votre courtier. Pas de jargon, pas de réflexion supplémentaire — juste agir.</div>
     </div>
+
+    <!-- Carte 3 : Votre argent reste chez vous -->
     <div style="background:white;border:1px solid var(--border2);border-radius:4px;padding:1.125rem;position:relative;overflow:hidden">
       <div style="position:absolute;top:0;left:0;width:100%;height:3px;background:var(--blue2)"></div>
-      <div style="font-size:22px;margin-bottom:.625rem">🏦</div>
-      <div style="font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:600;color:var(--ink);margin-bottom:.5rem" id="acc-s3-t">Courtier de votre choix</div>
-      <div style="font-size:11px;color:var(--text2);font-weight:300;line-height:1.75;margin-bottom:.625rem" id="acc-s3-b">Votre argent reste chez vous. Nous pouvons aussi vous orienter vers le courtier adapté.</div>
-      <div style="display:flex;flex-wrap:wrap;gap:3px">
-        <span style="font-size:8px;font-family:'DM Mono',monospace;background:var(--blue-pale);color:var(--blue2);padding:2px 5px;border-radius:2px">IBKR</span>
-        <span style="font-size:8px;font-family:'DM Mono',monospace;background:var(--paper2);color:var(--text2);padding:2px 5px;border-radius:2px">Trade Republic</span>
-        <span style="font-size:8px;font-family:'DM Mono',monospace;background:var(--paper2);color:var(--text2);padding:2px 5px;border-radius:2px">Degiro</span>
-        <span style="font-size:8px;font-family:'DM Mono',monospace;background:var(--paper2);color:var(--text2);padding:2px 5px;border-radius:2px">Scalable</span>
-        <span style="font-size:8px;font-family:'DM Mono',monospace;background:var(--paper2);color:var(--text2);padding:2px 5px;border-radius:2px">BoursoBank</span>
-      </div>
+      <div style="font-size:22px;margin-bottom:.625rem">🔒</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:600;color:var(--ink);margin-bottom:.5rem" id="acc-s3-t">Votre argent reste chez vous</div>
+      <div style="font-size:11px;color:var(--text2);font-weight:300;line-height:1.75" id="acc-s3-b">Nous ne touchons jamais votre capital. Vous investissez vous-même, chez le courtier de votre choix — IBKR, Trade Republic, Degiro, BoursoBank.</div>
     </div>
+
+    <!-- Carte 4 : Zéro conflit d'intérêt -->
     <div style="background:white;border:1px solid var(--border2);border-radius:4px;padding:1.125rem;position:relative;overflow:hidden">
       <div style="position:absolute;top:0;left:0;width:100%;height:3px;background:var(--purple)"></div>
-      <div style="font-size:22px;margin-bottom:.625rem">🛡️</div>
-      <div style="font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:600;color:var(--ink);margin-bottom:.5rem" id="acc-s4-t">Indépendant · 0 conflit</div>
-      <div style="font-size:11px;color:var(--text2);font-weight:300;line-height:1.75" id="acc-s4-b">Zéro rétrocession. Zéro produit maison. Frais ETFs 0,09%/an vs 1,5-2% en gestion traditionnelle. Sur 10 ans : +150 000€ d'économie.</div>
+      <div style="font-size:22px;margin-bottom:.625rem">⚖️</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:600;color:var(--ink);margin-bottom:.5rem" id="acc-s4-t">Zéro conflit d'intérêt</div>
+      <div style="font-size:11px;color:var(--text2);font-weight:300;line-height:1.75" id="acc-s4-b">CGP indépendant certifié IAS · AMF. Aucune banque derrière nous, aucun produit maison, zéro rétrocession. Nos seuls intérêts sont les vôtres.</div>
     </div>
+
   </div>
 
 
-  <!-- BLOC COMPARATIF FINANCIER -->
-  <div style="margin-bottom:1.75rem;background:var(--ink);border-radius:8px;overflow:hidden">
-    <div style="padding:1.25rem 1.75rem;border-bottom:1px solid rgba(196,163,90,0.15)">
-      <div style="font-size:9px;color:rgba(196,163,90,0.5);text-transform:uppercase;letter-spacing:.18em;font-family:'DM Mono',monospace;margin-bottom:.375rem">Argument financier</div>
-      <div style="font-family:'Cormorant Garamond',serif;font-size:20px;color:white;font-weight:400">0,09% vs 1,5–2% · La différence sur 10 ans</div>
-    </div>
-    <div style="padding:1.25rem 1.75rem;display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;align-items:center">
-      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(196,163,90,0.12);border-radius:6px;padding:1rem;text-align:center">
-        <div style="font-size:9px;color:rgba(196,163,90,0.5);text-transform:uppercase;letter-spacing:.1em;font-family:'DM Mono',monospace;margin-bottom:.5rem">ETF Blueprint</div>
-        <div style="font-family:'Cormorant Garamond',serif;font-size:32px;color:#C4A35A;font-weight:400">0,09%</div>
-        <div style="font-size:10px;color:rgba(255,255,255,0.4);margin-top:4px">frais annuels</div>
-        <div style="margin-top:.75rem;font-size:11px;color:rgba(255,255,255,0.6);font-weight:300">Capital 200k€ <br>→ <span style="color:#4ade80;font-weight:500">556 000€</span> en 10 ans</div>
-      </div>
-      <div style="text-align:center;padding:.5rem">
-        <div style="font-family:'Cormorant Garamond',serif;font-size:36px;color:rgba(196,163,90,0.3)">vs</div>
-        <div style="font-size:10px;color:rgba(255,255,255,0.3);font-style:italic;margin-top:.25rem">Sur 200 000€ investis</div>
-      </div>
-      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-radius:6px;padding:1rem;text-align:center;opacity:.7">
-        <div style="font-size:9px;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:.1em;font-family:'DM Mono',monospace;margin-bottom:.5rem">Gestion classique</div>
-        <div style="font-family:'Cormorant Garamond',serif;font-size:32px;color:rgba(255,255,255,0.5);font-weight:400">1,5–2%</div>
-        <div style="font-size:10px;color:rgba(255,255,255,0.3);margin-top:4px">frais annuels</div>
-        <div style="margin-top:.75rem;font-size:11px;color:rgba(255,255,255,0.35);font-weight:300">Capital 200k€ <br>→ <span style="color:rgba(255,100,100,0.7);font-weight:500">406 000€</span> en 10 ans</div>
-      </div>
-    </div>
-    <div style="padding:.875rem 1.75rem;background:rgba(26,107,69,0.15);border-top:1px solid rgba(26,107,69,0.3);display:flex;align-items:center;justify-content:center;gap:.75rem">
-      <span style="font-size:13px;color:#4ade80;font-weight:500">+150 000€ d'économie sur 10 ans</span>
-      <span style="font-size:10px;color:rgba(255,255,255,0.35)">— uniquement grâce à la différence de frais</span>
-    </div>
-  </div>
 
 
-  <!-- POURQUOI ETF BLUEPRINT -->
+    <!-- POURQUOI ETF BLUEPRINT -->
   <div style="margin-bottom:1.75rem;padding:1.5rem 2rem;background:white;border:1px solid var(--border2);border-radius:8px;position:relative;overflow:hidden">
     <div style="position:absolute;top:0;left:0;width:4px;height:100%;background:var(--cta)"></div>
     <div style="font-size:9px;color:var(--gold);text-transform:uppercase;letter-spacing:.18em;font-family:'DM Mono',monospace;margin-bottom:.75rem">Pourquoi ETF Blueprint ?</div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem">
+    <div style="display:grid;grid-template-columns:repeat(3,minmax(180px,1fr));gap:1.25rem">
       <div>
-        <div style="font-size:13px;font-weight:500;color:var(--ink);margin-bottom:.375rem">🎯 Indépendant</div>
-        <div style="font-size:11px;color:var(--text2);font-weight:300;line-height:1.65">Aucune banque, aucun produit maison. Zéro rétrocession. Vos intérêts uniquement.</div>
-      </div>
-      <div>
-        <div style="font-size:13px;font-weight:500;color:var(--ink);margin-bottom:.375rem">⚡ Simple et efficace</div>
-        <div style="font-size:11px;color:var(--text2);font-weight:300;line-height:1.65">4 à 6 ETF. Pas de complexité inutile. Tout est expliqué, tout est prêt à exécuter.</div>
+        <div style="font-size:13px;font-weight:500;color:var(--ink);margin-bottom:.375rem">🎯 Un conseil, pas un produit</div>
+        <div style="font-size:11px;color:var(--text2);font-weight:300;line-height:1.65">Nous construisons votre stratégie, pas celle d'une banque. Aucune rétrocession, aucun produit maison — uniquement ce qui est juste pour vous.</div>
       </div>
       <div>
-        <div style="font-size:13px;font-weight:500;color:var(--ink);margin-bottom:.375rem">💰 Économique</div>
-        <div style="font-size:11px;color:var(--text2);font-weight:300;line-height:1.65">0,09%/an vs 1,5–2% en gestion classique. Sur 200k€ sur 10 ans : +150 000€ de différence.</div>
+        <div style="font-size:13px;font-weight:500;color:var(--ink);margin-bottom:.375rem">📊 Simple, lisible, actionnable</div>
+        <div style="font-size:11px;color:var(--text2);font-weight:300;line-height:1.65">4 à 6 ETF maximum. Chaque ligne a un rôle précis. Tout est expliqué en langage clair — vous comprenez ce que vous possédez et pourquoi.</div>
       </div>
-    </div>
-  </div>
-
-  <!-- OFFRES — 3 FORMULES -->
-  <div style="margin-bottom:1.75rem">
-    <div style="text-align:center;margin-bottom:1.25rem">
-      <div style="font-size:10px;text-transform:uppercase;letter-spacing:.15em;color:var(--gold);margin-bottom:3px;font-family:'DM Mono',monospace" id="acc-off-eyebrow">Nos formules</div>
-      <div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400" id="acc-off-title">Choisissez votre niveau d'accompagnement</div>
-    </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem">
-
-      <!-- F1 Essentiel 45€ -->
-      <div style="background:white;border:1px solid var(--border2);border-radius:6px;overflow:hidden;display:flex;flex-direction:column">
-        <div style="padding:1.375rem;border-bottom:1px solid var(--border2)">
-          <div style="font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.5rem" id="f1-tag">Formule Essentiel</div>
-          <div style="font-size:10px;color:var(--cta);font-weight:500;margin-bottom:.25rem;font-family:'DM Mono',monospace;letter-spacing:.04em">→ Votre allocation prête à investir en 48h</div>
-          <div style="font-family:'Cormorant Garamond',serif;font-size:48px;color:var(--ink);font-weight:400;line-height:1;margin:.5rem 0" id="f1-price">45€</div>
-          <div style="font-size:11px;color:var(--text3);margin-top:3px" id="f1-price-sub">paiement unique · livraison sous 48h</div>
-        </div>
-        <div style="padding:1.5rem 1.75rem;flex:1">
-          <!-- Questionnaire badge -->
-          <div style="display:flex;align-items:center;gap:10px;background:var(--gold-pale);border:1px solid rgba(155,125,58,0.25);border-radius:4px;padding:.875rem 1rem;margin-bottom:1.25rem">
-            <span style="font-size:14px">📋</span>
-            <span style="font-size:11px;color:var(--gold);font-weight:400;line-height:1.5" id="f1-q10">Questionnaire exclusif de <strong>10 questions</strong> envoyé après paiement — pour cibler précisément vos ETF</span>
-          </div>
-          <!-- Sections livrables -->
-          <div style="display:flex;flex-direction:column;gap:14px">
-            <div style="border-left:2px solid var(--gold2);padding-left:.75rem">
-              <div style="font-size:10px;font-family:'DM Mono',monospace;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px">🧠 Analyse &amp; profil</div>
-              <div style="display:flex;flex-direction:column;gap:6px">
-                <div style="display:flex;gap:6px;font-size:12px;color:var(--text2)"><span style="color:var(--green);flex-shrink:0">✓</span><span id="f1-i1">Identification de votre profil investisseur</span></div>
-                <div style="display:flex;gap:6px;font-size:12px;color:var(--text2)"><span style="color:var(--green);flex-shrink:0">✓</span><span id="f1-i2">Traduction de vos réponses en stratégie concrète</span></div>
-              </div>
-            </div>
-            <div style="border-left:2px solid var(--gold2);padding-left:.75rem">
-              <div style="font-size:10px;font-family:'DM Mono',monospace;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px">📊 Portefeuille sur mesure</div>
-              <div style="display:flex;flex-direction:column;gap:6px">
-                <div style="display:flex;gap:6px;font-size:12px;color:var(--text2)"><span style="color:var(--green);flex-shrink:0">✓</span><span id="f1-i3">Allocation optimisée entre 4 et 6 ETF</span></div>
-                <div style="display:flex;gap:6px;font-size:12px;color:var(--text2)"><span style="color:var(--green);flex-shrink:0">✓</span><span id="f1-i4">Adaptée à votre objectif, horizon &amp; comportement</span></div>
-              </div>
-            </div>
-            <div style="border-left:2px solid var(--gold2);padding-left:.75rem">
-              <div style="font-size:10px;font-family:'DM Mono',monospace;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px">⚙️ Allocation prête à investir</div>
-              <div style="display:flex;flex-direction:column;gap:6px">
-                <div style="display:flex;gap:6px;font-size:12px;color:var(--text2)"><span style="color:var(--green);flex-shrink:0">✓</span><span id="f1-i5">Répartition en % précise — ordres simples à exécuter</span></div>
-              </div>
-            </div>
-            <div style="border-left:2px solid var(--gold2);padding-left:.75rem">
-              <div style="font-size:10px;font-family:'DM Mono',monospace;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px">🧩 Rôle de chaque ETF</div>
-              <div style="display:flex;flex-direction:column;gap:6px">
-                <div style="display:flex;gap:6px;font-size:12px;color:var(--text2)"><span style="color:var(--green);flex-shrink:0">✓</span><span id="f1-i6">Pourquoi cet ETF — ce qu'il apporte au portefeuille</span></div>
-              </div>
-            </div>
-            <div style="border-left:2px solid var(--gold2);padding-left:.75rem">
-              <div style="font-size:10px;font-family:'DM Mono',monospace;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px">📈 Stratégie d'entrée</div>
-              <div style="display:flex;flex-direction:column;gap:6px">
-                <div style="display:flex;gap:6px;font-size:12px;color:var(--text2)"><span style="color:var(--green);flex-shrink:0">✓</span><span id="f1-i8">Lump sum ou DCA — recommandation adaptée à votre profil</span></div>
-              </div>
-            </div>
-            <div style="border-left:2px solid var(--gold2);padding-left:.75rem">
-              <div style="font-size:10px;font-family:'DM Mono',monospace;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px">🔁 Plan d'arbitrage simple</div>
-              <div style="display:flex;flex-direction:column;gap:6px">
-                <div style="display:flex;gap:6px;font-size:12px;color:var(--text2)"><span style="color:var(--green);flex-shrink:0">✓</span><span id="f1-i9">Quand ajuster &amp; comment réagir — règles claires</span></div>
-              </div>
-            </div>
-            <div style="border-left:2px solid var(--gold2);padding-left:.75rem">
-              <div style="font-size:10px;font-family:'DM Mono',monospace;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px">🌦️ 3 scénarios de marché</div>
-              <div style="display:flex;flex-direction:column;gap:6px">
-                <div style="display:flex;gap:6px;font-size:12px;color:var(--text2)"><span style="color:var(--green);flex-shrink:0">✓</span><span id="f1-i10">Haussier · Neutre · Baissier — comportement de votre portefeuille</span></div>
-              </div>
-            </div>
-            <div style="display:flex;gap:6px;font-size:12px;color:var(--text3);padding-left:.75rem"><span style="flex-shrink:0">—</span><span id="f1-i7">Sans simulateur personnalisé</span></div>
-          </div>
-        </div>
-        <div style="padding:1.25rem 1.75rem;border-top:1px solid var(--border2);display:flex;flex-direction:column;gap:10px">
-          <button onclick="window.location.href='checkout.html?formule=essentiel'" style="width:100%;padding:11px;background:var(--cta);color:white;font-family:'Jost',sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;border:none;border-radius:4px;cursor:pointer;transition:all .2s;box-shadow:0 3px 10px rgba(26,107,69,0.25)" onmouseover="this.style.background='var(--cta2)'" onmouseout="this.style.background='var(--cta)'" id="f1-btn">Recevoir mon allocation → </button>
-          <button onclick="showDetail('f1')" style="width:100%;padding:7px;background:transparent;color:var(--text3);font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;border:none;cursor:pointer" id="f1-more">En savoir plus ↓</button>
-        </div>
-        <div id="detail-f1" style="display:none;padding:1.5rem 1.75rem;background:var(--paper2);border-top:1px solid var(--border2)">
-          <div style="font-size:12px;color:var(--text2);font-weight:300;line-height:1.8" id="f1-detail-body">Idéal pour démarrer rapidement avec une stratégie solide. Vous recevez un document complet et actionnable : profil analysé, portefeuille 4 à 6 ETF sur mesure, répartition en % prête à investir, rôle de chaque ETF expliqué, stratégie d'entrée recommandée, plan d'arbitrage simple et 3 scénarios de marché. Suffisant pour passer vos ordres le jour même.</div>
-        </div>
+      <div>
+        <div style="font-size:13px;font-weight:500;color:var(--ink);margin-bottom:.375rem">⏱️ Paiement unique · Livraison 48h</div>
+        <div style="font-size:11px;color:var(--text2);font-weight:300;line-height:1.65">Pas d'abonnement, pas de frais cachés. Vous payez une fois, vous recevez un portefeuille sur mesure livré sous 48 heures, prêt à investir.</div>
       </div>
-
-      <!-- F2 Premium 70€ -->
-      <div style="background:white;border:2px solid var(--gold2);border-radius:6px;overflow:hidden;display:flex;flex-direction:column;position:relative;transform:translateY(-4px);box-shadow:0 8px 30px rgba(155,125,58,0.15)">
-        <div style="position:absolute;top:-1px;left:50%;transform:translateX(-50%);background:var(--gold2);color:var(--ink);font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:4px 14px;border-radius:0 0 4px 4px;font-family:'DM Mono',monospace;white-space:nowrap" id="f2-popular">Le plus demandé</div>
-        <div style="padding:1.375rem;border-bottom:1px solid var(--border);margin-top:.5rem">
-          <div style="font-size:9px;color:var(--gold);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.5rem" id="f2-tag">Formule Premium</div>
-          <div style="font-size:10px;color:var(--gold);font-weight:500;margin-bottom:.25rem;font-family:'DM Mono',monospace;letter-spacing:.04em">→ Votre futur financier visualisé · outil réutilisable</div>
-          <div style="font-family:'Cormorant Garamond',serif;font-size:48px;color:var(--gold);font-weight:400;line-height:1;margin:.5rem 0" id="f2-price">70€</div>
-          <div style="font-size:11px;color:var(--text3);margin-top:3px" id="f2-price-sub">paiement unique · livraison sous 48h</div>
-        </div>
-        <div style="padding:1.5rem 1.75rem;flex:1">
-          <!-- Questionnaire badge -->
-          <div style="display:flex;align-items:center;gap:10px;background:var(--gold-pale);border:1px solid rgba(155,125,58,0.25);border-radius:4px;padding:.875rem 1rem;margin-bottom:1.25rem">
-            <span style="font-size:14px">📋</span>
-            <span style="font-size:11px;color:var(--gold);font-weight:400;line-height:1.5" id="f2-q10">Questionnaire exclusif de <strong>10 questions</strong> envoyé après paiement — pour cibler précisément vos ETF</span>
-          </div>
-          <!-- Inclus de l'Essentiel -->
-          <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:16px">
-            <div style="border-left:2px solid var(--gold2);padding-left:.75rem">
-              <div style="font-size:10px;font-family:'DM Mono',monospace;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;margin-bottom:3px" id="f2-base-label">✓ Tout de la formule Essentiel inclus</div>
-              <div style="font-size:11px;color:var(--text3);font-weight:300;font-style:italic">7 livrables · analyse, portefeuille, allocation, rôles, entrée, arbitrage, scénarios</div>
-            </div>
-          </div>
-          <!-- Séparateur "En plus" -->
-          <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
-            <div style="flex:1;height:1px;background:var(--border2)"></div>
-            <span style="font-size:9px;font-family:'DM Mono',monospace;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;white-space:nowrap" id="f2-plus-label">+ Exclusivités Premium</span>
-            <div style="flex:1;height:1px;background:var(--border2)"></div>
-          </div>
-          <!-- Exclusivités Premium -->
-          <div style="display:flex;flex-direction:column;gap:14px">
-            <div style="border-left:2px solid var(--gold);padding-left:.75rem">
-              <div style="font-size:10px;font-family:'DM Mono',monospace;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px">🌐 Site web dédié à votre nom</div>
-              <div style="display:flex;flex-direction:column;gap:6px">
-                <div style="display:flex;gap:6px;font-size:12px;color:var(--text2)"><span style="color:var(--green);flex-shrink:0">✓</span><span id="f2-i1">Portail personnel hébergé — lien privé partageable</span></div>
-                <div style="display:flex;gap:6px;font-size:12px;color:var(--text2)"><span style="color:var(--green);flex-shrink:0">✓</span><span id="f2-i2">Bilingue FR / EN — partageable avec banquier, comptable, famille</span></div>
-              </div>
-            </div>
-            <div style="border-left:2px solid var(--gold);padding-left:.75rem">
-              <div style="font-size:10px;font-family:'DM Mono',monospace;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px">📱 Simulateur interactif personnel</div>
-              <div style="display:flex;flex-direction:column;gap:6px">
-                <div style="display:flex;gap:6px;font-size:12px;color:var(--text2)"><span style="color:var(--green);flex-shrink:0">✓</span><span id="f2-i3">Vos chiffres réels — capital, horizon, apports mensuels</span></div>
-                <div style="display:flex;gap:6px;font-size:12px;color:var(--text2)"><span style="color:var(--green);flex-shrink:0">✓</span><span id="f2-i4">Projection sur 10 ans — capital final, rente mensuelle, gain net</span></div>
-                <div style="display:flex;gap:6px;font-size:12px;color:var(--text2)"><span style="color:var(--green);flex-shrink:0">✓</span><span id="f2-i5">Comparaison avec un CGP traditionnel à 1,5%/an</span></div>
-              </div>
-            </div>
-            <div style="border-left:2px solid var(--gold);padding-left:.75rem">
-              <div style="font-size:10px;font-family:'DM Mono',monospace;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px">🌦️ Versions marché interactives</div>
-              <div style="display:flex;flex-direction:column;gap:6px">
-                <div style="display:flex;gap:6px;font-size:12px;color:var(--text2)"><span style="color:var(--green);flex-shrink:0">✓</span><span id="f2-i6">Basculement en 1 clic haussier / neutre / baissier</span></div>
-                <div style="display:flex;gap:6px;font-size:12px;color:var(--text2)"><span style="color:var(--green);flex-shrink:0">✓</span><span id="f2-i7">Signaux de rééquilibrage intégrés</span></div>
-              </div>
-            </div>
-            <div style="border-left:2px solid var(--gold);padding-left:.75rem">
-              <div style="font-size:10px;font-family:'DM Mono',monospace;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px">📋 Fiches ETF détaillées</div>
-              <div style="display:flex;flex-direction:column;gap:6px">
-                <div style="display:flex;gap:6px;font-size:12px;color:var(--text2)"><span style="color:var(--green);flex-shrink:0">✓</span><span id="f2-i8">Métriques complètes : rendement, TER, bêta, AUM, ISIN</span></div>
-                <div style="display:flex;gap:6px;font-size:12px;color:var(--text2)"><span style="color:var(--green);flex-shrink:0">✓</span><span id="f2-i9">Pourquoi ce choix vs le concurrent direct écarté</span></div>
-              </div>
-            </div>
-            <div style="border-left:2px solid var(--gold);padding-left:.75rem">
-              <div style="font-size:10px;font-family:'DM Mono',monospace;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px">⚡ Plan d'exécution complet</div>
-              <div style="display:flex;flex-direction:column;gap:6px">
-                <div style="display:flex;gap:6px;font-size:12px;color:var(--text2)"><span style="color:var(--green);flex-shrink:0">✓</span><span id="f2-i10">Ordres précis à passer sur Interactive Brokers</span></div>
-                <div style="display:flex;gap:6px;font-size:12px;color:var(--text2)"><span style="color:var(--green);flex-shrink:0">✓</span><span id="f2-i11">Revenu mensuel estimé par ETF — tableau récapitulatif</span></div>
-              </div>
-            </div>
-            <div style="display:flex;gap:6px;font-size:12px;color:var(--text3);padding-left:.75rem"><span style="flex-shrink:0">—</span><span id="f2-i12">Sans suivi mensuel ni révision continue</span></div>
-          </div>
-        </div>
-        <div style="padding:1.125rem;border-top:1px solid var(--border);display:flex;flex-direction:column;gap:7px">
-          <button onclick="window.location.href='checkout.html?formule=premium'" style="width:100%;padding:11px;background:var(--cta);color:white;font-family:'Jost',sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;border:none;border-radius:4px;cursor:pointer;transition:all .2s;box-shadow:0 3px 10px rgba(26,107,69,0.3)" onmouseover="this.style.background='var(--cta2)'" onmouseout="this.style.background='var(--cta)'" id="f2-btn">Recevoir mon site personnalisé →</button>
-          <button onclick="showDetail('f2')" style="width:100%;padding:7px;background:transparent;color:var(--text3);font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;border:none;cursor:pointer" id="f2-more">En savoir plus ↓</button>
-        </div>
-        <div id="detail-f2" style="display:none;padding:1.25rem;background:var(--paper2);border-top:1px solid var(--border2)">
-          <!-- Titre -->
-          <div style="font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:600;color:var(--ink);margin-bottom:.75rem" id="f2-detail-title">Ce que vous recevez concrètement</div>
-          <!-- Description -->
-          <div style="font-size:12px;color:var(--text2);font-weight:300;line-height:1.8;margin-bottom:1rem" id="f2-detail-body">Vous recevez un lien vers votre propre portail web personnalisé — exactement comme ce site que vous consultez, mais entièrement configuré avec vos données réelles : votre capital, vos ETFs, votre horizon et votre simulation sur 10 ans. Votre banquier, comptable ou famille peut y accéder via le lien privé. Livré en 48 à 72h.</div>
-          <!-- Aperçu visuel simulé -->
-          <div style="background:var(--ink);border-radius:4px;overflow:hidden;margin-bottom:1rem">
-            <div style="background:#161208;padding:.5rem .875rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(196,163,90,0.15)">
-              <div style="font-size:9px;color:rgba(196,163,90,0.5);font-family:'DM Mono',monospace;letter-spacing:.1em;text-transform:uppercase" id="f2-preview-lbl">Aperçu — votre portail</div>
-              <div style="font-size:9px;color:rgba(196,163,90,0.35);font-family:'DM Mono',monospace" id="f2-preview-name">Prénom N. · Réf. ETF-BLU-2025-XXX</div>
-            </div>
-            <div style="padding:.875rem">
-              <!-- Mini KPIs -->
-              <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:.875rem">
-                <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(196,163,90,0.12);border-radius:3px;padding:.5rem;text-align:center">
-                  <div style="font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--gold2)">8,95%</div>
-                  <div style="font-size:8px;color:rgba(196,163,90,0.4);text-transform:uppercase;letter-spacing:.06em;margin-top:2px" id="f2-kpi1">Rendement</div>
-                </div>
-                <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(196,163,90,0.12);border-radius:3px;padding:.5rem;text-align:center">
-                  <div style="font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--gold2)">~1 492€</div>
-                  <div style="font-size:8px;color:rgba(196,163,90,0.4);text-transform:uppercase;letter-spacing:.06em;margin-top:2px" id="f2-kpi2">Rente / mois</div>
-                </div>
-                <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(196,163,90,0.12);border-radius:3px;padding:.5rem;text-align:center">
-                  <div style="font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--gold2)">0,09%</div>
-                  <div style="font-size:8px;color:rgba(196,163,90,0.4);text-transform:uppercase;letter-spacing:.06em;margin-top:2px" id="f2-kpi3">Frais TER</div>
-                </div>
-              </div>
-              <!-- Mini allocation -->
-              <div style="display:flex;flex-direction:column;gap:5px">
-                <div style="display:flex;align-items:center;gap:6px">
-                  <div style="font-family:'DM Mono',monospace;font-size:9px;color:#2563A8;width:32px">JAAA</div>
-                  <div style="flex:1;background:rgba(255,255,255,0.06);border-radius:2px;height:5px;overflow:hidden"><div style="height:100%;background:#2563A8;width:15%;border-radius:2px"></div></div>
-                  <div style="font-family:'DM Mono',monospace;font-size:9px;color:rgba(255,255,255,0.4);width:22px">15%</div>
-                </div>
-                <div style="display:flex;align-items:center;gap:6px">
-                  <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--gold2);width:32px">USHY</div>
-                  <div style="flex:1;background:rgba(255,255,255,0.06);border-radius:2px;height:5px;overflow:hidden"><div style="height:100%;background:var(--gold2);width:15%;border-radius:2px"></div></div>
-                  <div style="font-family:'DM Mono',monospace;font-size:9px;color:rgba(255,255,255,0.4);width:22px">15%</div>
-                </div>
-                <div style="display:flex;align-items:center;gap:6px">
-                  <div style="font-family:'DM Mono',monospace;font-size:9px;color:#6B3FA0;width:32px">ARCC</div>
-                  <div style="flex:1;background:rgba(255,255,255,0.06);border-radius:2px;height:5px;overflow:hidden"><div style="height:100%;background:#6B3FA0;width:20%;border-radius:2px"></div></div>
-                  <div style="font-family:'DM Mono',monospace;font-size:9px;color:rgba(255,255,255,0.4);width:22px">20%</div>
-                </div>
-                <div style="display:flex;align-items:center;gap:6px">
-                  <div style="font-family:'DM Mono',monospace;font-size:9px;color:#2D6A4F;width:32px">SCHD</div>
-                  <div style="flex:1;background:rgba(255,255,255,0.06);border-radius:2px;height:5px;overflow:hidden"><div style="height:100%;background:#2D6A4F;width:30%;border-radius:2px"></div></div>
-                  <div style="font-family:'DM Mono',monospace;font-size:9px;color:rgba(255,255,255,0.4);width:22px">30%</div>
-                </div>
-                <div style="display:flex;align-items:center;gap:6px">
-                  <div style="font-family:'DM Mono',monospace;font-size:9px;color:#7B5EA7;width:32px">DGRO</div>
-                  <div style="flex:1;background:rgba(255,255,255,0.06);border-radius:2px;height:5px;overflow:hidden"><div style="height:100%;background:#7B5EA7;width:10%;border-radius:2px"></div></div>
-                  <div style="font-family:'DM Mono',monospace;font-size:9px;color:rgba(255,255,255,0.4);width:22px">10%</div>
-                </div>
-                <div style="display:flex;align-items:center;gap:6px">
-                  <div style="font-family:'DM Mono',monospace;font-size:9px;color:#C0392B;width:32px">VNQ</div>
-                  <div style="flex:1;background:rgba(255,255,255,0.06);border-radius:2px;height:5px;overflow:hidden"><div style="height:100%;background:#C0392B;width:10%;border-radius:2px"></div></div>
-                  <div style="font-family:'DM Mono',monospace;font-size:9px;color:rgba(255,255,255,0.4);width:22px">10%</div>
-                </div>
-              </div>
-              <div style="font-size:9px;color:rgba(196,163,90,0.3);margin-top:.625rem;font-style:italic;text-align:center" id="f2-preview-note">Exemple illustratif · votre portail sera personnalisé avec vos données réelles</div>
-            </div>
-          </div>
-          <!-- Ce que contient le portail -->
-          <div style="font-size:10px;font-family:'DM Mono',monospace;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.5rem" id="f2-detail-sections-title">Sections disponibles dans votre portail</div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px">
-            <div style="display:flex;gap:5px;font-size:11px;color:var(--text2)"><span style="color:var(--green)">✓</span>Vue d'ensemble &amp; KPIs</div>
-            <div style="display:flex;gap:5px;font-size:11px;color:var(--text2)"><span style="color:var(--green)">✓</span>Fiches détaillées ETF</div>
-            <div style="display:flex;gap:5px;font-size:11px;color:var(--text2)"><span style="color:var(--green)">✓</span>Simulateur interactif</div>
-            <div style="display:flex;gap:5px;font-size:11px;color:var(--text2)"><span style="color:var(--green)">✓</span>Versions haussier/neutre/baissier</div>
-            <div style="display:flex;gap:5px;font-size:11px;color:var(--text2)"><span style="color:var(--green)">✓</span>Stratégie d'entrée Lump Sum vs DCA</div>
-            <div style="display:flex;gap:5px;font-size:11px;color:var(--text2)"><span style="color:var(--green)">✓</span>Plan d'exécution &amp; ordres précis</div>
-            <div style="display:flex;gap:5px;font-size:11px;color:var(--text2)"><span style="color:var(--green)">✓</span>Tableau des revenus par ETF</div>
-            <div style="display:flex;gap:5px;font-size:11px;color:var(--text2)"><span style="color:var(--green)">✓</span>Signaux de rééquilibrage</div>
-          </div>
-        </div>
-      </div>
-
-
-    <!-- URGENCE -->
-    <div style="grid-column:1/-1;background:linear-gradient(135deg,#FBF6EA,#F5EDD6);border:1px solid rgba(196,163,90,0.3);border-radius:6px;padding:.875rem 1.25rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap">
-      <div style="display:flex;align-items:center;gap:.75rem">
-        <span style="font-size:18px">⚡</span>
-        <div>
-          <div style="font-size:12px;font-weight:500;color:var(--ink)">Traitement manuel · places limitées par semaine</div>
-          <div style="font-size:11px;color:var(--text2);font-weight:300">Chaque portefeuille est construit à la main — délai de traitement actuel : <strong style="color:var(--gold)">48h</strong></div>
-        </div>
-      </div>
-      <button onclick="window.location.href='checkout.html?formule=premium'" style="padding:10px 20px;background:var(--cta);color:white;font-family:'Jost',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;border:none;border-radius:4px;cursor:pointer;white-space:nowrap;transition:all .2s" onmouseover="this.style.background='var(--cta2)'" onmouseout="this.style.background='var(--cta)'">Réserver ma place →</button>
-    </div>
-
-    </div>
-  </div>
-
-
-
-
-  <!-- #11 PREUVE SOCIALE — TEMOIGNAGES -->
-  <div style="margin-bottom:1.75rem">
-    <div style="text-align:center;margin-bottom:1.25rem">
-      <div style="font-size:10px;text-transform:uppercase;letter-spacing:.15em;color:var(--gold);margin-bottom:3px;font-family:'DM Mono',monospace" id="testi-eyebrow">Ils nous ont fait confiance</div>
-      <div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400" id="testi-title">Ce que disent nos clients</div>
-    </div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.125rem">
-      <div style="background:white;border:1px solid var(--border2);border-radius:4px;padding:1.375rem;position:relative">
-        <div style="font-size:28px;color:var(--gold2);line-height:1;margin-bottom:.75rem">❝</div>
-        <div style="font-size:13px;color:var(--text2);font-weight:300;line-height:1.8;margin-bottom:1rem;font-style:italic" id="t1-body">J'avais 280 000€ à placer sans savoir quoi en faire. En 48h j'avais un portefeuille clair, expliqué, avec les 3 scénarios selon le marché. Je comprends enfin ce que je possède.</div>
-        <div style="display:flex;align-items:center;gap:10px">
-          <div style="width:36px;height:36px;background:var(--gold-pale);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--gold);font-weight:600">P</div>
-          <div>
-            <div style="font-size:12px;font-weight:500;color:var(--ink)" id="t1-name">Pierre M.</div>
-            <div style="font-size:10px;color:var(--text3)" id="t1-role">Chef d'entreprise · Lyon</div>
-          </div>
-          <div style="margin-left:auto;display:flex;gap:2px">
-            <span style="color:var(--gold);font-size:12px">★★★★★</span>
-          </div>
-        </div>
-      </div>
-      <div style="background:white;border:1px solid var(--border2);border-radius:4px;padding:1.375rem;position:relative">
-        <div style="font-size:28px;color:var(--gold2);line-height:1;margin-bottom:.75rem">❝</div>
-        <div style="font-size:13px;color:var(--text2);font-weight:300;line-height:1.8;margin-bottom:1rem;font-style:italic" id="t2-body">La formule Premium est bluffante — j'ai reçu mon propre site avec mon simulateur en moins de 2 jours. Je l'ai envoyé à mon banquier qui a été impressionné par le niveau de détail.</div>
-        <div style="display:flex;align-items:center;gap:10px">
-          <div style="width:36px;height:36px;background:var(--green-pale);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--green);font-weight:600">S</div>
-          <div>
-            <div style="font-size:12px;font-weight:500;color:var(--ink)" id="t2-name">Sophie L.</div>
-            <div style="font-size:10px;color:var(--text3)" id="t2-role">Cadre dirigeante · Paris</div>
-          </div>
-          <div style="margin-left:auto;display:flex;gap:2px">
-            <span style="color:var(--gold);font-size:12px">★★★★★</span>
-          </div>
-        </div>
-      </div>
-      <div style="background:white;border:1px solid var(--border2);border-radius:4px;padding:1.375rem;position:relative">
-        <div style="font-size:28px;color:var(--gold2);line-height:1;margin-bottom:.75rem">❝</div>
-        <div style="font-size:13px;color:var(--text2);font-weight:300;line-height:1.8;margin-bottom:1rem;font-style:italic" id="t3-body">J'avais investi dans des fonds actifs depuis 20 ans, avec des frais que je ne voyais pas vraiment. En passant à cette stratégie ETF, j'ai récupéré l'équivalent d'un mois de rente en frais la première année. Bluffant.</div>
-        <div style="display:flex;align-items:center;gap:10px">
-          <div style="width:36px;height:36px;background:var(--blue-pale);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--blue2);font-weight:600">D</div>
-          <div>
-            <div style="font-size:12px;font-weight:500;color:var(--ink)" id="t3-name">Marc T.</div>
-            <div style="font-size:10px;color:var(--text3)" id="t3-role">Médecin libéral · Bordeaux</div>
-          </div>
-          <div style="margin-left:auto;display:flex;gap:2px">
-            <span style="color:var(--gold);font-size:12px">★★★★★</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- #12 FAQ -->
-  <div style="margin-bottom:1.75rem">
-    <div style="text-align:center;margin-bottom:1.25rem">
-      <div style="font-size:10px;text-transform:uppercase;letter-spacing:.15em;color:var(--gold);margin-bottom:3px;font-family:'DM Mono',monospace" id="faq-eyebrow">Questions fréquentes</div>
-      <div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400" id="faq-title">Ce que vous voulez savoir</div>
-    </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
-      <div style="background:white;border:1px solid var(--border2);border-radius:4px;overflow:hidden">
-        <div style="padding:1.125rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center" onclick="toggleFaq('faq1')">
-          <div style="font-size:13px;font-weight:500;color:var(--ink)" id="faq1-q">Combien faut-il pour démarrer ?</div>
-          <span id="faq1-arr" style="color:var(--gold);font-size:14px;flex-shrink:0;margin-left:.5rem">▼</span>
-        </div>
-        <div id="faq1" style="display:none;padding:0 1.125rem 1.125rem">
-          <div style="font-size:12px;color:var(--text2);font-weight:300;line-height:1.8" id="faq1-a">Il n'y a pas de minimum imposé par notre service — nous pouvons construire un portefeuille à partir de 10 000€. Cependant, pour bénéficier pleinement des effets de diversification et du levier Lombard, un capital de 50 000€ ou plus est recommandé.</div>
-        </div>
-      </div>
-      <div style="background:white;border:1px solid var(--border2);border-radius:4px;overflow:hidden">
-        <div style="padding:1.125rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center" onclick="toggleFaq('faq2')">
-          <div style="font-size:13px;font-weight:500;color:var(--ink)" id="faq2-q">Combien de temps après la commande ?</div>
-          <span id="faq2-arr" style="color:var(--gold);font-size:14px;flex-shrink:0;margin-left:.5rem">▼</span>
-        </div>
-        <div id="faq2" style="display:none;padding:0 1.125rem 1.125rem">
-          <div style="font-size:12px;color:var(--text2);font-weight:300;line-height:1.8" id="faq2-a">Vous recevez votre portefeuille personnalisé sous 48 heures ouvrées après le paiement. Pour la formule Premium (site web), le délai est de 48 à 72 heures. Dès la commande validée, vous recevez notre questionnaire exclusif de 10 questions — il nous permet de cibler précisément les ETF adaptés à votre situation.</div>
-        </div>
-      </div>
-      <div style="background:white;border:1px solid var(--border2);border-radius:4px;overflow:hidden">
-        <div style="padding:1.125rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center" onclick="toggleFaq('faq3')">
-          <div style="font-size:13px;font-weight:500;color:var(--ink)" id="faq3-q">Est-ce légal ? Êtes-vous réglementé ?</div>
-          <span id="faq3-arr" style="color:var(--gold);font-size:14px;flex-shrink:0;margin-left:.5rem">▼</span>
-        </div>
-        <div id="faq3" style="display:none;padding:0 1.125rem 1.125rem">
-          <div style="font-size:12px;color:var(--text2);font-weight:300;line-height:1.8" id="faq3-a">Oui. Notre activité est exercée en conformité avec la réglementation française (AMF, statut IAS). Nous sommes conseillers en gestion de patrimoine indépendants — nous n'exécutons pas les transactions à votre place, nous vous conseillons. Votre argent reste toujours sur votre compte.</div>
-        </div>
-      </div>
-      <div style="background:white;border:1px solid var(--border2);border-radius:4px;overflow:hidden">
-        <div style="padding:1.125rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center" onclick="toggleFaq('faq4')">
-          <div style="font-size:13px;font-weight:500;color:var(--ink)" id="faq4-q">Que se passe-t-il après le paiement ?</div>
-          <span id="faq4-arr" style="color:var(--gold);font-size:14px;flex-shrink:0;margin-left:.5rem">▼</span>
-        </div>
-        <div id="faq4" style="display:none;padding:0 1.125rem 1.125rem">
-          <div style="font-size:12px;color:var(--text2);font-weight:300;line-height:1.8" id="faq4-a">1. Vous finalisez votre commande et votre paiement. 2. Vous recevez immédiatement notre questionnaire exclusif de 10 questions. 3. Nous analysons vos réponses et construisons votre allocation sur mesure. 4. Vous recevez votre portefeuille complet sous 48h (PDF + site pour la Premium). 5. Vous passez vos ordres chez votre courtier — nous vous accompagnons à chaque étape.</div>
-        </div>
-      </div>
-      <div style="background:white;border:1px solid var(--border2);border-radius:4px;overflow:hidden">
-        <div style="padding:1.125rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center" onclick="toggleFaq('faq5')">
-          <div style="font-size:13px;font-weight:500;color:var(--ink)" id="faq5-q">Puis-je changer de portefeuille si les marchés changent ?</div>
-          <span id="faq5-arr" style="color:var(--gold);font-size:14px;flex-shrink:0;margin-left:.5rem">▼</span>
-        </div>
-        <div id="faq5" style="display:none;padding:0 1.125rem 1.125rem">
-          <div style="font-size:12px;color:var(--text2);font-weight:300;line-height:1.8" id="faq5-a">Oui — c'est même recommandé. Chaque portefeuille livré vient avec 3 versions (haussier, neutre, baissier). Si les conditions de marché changent, vous n'avez qu'à ajuster les proportions entre vos ETFs — 2 à 3 transactions suffisent. La formule Suivi inclut des alertes automatiques quand un arbitrage est opportun.</div>
-        </div>
-      </div>
-      <div style="background:white;border:1px solid var(--border2);border-radius:4px;overflow:hidden">
-        <div style="padding:1.125rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center" onclick="toggleFaq('faq6')">
-          <div style="font-size:13px;font-weight:500;color:var(--ink)" id="faq6-q">Quelle différence avec un robo-advisor ?</div>
-          <span id="faq6-arr" style="color:var(--gold);font-size:14px;flex-shrink:0;margin-left:.5rem">▼</span>
-        </div>
-        <div id="faq6" style="display:none;padding:0 1.125rem 1.125rem">
-          <div style="font-size:12px;color:var(--text2);font-weight:300;line-height:1.8" id="faq6-a">Un robo-advisor applique des algorithmes génériques à des milliers de clients. Nous construisons votre portefeuille à la main, pour vous, en tenant compte de votre fiscalité exacte, votre situation familiale, vos projets de vie et les conditions de marché du moment. Frais identiques ou inférieurs, service humain en plus.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- CTA FINAL -->
-  <div style="background:var(--ink);border-radius:6px;padding:2rem;text-align:center;margin-bottom:.5rem">
-    <div style="font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--gold2);margin-bottom:.75rem" id="acc-cta-title">Prêt à construire votre portefeuille ?</div>
-    <div style="font-size:14px;color:rgba(240,236,228,0.6);font-weight:300;margin-bottom:1.5rem;max-width:480px;margin-left:auto;margin-right:auto" id="acc-cta-body">Choisissez votre formule, effectuez votre paiement — vous recevrez ensuite votre questionnaire personnalisé de 10 questions pour que nous construisions votre portefeuille sur mesure.</div>
-    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
-      <button onclick="window.location.href='checkout.html?formule=premium'" style="padding:14px 32px;background:var(--cta);color:white;font-family:'Jost',sans-serif;font-size:12px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;border:none;border-radius:4px;cursor:pointer;box-shadow:0 4px 16px rgba(26,107,69,0.4);transition:all .2s" onmouseover="this.style.background='var(--cta2)';this.style.transform='translateY(-1px)'" onmouseout="this.style.background='var(--cta)';this.style.transform='translateY(0)'" id="acc-cta-btn">Recevoir mon allocation personnalisée →</button>
-      <button onclick="show('contact',document.getElementById('nav-contact'))" style="padding:13px 28px;background:transparent;color:rgba(240,236,228,0.7);font-family:'Jost',sans-serif;font-size:12px;font-weight:400;letter-spacing:.12em;text-transform:uppercase;border:1px solid rgba(196,163,90,0.3);border-radius:3px;cursor:pointer" id="acc-cta-btn2">Nous contacter →</button>
     </div>
   </div>
 
@@ -769,7 +356,7 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.3)}
   </div>
 
   <!-- ÉTAPES -->
-  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem;margin-bottom:2rem;position:relative">
+  <div style="display:grid;grid-template-columns:repeat(4,minmax(160px,1fr));gap:1.25rem;margin-bottom:2rem;position:relative">
     <div style="position:absolute;top:2rem;left:12.5%;right:12.5%;height:1px;background:linear-gradient(90deg,var(--gold2),var(--gold),var(--gold2));opacity:0.3;pointer-events:none"></div>
     <div style="background:white;border:1px solid var(--border2);border-radius:6px;padding:1.5rem;text-align:center;position:relative">
       <div style="width:40px;height:40px;background:var(--ink);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--gold2);font-weight:600">1</div>
@@ -779,7 +366,7 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.3)}
     <div style="background:white;border:1px solid var(--border2);border-radius:6px;padding:1.5rem;text-align:center;position:relative">
       <div style="width:40px;height:40px;background:var(--ink);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--gold2);font-weight:600">2</div>
       <div style="font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:600;color:var(--ink);margin-bottom:.625rem" id="cm-s2-t">Nous analysons votre situation</div>
-      <div style="font-size:12px;color:var(--text2);font-weight:300;line-height:1.75" id="cm-s2-b">Vous recevez immédiatement notre questionnaire exclusif de 10 questions. Vos réponses nous permettent de cibler précisément les ETF les mieux adaptés à votre situation.</div>
+      <div style="font-size:12px;color:var(--text2);font-weight:300;line-height:1.75" id="cm-s2-b">Vous recevez immédiatement notre questionnaire d'une dizaine de questions. Vos réponses nous permettent de cibler précisément les ETF les mieux adaptés à votre situation.</div>
     </div>
     <div style="background:white;border:1px solid var(--border2);border-radius:6px;padding:1.5rem;text-align:center;position:relative">
       <div style="width:40px;height:40px;background:var(--ink);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--gold2);font-weight:600">3</div>
@@ -796,7 +383,7 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.3)}
   <!-- CE QUE SONT LES ETFs — explication simple -->
   <div style="background:var(--ink);border-radius:6px;padding:2rem;margin-bottom:2rem">
     <div style="font-size:9px;color:rgba(196,163,90,0.5);text-transform:uppercase;letter-spacing:.15em;margin-bottom:.75rem;font-family:'DM Mono',monospace" id="cm-etf-eyebrow">Comprendre les ETFs en 30 secondes</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.5rem">
+    <div style="display:grid;grid-template-columns:repeat(3,minmax(180px,1fr));gap:1.5rem">
       <div>
         <div style="font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--gold2);margin-bottom:.625rem" id="cm-etf-t1">C'est quoi un ETF ?</div>
         <div style="font-size:12px;color:rgba(240,236,228,0.65);font-weight:300;line-height:1.8" id="cm-etf-b1">Un ETF est un panier de dizaines ou centaines de titres (actions, obligations, immobilier) que vous achetez en une seule transaction. Au lieu d'acheter 100 actions une par une, vous achetez une part de l'ETF — et vous possédez automatiquement les 100.</div>
@@ -842,345 +429,133 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.3)}
 
 <!-- NOS TARIFS -->
 <div class="section" id="s-tarifs">
-  <div style="text-align:center;padding:2rem 0 2.5rem;margin-bottom:2rem;position:relative">
-    <div style="font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:.75rem" id="tar-eyebrow">Simple · Transparent · Sans surprise</div>
-    <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(26px,3.5vw,42px);font-weight:400;line-height:1.1;color:var(--ink);margin-bottom:.875rem" id="tar-h2">Nos offres</h2>
-    <p style="font-size:14px;color:var(--text2);max-width:540px;margin:0 auto;font-weight:300;line-height:1.85" id="tar-p">Un paiement unique, une livraison sous 48h. Pas d'abonnement caché, pas de commission sur vos investissements.</p>
-    <div style="position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:40px;height:1px;background:var(--gold2)"></div>
-  </div>
 
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:start;margin-bottom:2rem;width:100%">
+  <div class="offres-wrap">
 
     <!-- ===== FORMULE ESSENTIEL ===== -->
-    <div style="background:white;border:1px solid var(--border2);border-radius:8px;overflow:hidden;display:flex;flex-direction:column">
-      <div style="padding:1.5rem;border-bottom:1px solid var(--border2)">
-        <div style="font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:.12em;margin-bottom:.5rem" id="tar-f1-tag">Formule Essentiel</div>
-        <div style="font-family:'Cormorant Garamond',serif;font-size:44px;color:var(--ink);font-weight:400;line-height:1;margin-bottom:4px">45€</div>
-        <div style="font-size:11px;color:var(--text3)" id="tar-f1-sub">paiement unique · livraison sous 48h</div>
+    <div class="offre-new" id="offre-f1">
+      <div class="offre-head-new">
+        <div class="offre-tag-new" id="f1-tag">Formule Essentiel</div>
+        <div style="font-size:10px;color:var(--cta);font-weight:500;margin-bottom:.25rem;font-family:'DM Mono',monospace;letter-spacing:.04em">→ Votre allocation prête à investir en 48h</div>
+        <div class="offre-price-new" id="f1-price">45€</div>
+        <div class="offre-price-sub-new" id="f1-price-sub">paiement unique · livraison sous 48h</div>
       </div>
-
-      <!-- Ce qu'on livre -->
-      <div style="padding:1.25rem;border-bottom:1px solid var(--border2)">
-        <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:1.25rem">
-          <div style="display:flex;gap:7px;font-size:12px;color:var(--text2)"><span style="color:var(--green);flex-shrink:0">✓</span><span id="tar-f1-i1">Identification du profil &amp; traduction en stratégie</span></div>
-          <div style="display:flex;gap:7px;font-size:12px;color:var(--text2)"><span style="color:var(--green);flex-shrink:0">✓</span><span id="tar-f1-i2">Portefeuille 4 à 6 ETF — allocation en % prête à investir</span></div>
-          <div style="display:flex;gap:7px;font-size:12px;color:var(--text2)"><span style="color:var(--green);flex-shrink:0">✓</span><span id="tar-f1-i3">Rôle de chaque ETF expliqué clairement</span></div>
-          <div style="display:flex;gap:7px;font-size:12px;color:var(--text2)"><span style="color:var(--green);flex-shrink:0">✓</span><span id="tar-f1-i4">Stratégie d'entrée + plan d'arbitrage simple</span></div>
-          <div style="display:flex;gap:7px;font-size:12px;color:var(--text2)"><span style="color:var(--green);flex-shrink:0">✓</span><span id="tar-f1-i5">3 scénarios de marché (haussier / neutre / baissier)</span></div>
-          <div style="display:flex;gap:7px;font-size:12px;color:var(--text3)"><span style="flex-shrink:0">—</span><span id="tar-f1-i6">Sans simulateur ni site web dédié</span></div>
-        </div>
+      <div class="offre-divider"></div>
+      <div class="offre-badge-q10">
+        <div class="offre-badge-q10-icon">📋</div>
+        <div class="offre-badge-q10-text" id="f1-q10">Questionnaire d'une <strong>dizaine de questions</strong> envoyé après paiement — pour cibler précisément vos ETF</div>
       </div>
-
-      <!-- VISUEL — ce qu'on reçoit -->
-      <div style="padding:1.25rem;background:var(--paper2);border-bottom:1px solid var(--border2)">
-        <div style="font-size:9px;color:var(--gold);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.875rem;font-family:'DM Mono',monospace" id="tar-f1-vis-title">Ce que vous recevez</div>
-
-        <!-- Profil identifié -->
-        <div style="background:var(--ink);border-radius:4px;padding:.75rem 1rem;margin-bottom:.75rem">
-          <div style="font-size:9px;color:rgba(196,163,90,0.5);text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px" id="tar-f1-vis-p0">Profil identifié</div>
-          <div style="font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--gold2)" id="tar-f1-vis-p1">Rentier Équilibré — 55 ans</div>
-          <div style="font-size:10px;color:rgba(196,163,90,0.5);margin-top:2px" id="tar-f1-vis-p2">Objectif revenus · Horizon 10 ans · Profil modéré</div>
+      <div class="offre-body-new">
+        <div class="offre-section-new">
+          <div class="offre-section-title-new"><span>🧠</span>Analyse &amp; profil</div>
+          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#1D4E89" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="check-text" id="f1-i1">Identification de votre profil investisseur</div></div>
+          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#1D4E89" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="check-text" id="f1-i2">Traduction de vos réponses en stratégie concrète</div></div>
         </div>
-
-        <!-- Version Marché Haussier -->
-        <div style="background:white;border:1px solid var(--border2);border-radius:4px;overflow:hidden;margin-bottom:.5rem">
-          <div style="background:var(--green);padding:.4rem .75rem;display:flex;justify-content:space-between;align-items:center">
-            <div style="font-size:9px;color:white;font-weight:500;text-transform:uppercase;letter-spacing:.06em" id="tar-v1-tag">Marchés haussiers</div>
-            <div style="font-family:'DM Mono',monospace;font-size:11px;color:white">9,4%/an</div>
-          </div>
-          <div style="padding:.625rem .75rem;display:flex;flex-wrap:wrap;gap:3px">
-            <span style="font-size:8px;font-family:'DM Mono',monospace;background:var(--blue-pale);color:var(--blue2);padding:2px 5px;border-radius:2px">JAAA 10%</span>
-            <span style="font-size:8px;font-family:'DM Mono',monospace;background:var(--gold-pale);color:var(--gold);padding:2px 5px;border-radius:2px">USHY 15%</span>
-            <span style="font-size:8px;font-family:'DM Mono',monospace;background:var(--purple-pale);color:var(--purple);padding:2px 5px;border-radius:2px">ARCC 15%</span>
-            <span style="font-size:8px;font-family:'DM Mono',monospace;background:var(--green-pale);color:var(--green);padding:2px 5px;border-radius:2px">SCHD 35%</span>
-            <span style="font-size:8px;font-family:'DM Mono',monospace;background:var(--paper3);color:var(--text2);padding:2px 5px;border-radius:2px">DGRO 15%</span>
-            <span style="font-size:8px;font-family:'DM Mono',monospace;background:var(--red-pale);color:var(--red);padding:2px 5px;border-radius:2px">VNQ 10%</span>
-          </div>
+        <div class="offre-section-new">
+          <div class="offre-section-title-new"><span>📊</span>Portefeuille sur mesure</div>
+          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#1D4E89" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="check-text" id="f1-i3">Allocation optimisée entre 4 et 6 ETF</div></div>
+          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#1D4E89" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="check-text" id="f1-i4">Adaptée à votre objectif, horizon &amp; comportement face au marché</div></div>
         </div>
-
-        <!-- Version Neutre -->
-        <div style="background:white;border:1px solid var(--border);border-radius:4px;overflow:hidden;margin-bottom:.5rem">
-          <div style="background:var(--gold);padding:.4rem .75rem;display:flex;justify-content:space-between;align-items:center">
-            <div style="font-size:9px;color:var(--ink);font-weight:500;text-transform:uppercase;letter-spacing:.06em" id="tar-v2-tag">Sans direction</div>
-            <div style="font-family:'DM Mono',monospace;font-size:11px;color:var(--ink)">8,95%/an</div>
-          </div>
-          <div style="padding:.625rem .75rem;display:flex;flex-wrap:wrap;gap:3px">
-            <span style="font-size:8px;font-family:'DM Mono',monospace;background:var(--blue-pale);color:var(--blue2);padding:2px 5px;border-radius:2px">JAAA 15%</span>
-            <span style="font-size:8px;font-family:'DM Mono',monospace;background:var(--gold-pale);color:var(--gold);padding:2px 5px;border-radius:2px">USHY 15%</span>
-            <span style="font-size:8px;font-family:'DM Mono',monospace;background:var(--purple-pale);color:var(--purple);padding:2px 5px;border-radius:2px">ARCC 20%</span>
-            <span style="font-size:8px;font-family:'DM Mono',monospace;background:var(--green-pale);color:var(--green);padding:2px 5px;border-radius:2px">SCHD 30%</span>
-            <span style="font-size:8px;font-family:'DM Mono',monospace;background:var(--paper3);color:var(--text2);padding:2px 5px;border-radius:2px">DGRO 10%</span>
-            <span style="font-size:8px;font-family:'DM Mono',monospace;background:var(--red-pale);color:var(--red);padding:2px 5px;border-radius:2px">VNQ 10%</span>
-          </div>
+        <div class="offre-section-new">
+          <div class="offre-section-title-new"><span>⚙️</span>Allocation prête à investir</div>
+          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#1D4E89" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="check-text" id="f1-i5">Répartition en % précise — ordres simples à exécuter, pas de réflexion supplémentaire</div></div>
         </div>
-
-        <!-- Version Baissier -->
-        <div style="background:white;border:1px solid var(--border2);border-radius:4px;overflow:hidden">
-          <div style="background:#92400E;padding:.4rem .75rem;display:flex;justify-content:space-between;align-items:center">
-            <div style="font-size:9px;color:white;font-weight:500;text-transform:uppercase;letter-spacing:.06em" id="tar-v3-tag">Marchés baissiers</div>
-            <div style="font-family:'DM Mono',monospace;font-size:11px;color:white">7,2%/an</div>
-          </div>
-          <div style="padding:.625rem .75rem;display:flex;flex-wrap:wrap;gap:3px">
-            <span style="font-size:8px;font-family:'DM Mono',monospace;background:var(--blue-pale);color:var(--blue2);padding:2px 5px;border-radius:2px">JAAA 30%</span>
-            <span style="font-size:8px;font-family:'DM Mono',monospace;background:var(--gold-pale);color:var(--gold);padding:2px 5px;border-radius:2px">USHY 20%</span>
-            <span style="font-size:8px;font-family:'DM Mono',monospace;background:var(--purple-pale);color:var(--purple);padding:2px 5px;border-radius:2px">ARCC 10%</span>
-            <span style="font-size:8px;font-family:'DM Mono',monospace;background:var(--green-pale);color:var(--green);padding:2px 5px;border-radius:2px">SCHD 25%</span>
-            <span style="font-size:8px;font-family:'DM Mono',monospace;background:var(--paper3);color:var(--text2);padding:2px 5px;border-radius:2px">DGRO 5%</span>
-            <span style="font-size:8px;font-family:'DM Mono',monospace;background:var(--gold-pale);color:#B45309;padding:2px 5px;border-radius:2px">GLD 10%</span>
-          </div>
+        <div class="offre-section-new">
+          <div class="offre-section-title-new"><span>🧩</span>Rôle de chaque ETF</div>
+          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#1D4E89" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="check-text" id="f1-i6">Pourquoi cet ETF est présent — ce qu'il apporte au portefeuille</div></div>
         </div>
-
-        <div style="font-size:10px;color:var(--text3);margin-top:.75rem;line-height:1.6;font-style:italic" id="tar-f1-vis-note">Exemple illustratif — votre portefeuille réel sera construit sur mesure selon votre situation.</div>
+        <div class="offre-section-new">
+          <div class="offre-section-title-new"><span>📈</span>Stratégie d'entrée</div>
+          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#1D4E89" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="check-text" id="f1-i7">Lump sum ou DCA — recommandation adaptée à votre profil</div></div>
+        </div>
+        <div class="offre-section-new">
+          <div class="offre-section-title-new"><span>🔁</span>Plan d'arbitrage simple</div>
+          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#1D4E89" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="check-text" id="f1-i8">Quand ajuster &amp; comment réagir — règles claires, sans complexité</div></div>
+        </div>
+        <div class="offre-section-new">
+          <div class="offre-section-title-new"><span>🌦️</span>3 scénarios de marché</div>
+          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#1D4E89" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="check-text" id="f1-i9">Haussier · Neutre · Baissier — pour comprendre comment votre portefeuille réagit</div></div>
+        </div>
+        <div class="check-item-ghost"><div class="check-icon-ghost"><svg viewBox="0 0 12 12" fill="none"><path d="M3 6h6" stroke="#8A8278" stroke-width="1.5" stroke-linecap="round"/></svg></div><div class="check-text-ghost" id="f1-i10">Sans simulateur personnalisé</div></div>
       </div>
-
-      <div style="padding:1.125rem">
-        <button onclick="window.location.href='checkout.html?formule=essentiel'" style="width:100%;padding:12px;background:var(--cta);color:white;font-family:'Jost',sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;border:none;border-radius:4px;cursor:pointer;transition:all .2s;box-shadow:0 3px 10px rgba(26,107,69,0.25)" onmouseover="this.style.background='var(--cta2)'" onmouseout="this.style.background='var(--cta)'" id="tar-f1-btn">Recevoir mon allocation — 45€ →</button>
+      <div class="offre-foot-new">
+        <button class="offre-btn-new" onclick="window.location.href='checkout.html?formule=essentiel'" style="background:var(--cta);color:white;border-color:var(--cta)" id="f1-btn">Recevoir mon allocation — 45€ →</button>
+        <button class="offre-more-new" onclick="showDetail('f1-new')" id="f1-more">En savoir plus ↓</button>
+      </div>
+      <div class="offre-detail-new" id="detail-f1-new">
+        <div style="padding:1.5rem 2.25rem">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--ink);margin-bottom:.75rem" id="f1-detail-title">Idéal pour démarrer rapidement</div>
+          <div style="font-size:12px;color:var(--text2);font-weight:300;line-height:1.85" id="f1-detail-body">Vous recevez un document complet et actionnable — profil analysé, portefeuille 4 à 6 ETF sur mesure, répartition en % prête à investir, rôle de chaque ETF expliqué clairement, stratégie d'entrée recommandée, plan d'arbitrage simple et 3 scénarios de marché. Suffisant pour passer vos ordres le jour même chez votre courtier.</div>
+        </div>
       </div>
     </div>
 
     <!-- ===== FORMULE PREMIUM ===== -->
-    <div style="background:white;border:2px solid var(--gold2);border-radius:8px;overflow:hidden;display:flex;flex-direction:column;position:relative;transform:translateY(-6px);box-shadow:0 12px 40px rgba(155,125,58,0.18)">
-      <div style="position:absolute;top:-1px;left:50%;transform:translateX(-50%);background:var(--gold2);color:var(--ink);font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 16px;border-radius:0 0 5px 5px;font-family:'DM Mono',monospace;white-space:nowrap" id="tar-f2-badge">Le plus demandé</div>
-      <div style="padding:1.5rem;border-bottom:1px solid var(--border);margin-top:.5rem">
-        <div style="font-size:9px;color:var(--gold);text-transform:uppercase;letter-spacing:.12em;margin-bottom:.5rem" id="tar-f2-tag">Formule Premium</div>
-        <div style="font-family:'Cormorant Garamond',serif;font-size:44px;color:var(--gold);font-weight:400;line-height:1;margin-bottom:4px">70€</div>
-        <div style="font-size:11px;color:var(--text3)" id="tar-f2-sub">paiement unique · livraison sous 48h</div>
+    <div class="offre-new featured-new" id="offre-f2">
+      <div class="offre-popular-new" id="f2-popular">Le plus demandé</div>
+      <div class="offre-head-new">
+        <div class="offre-tag-new gold" id="f2-tag">Formule Premium</div>
+        <div style="font-size:10px;color:var(--gold);font-weight:500;margin-bottom:.25rem;font-family:'DM Mono',monospace;letter-spacing:.04em">→ Votre futur financier visualisé · outil réutilisable</div>
+        <div class="offre-price-new gold" id="f2-price">70€</div>
+        <div class="offre-price-sub-new" id="f2-price-sub">paiement unique · livraison sous 48-72h</div>
       </div>
-
-      <div style="padding:1.25rem;border-bottom:1px solid var(--border)">
-        <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:1.25rem">
-          <div style="display:flex;gap:7px;font-size:12px;color:var(--text2)"><span style="color:var(--green);flex-shrink:0">✓</span><span id="tar-f2-i1">Tout de la formule Essentiel</span></div>
-          <div style="display:flex;gap:7px;font-size:12px;color:var(--text2)"><span style="color:var(--green);flex-shrink:0">✓</span><span id="tar-f2-i2"><strong>Site web dédié</strong> à votre nom</span></div>
-          <div style="display:flex;gap:7px;font-size:12px;color:var(--text2)"><span style="color:var(--green);flex-shrink:0">✓</span><span id="tar-f2-i3">Simulateur interactif personnalisé</span></div>
-          <div style="display:flex;gap:7px;font-size:12px;color:var(--text2)"><span style="color:var(--green);flex-shrink:0">✓</span><span id="tar-f2-i4">Projection sur 10 ans avec vos chiffres</span></div>
-          <div style="display:flex;gap:7px;font-size:12px;color:var(--text2)"><span style="color:var(--green);flex-shrink:0">✓</span><span id="tar-f2-i5">Lien privé partageable</span></div>
-          <div style="display:flex;gap:7px;font-size:12px;color:var(--text2)"><span style="color:var(--green);flex-shrink:0">✓</span><span id="tar-f2-i6">Bilingue FR / EN</span></div>
-        </div>
+      <div class="offre-divider"></div>
+      <div class="offre-badge-q10">
+        <div class="offre-badge-q10-icon">📋</div>
+        <div class="offre-badge-q10-text" id="f2-q10">Questionnaire d'une <strong>dizaine de questions</strong> envoyé après paiement — pour cibler précisément vos ETF</div>
       </div>
-
-      <!-- VISUEL PREMIUM — identique Essentiel + simulateur + aperçu portail -->
-      <div style="padding:1.25rem;background:var(--paper2);border-bottom:1px solid var(--border)">
-        <div style="font-size:9px;color:var(--gold);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.875rem;font-family:'DM Mono',monospace" id="tar-f2-vis-title">Ce que vous recevez</div>
-
-        <!-- Profil + 3 versions (identique Essentiel) -->
-        <div style="background:var(--ink);border-radius:4px;padding:.75rem 1rem;margin-bottom:.75rem">
-          <div style="font-size:9px;color:rgba(196,163,90,0.5);text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px" id="tar-f2-vis-p0">Profil identifié</div>
-          <div style="font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--gold2)" id="tar-f2-vis-p1">Rentier Équilibré — 55 ans</div>
-          <div style="font-size:10px;color:rgba(196,163,90,0.5);margin-top:2px" id="tar-f2-vis-p2">Objectif revenus · Horizon 10 ans · Profil modéré</div>
+      <div class="offre-body-new">
+        <div class="offre-inherited" id="f2-base-label">✓ Tout de la formule Essentiel inclus — 7 livrables : analyse, portefeuille, allocation, rôles, entrée, arbitrage, scénarios</div>
+        <div class="offre-sep-label"><span id="f2-plus-label">+ Exclusivités Premium</span></div>
+        <div class="offre-section-new">
+          <div class="offre-section-title-new"><span>🌐</span>Site web dédié à votre nom</div>
+          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#1D4E89" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="check-text" id="f2-i1">Portail personnel hébergé — lien privé partageable</div></div>
+          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#1D4E89" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="check-text" id="f2-i2">Bilingue FR / EN — partageable avec banquier, comptable, famille</div></div>
         </div>
-        <div style="background:white;border:1px solid var(--border2);border-radius:4px;overflow:hidden;margin-bottom:.5rem">
-          <div style="background:var(--green);padding:.4rem .75rem;display:flex;justify-content:space-between"><span style="font-size:9px;color:white;font-weight:500;text-transform:uppercase;letter-spacing:.06em" id="tar-f2-v1">Marchés haussiers</span><span style="font-family:'DM Mono',monospace;font-size:11px;color:white">9,4%/an</span></div>
-          <div style="padding:.5rem .75rem;display:flex;flex-wrap:wrap;gap:3px">
-            <span style="font-size:8px;font-family:'DM Mono',monospace;background:var(--blue-pale);color:var(--blue2);padding:2px 5px;border-radius:2px">JAAA 10%</span><span style="font-size:8px;font-family:'DM Mono',monospace;background:var(--gold-pale);color:var(--gold);padding:2px 5px;border-radius:2px">USHY 15%</span><span style="font-size:8px;font-family:'DM Mono',monospace;background:var(--purple-pale);color:var(--purple);padding:2px 5px;border-radius:2px">ARCC 15%</span><span style="font-size:8px;font-family:'DM Mono',monospace;background:var(--green-pale);color:var(--green);padding:2px 5px;border-radius:2px">SCHD 35%</span><span style="font-size:8px;font-family:'DM Mono',monospace;background:var(--paper3);color:var(--text2);padding:2px 5px;border-radius:2px">DGRO 15%</span><span style="font-size:8px;font-family:'DM Mono',monospace;background:var(--red-pale);color:var(--red);padding:2px 5px;border-radius:2px">VNQ 10%</span>
-          </div>
+        <div class="offre-section-new">
+          <div class="offre-section-title-new"><span>📱</span>Simulateur interactif personnel</div>
+          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#1D4E89" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="check-text" id="f2-i3">Vos chiffres réels — capital, horizon, apports mensuels</div></div>
+          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#1D4E89" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="check-text" id="f2-i4">Projection sur 10 ans — capital final, rente mensuelle, gain net</div></div>
+          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#1D4E89" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="check-text" id="f2-i5">Comparaison avec une gestion classique à frais élevés</div></div>
         </div>
-        <div style="background:white;border:1px solid var(--border);border-radius:4px;overflow:hidden;margin-bottom:.5rem">
-          <div style="background:var(--gold);padding:.4rem .75rem;display:flex;justify-content:space-between"><span style="font-size:9px;color:var(--ink);font-weight:500;text-transform:uppercase;letter-spacing:.06em" id="tar-f2-v2">Sans direction</span><span style="font-family:'DM Mono',monospace;font-size:11px;color:var(--ink)">8,95%/an</span></div>
-          <div style="padding:.5rem .75rem;display:flex;flex-wrap:wrap;gap:3px">
-            <span style="font-size:8px;font-family:'DM Mono',monospace;background:var(--blue-pale);color:var(--blue2);padding:2px 5px;border-radius:2px">JAAA 15%</span><span style="font-size:8px;font-family:'DM Mono',monospace;background:var(--gold-pale);color:var(--gold);padding:2px 5px;border-radius:2px">USHY 15%</span><span style="font-size:8px;font-family:'DM Mono',monospace;background:var(--purple-pale);color:var(--purple);padding:2px 5px;border-radius:2px">ARCC 20%</span><span style="font-size:8px;font-family:'DM Mono',monospace;background:var(--green-pale);color:var(--green);padding:2px 5px;border-radius:2px">SCHD 30%</span><span style="font-size:8px;font-family:'DM Mono',monospace;background:var(--paper3);color:var(--text2);padding:2px 5px;border-radius:2px">DGRO 10%</span><span style="font-size:8px;font-family:'DM Mono',monospace;background:var(--red-pale);color:var(--red);padding:2px 5px;border-radius:2px">VNQ 10%</span>
-          </div>
+        <div class="offre-section-new">
+          <div class="offre-section-title-new"><span>🌦️</span>Versions marché interactives</div>
+          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#1D4E89" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="check-text" id="f2-i6">Basculement en 1 clic haussier / neutre / baissier</div></div>
+          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#1D4E89" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="check-text" id="f2-i7">Signaux de rééquilibrage intégrés</div></div>
         </div>
-        <div style="background:white;border:1px solid var(--border2);border-radius:4px;overflow:hidden;margin-bottom:1rem">
-          <div style="background:#92400E;padding:.4rem .75rem;display:flex;justify-content:space-between"><span style="font-size:9px;color:white;font-weight:500;text-transform:uppercase;letter-spacing:.06em" id="tar-f2-v3">Marchés baissiers</span><span style="font-family:'DM Mono',monospace;font-size:11px;color:white">7,2%/an</span></div>
-          <div style="padding:.5rem .75rem;display:flex;flex-wrap:wrap;gap:3px">
-            <span style="font-size:8px;font-family:'DM Mono',monospace;background:var(--blue-pale);color:var(--blue2);padding:2px 5px;border-radius:2px">JAAA 30%</span><span style="font-size:8px;font-family:'DM Mono',monospace;background:var(--gold-pale);color:var(--gold);padding:2px 5px;border-radius:2px">USHY 20%</span><span style="font-size:8px;font-family:'DM Mono',monospace;background:var(--purple-pale);color:var(--purple);padding:2px 5px;border-radius:2px">ARCC 10%</span><span style="font-size:8px;font-family:'DM Mono',monospace;background:var(--green-pale);color:var(--green);padding:2px 5px;border-radius:2px">SCHD 25%</span><span style="font-size:8px;font-family:'DM Mono',monospace;background:var(--paper3);color:var(--text2);padding:2px 5px;border-radius:2px">DGRO 5%</span><span style="font-size:8px;font-family:'DM Mono',monospace;background:var(--gold-pale);color:#B45309;padding:2px 5px;border-radius:2px">GLD 10%</span>
-          </div>
+        <div class="offre-section-new">
+          <div class="offre-section-title-new"><span>📋</span>Fiches ETF détaillées</div>
+          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#1D4E89" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="check-text" id="f2-i8">Métriques complètes : rendement, TER, bêta, AUM, ISIN</div></div>
+          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#1D4E89" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="check-text" id="f2-i9">Pourquoi ce choix vs le concurrent direct écarté</div></div>
         </div>
-
-        <!-- SIMULATEUR MINI -->
-        <div style="background:var(--ink);border-radius:6px;padding:1rem;margin-bottom:1rem">
-          <div style="font-size:9px;color:rgba(196,163,90,0.5);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.75rem;font-family:'DM Mono',monospace" id="tar-sim-title">Simulateur inclus — vos chiffres</div>
-          <div style="display:flex;flex-direction:column;gap:.625rem;margin-bottom:.875rem">
-            <div style="display:flex;justify-content:space-between;align-items:center;gap:.5rem">
-              <label style="font-size:10px;color:rgba(240,236,228,0.5);white-space:nowrap" id="tar-sim-cap-lbl">Capital</label>
-              <div style="display:flex;align-items:center;gap:.5rem;flex:1;justify-content:flex-end">
-                <input type="range" id="mini-cap" min="10000" max="1000000" step="10000" value="200000" oninput="miniCalc()" style="flex:1;accent-color:var(--gold2);max-width:100px">
-                <span style="font-family:'DM Mono',monospace;font-size:11px;color:var(--gold2);min-width:65px;text-align:right" id="mini-cap-val">200 000€</span>
-              </div>
-            </div>
-            <div style="display:flex;justify-content:space-between;align-items:center;gap:.5rem">
-              <label style="font-size:10px;color:rgba(240,236,228,0.5);white-space:nowrap" id="tar-sim-dep-lbl">Dépôt/mois</label>
-              <div style="display:flex;align-items:center;gap:.5rem;flex:1;justify-content:flex-end">
-                <input type="range" id="mini-dep" min="0" max="5000" step="100" value="500" oninput="miniCalc()" style="flex:1;accent-color:var(--gold2);max-width:100px">
-                <span style="font-family:'DM Mono',monospace;font-size:11px;color:var(--gold2);min-width:55px;text-align:right" id="mini-dep-val">500€</span>
-              </div>
-            </div>
-            <div style="display:flex;justify-content:space-between;align-items:center;gap:.5rem">
-              <label style="font-size:10px;color:rgba(240,236,228,0.5);white-space:nowrap" id="tar-sim-yrs-lbl">Horizon</label>
-              <div style="display:flex;align-items:center;gap:.5rem;flex:1;justify-content:flex-end">
-                <input type="range" id="mini-yrs" min="3" max="20" step="1" value="10" oninput="miniCalc()" style="flex:1;accent-color:var(--gold2);max-width:100px">
-                <span style="font-family:'DM Mono',monospace;font-size:11px;color:var(--gold2);min-width:45px;text-align:right" id="mini-yrs-val">10 ans</span>
-              </div>
-            </div>
-          </div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem">
-            <div style="background:rgba(255,255,255,0.05);border-radius:3px;padding:.625rem;text-align:center">
-              <div style="font-size:9px;color:rgba(196,163,90,0.5);text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px" id="tar-sim-res1-lbl">Capital final</div>
-              <div style="font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--gold2)" id="mini-result-cap">556 750€</div>
-            </div>
-            <div style="background:rgba(255,255,255,0.05);border-radius:3px;padding:.625rem;text-align:center">
-              <div style="font-size:9px;color:rgba(196,163,90,0.5);text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px" id="tar-sim-res2-lbl">Gain net</div>
-              <div style="font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--gold2)" id="mini-result-gain">+296 750€</div>
-            </div>
-          </div>
+        <div class="offre-section-new">
+          <div class="offre-section-title-new"><span>⚡</span>Plan d'exécution complet</div>
+          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#1D4E89" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="check-text" id="f2-i10">Ordres précis à passer chez votre courtier</div></div>
+          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#1D4E89" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="check-text" id="f2-i11">Revenu mensuel estimé par ETF — tableau récapitulatif</div></div>
         </div>
-
-        <!-- APERÇU PORTAIL -->
-        <div style="border:1px solid var(--border2);border-radius:6px;overflow:hidden">
-          <div style="background:var(--ink);padding:.5rem .875rem;display:flex;align-items:center;gap:.5rem">
-            <div style="display:flex;gap:4px"><div style="width:7px;height:7px;border-radius:50%;background:#FF5F57"></div><div style="width:7px;height:7px;border-radius:50%;background:#FEBC2E"></div><div style="width:7px;height:7px;border-radius:50%;background:#28C840"></div></div>
-            <div style="font-size:9px;color:rgba(196,163,90,0.4);font-family:'DM Mono',monospace">votre-nom.netlify.app</div>
-          </div>
-          <div style="background:var(--paper);padding:.875rem">
-            <div style="font-size:8px;color:var(--gold);font-family:'DM Mono',monospace;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.5rem" id="tar-portal-tag">Votre portail dédié</div>
-            <div style="font-family:'Cormorant Garamond',serif;font-size:15px;color:var(--ink);margin-bottom:.625rem" id="tar-portal-name">Jean Dupont — Portefeuille ETF</div>
-            <div style="display:flex;gap:3px;margin-bottom:.625rem;flex-wrap:wrap">
-              <div style="font-size:8px;background:var(--ink);color:var(--gold2);padding:2px 7px;border-radius:2px;font-family:'DM Mono',monospace">Accueil</div>
-              <div style="font-size:8px;background:var(--paper2);color:var(--text2);padding:2px 7px;border-radius:2px;font-family:'DM Mono',monospace">Mon portefeuille</div>
-              <div style="font-size:8px;background:var(--paper2);color:var(--text2);padding:2px 7px;border-radius:2px;font-family:'DM Mono',monospace">Simulateur</div>
-              <div style="font-size:8px;background:var(--paper2);color:var(--text2);padding:2px 7px;border-radius:2px;font-family:'DM Mono',monospace">Stratégie</div>
-            </div>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px">
-              <div style="background:var(--paper2);border-radius:3px;padding:.5rem;text-align:center"><div style="font-size:8px;color:var(--text3)">Capital an 10</div><div style="font-family:'DM Mono',monospace;font-size:12px;color:var(--gold)">556 750€</div></div>
-              <div style="background:var(--paper2);border-radius:3px;padding:.5rem;text-align:center"><div style="font-size:8px;color:var(--text3)">Rendement</div><div style="font-family:'DM Mono',monospace;font-size:12px;color:var(--green)">8,95%/an</div></div>
-            </div>
-          </div>
-        </div>
-        <div style="font-size:10px;color:var(--text3);margin-top:.75rem;line-height:1.6;font-style:italic" id="tar-f2-vis-note">Exemple illustratif — votre portail sera personnalisé avec vos données réelles.</div>
+        <div class="check-item-ghost"><div class="check-icon-ghost"><svg viewBox="0 0 12 12" fill="none"><path d="M3 6h6" stroke="#8A8278" stroke-width="1.5" stroke-linecap="round"/></svg></div><div class="check-text-ghost" id="f2-i12">Sans suivi mensuel ni révision continue</div></div>
       </div>
-
-      <div style="padding:1.125rem">
-        <button onclick="window.location.href='checkout.html?formule=premium'" style="width:100%;padding:12px;background:var(--cta);color:white;font-family:'Jost',sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;border:none;border-radius:4px;cursor:pointer;transition:all .2s;box-shadow:0 3px 10px rgba(26,107,69,0.3)" onmouseover="this.style.background='var(--cta2)'" onmouseout="this.style.background='var(--cta)'" id="tar-f2-btn">Recevoir mon site personnalisé — 70€ →</button>
+      <div class="offre-foot-new">
+        <button class="offre-btn-new gold-btn" onclick="window.location.href='checkout.html?formule=premium'" id="f2-btn">Recevoir mon site personnalisé — 70€ →</button>
+        <button class="offre-more-new" onclick="showDetail('f2-new')" id="f2-more">En savoir plus ↓</button>
+      </div>
+      <div class="offre-detail-new" id="detail-f2-new">
+        <div style="padding:1.5rem 2.25rem">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--ink);margin-bottom:.75rem" id="f2-detail-title">Ce que vous recevez concrètement</div>
+          <div style="font-size:12px;color:var(--text2);font-weight:300;line-height:1.85" id="f2-detail-body">Vous recevez un lien vers votre propre portail web personnalisé — exactement comme ce site, mais configuré avec vos données réelles : capital, ETFs, horizon et simulation sur 10 ans. Votre banquier, comptable ou famille peut y accéder via le lien privé. Livré en 48 à 72h.</div>
+        </div>
       </div>
     </div>
 
-
   </div>
 
-  <!-- TÉMOIGNAGES -->
-  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:2rem">
-    <div style="background:white;border:1px solid var(--border2);border-radius:4px;padding:1.125rem"><div style="font-size:24px;color:var(--gold2);line-height:1;margin-bottom:.625rem">❝</div><div style="font-size:12px;color:var(--text2);font-weight:300;line-height:1.7;margin-bottom:.75rem;font-style:italic" id="tar-t1">En 48h j'avais un portefeuille clair avec les 3 scénarios. Je comprends enfin ce que je possède.</div><div style="font-size:11px;font-weight:500;color:var(--ink)" id="tar-t1-name">Pierre M. · Chef d'entreprise</div></div>
-    <div style="background:white;border:1px solid var(--border2);border-radius:4px;padding:1.125rem"><div style="font-size:24px;color:var(--gold2);line-height:1;margin-bottom:.625rem">❝</div><div style="font-size:12px;color:var(--text2);font-weight:300;line-height:1.7;margin-bottom:.75rem;font-style:italic" id="tar-t2">J'ai reçu mon propre site avec simulateur en 2 jours. Mon banquier a été impressionné.</div><div style="font-size:11px;font-weight:500;color:var(--ink)" id="tar-t2-name">Sophie L. · Cadre dirigeante</div></div>
-    <div style="background:white;border:1px solid var(--border2);border-radius:4px;padding:1.125rem"><div style="font-size:24px;color:var(--gold2);line-height:1;margin-bottom:.625rem">❝</div><div style="font-size:12px;color:var(--text2);font-weight:300;line-height:1.7;margin-bottom:.75rem;font-style:italic" id="tar-t3">Des ETFs soigneusement choisis, des frais imbattables. Mon patrimoine travaille enfin efficacement.</div><div style="font-size:11px;font-weight:500;color:var(--ink)" id="tar-t3-name">Marc T. · Médecin libéral · Bordeaux</div></div>
-  </div>
-
-  <div style="text-align:center">
-    <button onclick="show('contact',document.getElementById('nav-contact'))" style="padding:14px 36px;background:var(--gold2);color:var(--ink);font-family:'Jost',sans-serif;font-size:12px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;border:none;border-radius:3px;cursor:pointer" id="tar-cta">Prendre contact gratuitement →</button>
-  </div>
-  <div class="disclaimer" style="margin-top:1.5rem" id="tar-disclaimer">Tarifs en euros, TTC. Ceci ne constitue pas un conseil en investissement au sens réglementaire. Les rendements présentés sont des estimations basées sur des données historiques.</div>
 </div>
+
+
 
 
 <!-- ETFs -->
-<div class="section" id="s-etfs">
-  <div style="margin-bottom:2rem">
-    <div class="eyebrow" id="etf-eyebrow">Exemple de portefeuille · Profil pré-retraite / rendement / fiscalité avantageuse</div>
-    <h2 style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:400" id="etf-h2">Les six piliers — version de référence</h2>
-    <div style="background:var(--gold-pale);border:1px solid var(--border);border-radius:4px;padding:.875rem 1.125rem;margin-top:1rem;font-size:13px;color:var(--text2);font-weight:300;line-height:1.7" id="etf-note">
-      ℹ️ Ce portefeuille est notre <strong>allocation de référence</strong> — construite pour un profil pré-retraite cherchant rendement et revenus mensuels. <strong>Votre portefeuille sera différent</strong> selon votre profil, votre âge et votre fiscalité. <a href="checkout.html" style="color:var(--gold);text-decoration:underline" id="etf-cta-link">Commander votre portefeuille →</a>
-    </div>
-  </div>
 
-  <div class="etf-grid6">
-    <div class="etf-card">
-      <div class="etf-ticker" style="color:#2563A8">JAAA</div>
-      <div class="etf-name">Janus Henderson AAA CLO ETF</div>
-      <div style="background:var(--blue-pale);border-radius:3px;padding:.5rem .75rem;margin-bottom:.75rem;font-size:11px;color:var(--blue2);font-weight:500" class="etf-own-label">Quand vous achetez JAAA, vous devenez <strong>prêteur</strong></div>
-      <div class="etf-desc" id="jaaa-desc">Vous prêtez de l'argent à de grandes entreprises via des obligations notées AAA — la note de crédit la plus élevée qui existe. En échange, elles vous versent des intérêts chaque mois. Comme une banque — sauf que c'est vous qui touchez les intérêts. Le taux monte automatiquement avec les taux du marché (SOFR), ce qui protège votre rendement.</div>
-      <div style="margin-bottom:.875rem"><span class="badge b-blue">Taux variable</span><span class="badge b-green">Risque AAA</span><span class="badge b-ink">Mensuel</span></div>
-      <div class="etf-stats">
-        <div class="es"><div class="es-l">Rendement</div><div class="es-v gold">6,1%/an</div></div>
-        <div class="es"><div class="es-l">Frais</div><div class="es-v gold">0,21%</div></div>
-        <div class="es"><div class="es-l">Duration</div><div class="es-v green">Nulle</div></div>
-      </div>
-    </div>
-
-    <div class="etf-card">
-      <div class="etf-ticker" style="color:var(--gold2)">USHY</div>
-      <div class="etf-name">iShares Broad USD High Yield Corporate Bond · BlackRock</div>
-      <div style="background:var(--gold-pale);border-radius:3px;padding:.5rem .75rem;margin-bottom:.75rem;font-size:11px;color:var(--gold);font-weight:500" class="etf-own-label">Quand vous achetez USHY, vous devenez <strong>créancier de 2 000 entreprises</strong></div>
-      <div class="etf-desc" id="ushy-desc">Vous prêtez simultanément à 2 000 entreprises américaines en même temps. Ces entreprises paient des intérêts plus élevés parce qu'elles sont plus petites — c'est pourquoi le coupon est de 7,5%/an. Votre risque est dilué sur 2 000 emprunteurs : aucune faillite individuelle ne peut vous affecter de façon significative.</div>
-      <div style="margin-bottom:.875rem"><span class="badge b-gold">7,5% coupon réel</span><span class="badge b-green">2 000 obligations</span><span class="badge b-ink">Mensuel</span></div>
-      <div class="etf-stats">
-        <div class="es"><div class="es-l">Coupon</div><div class="es-v gold">7,5%/an</div></div>
-        <div class="es"><div class="es-l">Frais</div><div class="es-v gold">0,08%</div></div>
-        <div class="es"><div class="es-l">Émetteurs</div><div class="es-v green">2 000</div></div>
-      </div>
-    </div>
-
-    <div class="etf-card">
-      <div class="etf-ticker" style="color:var(--purple)">ARCC</div>
-      <div class="etf-name">Ares Capital Corporation — BDC leader</div>
-      <div style="background:var(--purple-pale);border-radius:3px;padding:.5rem .75rem;margin-bottom:.75rem;font-size:11px;color:var(--purple);font-weight:500" class="etf-own-label">Quand vous achetez ARCC, vous <strong>possédez une banque privée</strong></div>
-      <div class="etf-desc" id="arcc-desc">Vous devenez actionnaire d'Ares Capital, la plus grande société de crédit privé américaine cotée en bourse. Elle prête à 500 PME américaines et distribue 95% de ses bénéfices en dividendes. C'est comme posséder une part d'une banque privée — qui n'a jamais manqué un seul dividende depuis 2004, même pendant 2008 et le Covid.</div>
-      <div style="margin-bottom:.875rem"><span class="badge b-purple">9,5% dividende</span><span class="badge b-green">Senior secured</span><span class="badge b-ink">Mensuel</span></div>
-      <div class="etf-stats">
-        <div class="es"><div class="es-l">Dividende</div><div class="es-v gold">9,5%/an</div></div>
-        <div class="es"><div class="es-l">Frais</div><div class="es-v green">0%</div></div>
-        <div class="es"><div class="es-l">Prêts</div><div class="es-v green">500+</div></div>
-      </div>
-    </div>
-
-    <div class="etf-card">
-      <div class="etf-ticker" style="color:var(--green)">SCHD</div>
-      <div class="etf-name">Schwab U.S. Dividend Equity ETF · Charles Schwab</div>
-      <div style="background:var(--green-pale);border-radius:3px;padding:.5rem .75rem;margin-bottom:.75rem;font-size:11px;color:var(--green);font-weight:500" class="etf-own-label">Quand vous achetez SCHD, vous devenez <strong>copropriétaire de 101 champions américains</strong></div>
-      <div class="etf-desc" id="schd-desc">Vous détenez une part de 101 des entreprises américaines les plus solides — celles qui versent et augmentent leurs dividendes depuis au moins 10 ans sans interruption. Chevron, Cisco, Home Depot, Verizon. Des entreprises qui ont traversé la crise de 2008, le Covid, et continuent de vous payer. En 2022, quand le S&P 500 perdait -19%, SCHD ne reculait que de -3,2%.</div>
-      <div style="margin-bottom:.875rem"><span class="badge b-gold">3,6% dividende</span><span class="badge b-green">9% total return</span><span class="badge b-ink">Trimestriel</span></div>
-      <div class="etf-stats">
-        <div class="es"><div class="es-l">Dividende</div><div class="es-v gold">3,6%/an</div></div>
-        <div class="es"><div class="es-l">Frais</div><div class="es-v gold">0,06%</div></div>
-        <div class="es"><div class="es-l">Total return</div><div class="es-v green">9%/an</div></div>
-      </div>
-    </div>
-
-    <div class="etf-card">
-      <div class="etf-ticker" style="color:#7B5EA7">DGRO</div>
-      <div class="etf-name">iShares Core Dividend Growth ETF · BlackRock</div>
-      <div style="background:var(--paper2);border-radius:3px;padding:.5rem .75rem;margin-bottom:.75rem;font-size:11px;color:#7B5EA7;font-weight:500" class="etf-own-label">Quand vous achetez DGRO, vous pariez sur la <strong>croissance des dividendes</strong></div>
-      <div class="etf-desc" id="dgro-desc">Vous detenez 395 entreprises sélectionnées parce qu'elles augmentent leur dividende chaque année depuis au moins 5 ans — Apple, Microsoft, Johnson & Johnson, JPMorgan. Ce qui compte ici, ce n'est pas le dividende d'aujourd'hui, mais celui de demain. Dans 10 ans, le dividende que vous touchez pourrait être 2 à 3 fois plus élevé qu'aujourd'hui.</div>
-      <div style="margin-bottom:.875rem"><span class="badge b-gold">2% dividende</span><span class="badge b-green">11% total return</span><span class="badge b-ink">Trimestriel</span></div>
-      <div class="etf-stats">
-        <div class="es"><div class="es-l">Dividende</div><div class="es-v gold">2%/an</div></div>
-        <div class="es"><div class="es-l">Frais</div><div class="es-v gold">0,08%</div></div>
-        <div class="es"><div class="es-l">Total return</div><div class="es-v green">11%/an</div></div>
-      </div>
-    </div>
-
-    <div class="etf-card">
-      <div class="etf-ticker" style="color:var(--red)">VNQ</div>
-      <div class="etf-name">Vanguard Real Estate ETF · Vanguard</div>
-      <div style="background:var(--red-pale);border-radius:3px;padding:.5rem .75rem;margin-bottom:.75rem;font-size:11px;color:var(--red);font-weight:500" class="etf-own-label">Quand vous achetez VNQ, vous devenez <strong>propriétaire immobilier</strong></div>
-      <div class="etf-desc" id="vnq-desc">Vous possédez une part de 159 immeubles américains — centres commerciaux, entrepôts Amazon, data centers, tours 5G, hôpitaux. Sans notaire, sans crédit, sans travaux, sans locataire à gérer. Le loyer tombe chaque trimestre. Ces sociétés (les REITs) sont obligées par la loi de redistribuer au moins 90% de leurs revenus locatifs. Vous êtes propriétaire sans les tracas.</div>
-      <div style="margin-bottom:.875rem"><span class="badge b-gold">3,9% dividende</span><span class="badge b-green">9-11% total return</span><span class="badge b-ink">Trimestriel</span></div>
-      <div class="etf-stats">
-        <div class="es"><div class="es-l">Dividende</div><div class="es-v gold">3,9%/an</div></div>
-        <div class="es"><div class="es-l">Frais</div><div class="es-v gold">0,13%</div></div>
-        <div class="es"><div class="es-l">REITs</div><div class="es-v green">159</div></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-title">Les 4 classes d'actifs — décorrélation maximale</div>
-    <div style="overflow-x:auto">
-      <table class="ttable">
-        <thead><tr><th>ETF</th><th>Classe</th><th>Rendement</th><th>Frais</th><th>Titres</th><th>Versement</th><th>Sensibilité taux</th></tr></thead>
-        <tbody>
-          <tr><td class="blue">JAAA</td><td>CLO AAA structuré</td><td class="gold">6,1%</td><td>0,21%</td><td>300+</td><td>Mensuel</td><td class="green">Nulle (variable)</td></tr>
-          <tr><td class="gold">USHY</td><td>Obligations HY</td><td class="gold">7,5%</td><td>0,08%</td><td>2 000</td><td>Mensuel</td><td>Modérée (3,5 ans)</td></tr>
-          <tr><td style="color:var(--purple)">ARCC</td><td>Prêts directs PME</td><td class="gold">9,5%</td><td class="green">0%</td><td>500+</td><td>Mensuel</td><td>Modérée</td></tr>
-          <tr><td class="green">SCHD</td><td>Actions dividende</td><td class="gold">9% TR</td><td>0,06%</td><td>101</td><td>Trimestriel</td><td>Indirecte</td></tr>
-          <tr><td style="color:#7B5EA7">DGRO</td><td>Actions croissance</td><td class="gold">11% TR</td><td>0,08%</td><td>395</td><td>Trimestriel</td><td>Indirecte</td></tr>
-          <tr><td class="red">VNQ</td><td>Immobilier coté</td><td class="gold">9-11% TR</td><td>0,13%</td><td>159</td><td>Trimestriel</td><td>Forte (favorable si baisse)</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-  <div class="disclaimer">Les performances passées ne préjugent pas des performances futures. Ces informations sont communiquées à titre éducatif et ne constituent pas un conseil en investissement personnalisé.</div>
-</div>
-
-<!-- SIMULATEUR -->
 <div class="section" id="s-simulateur">
   <div style="margin-bottom:1.5rem">
     <div class="eyebrow">Outil interactif</div>
@@ -1238,392 +613,10 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.3)}
 </div>
 
 <!-- LOMBARD -->
-<div class="section" id="s-lombard">
-  <div style="margin-bottom:1.5rem">
-    <div class="eyebrow">Levier intelligent · IBKR + 6 ETFs</div>
-    <h2 style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:400">Montage Interactive Brokers + Lombard 35%</h2>
-  </div>
-
-  <div class="card" style="background:var(--ink);border-color:rgba(196,163,90,0.3)">
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.5rem">
-      <div>
-        <div style="font-size:9px;color:rgba(196,163,90,0.5);text-transform:uppercase;letter-spacing:.12em;margin-bottom:6px">Étape 1</div>
-        <div style="font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--gold2);margin-bottom:8px">Capital propre</div>
-        <div style="font-size:13px;color:rgba(240,236,228,0.6);font-weight:300;line-height:1.7">Tu apportes 740 000€ sur Interactive Brokers. Le portefeuille 6 ETFs est investi immédiatement.</div>
-      </div>
-      <div>
-        <div style="font-size:9px;color:rgba(196,163,90,0.5);text-transform:uppercase;letter-spacing:.12em;margin-bottom:6px">Étape 2</div>
-        <div style="font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--gold2);margin-bottom:8px">Lombard 35%</div>
-        <div style="font-size:13px;color:rgba(240,236,228,0.6);font-weight:300;line-height:1.7">Interactive Brokers prête 260 000$ à 3,15%/an adossé au portefeuille. Capital total investi : 1 000 000$.</div>
-      </div>
-      <div>
-        <div style="font-size:9px;color:rgba(196,163,90,0.5);text-transform:uppercase;letter-spacing:.12em;margin-bottom:6px">Étape 3</div>
-        <div style="font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--gold2);margin-bottom:8px">Rebasement annuel</div>
-        <div style="font-size:13px;color:rgba(240,236,228,0.6);font-weight:300;line-height:1.7">Chaque année, la ligne Lombard est recalibrée à 35% du patrimoine net. Le capital investi croît automatiquement.</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="lomb-kpi">
-    <div class="lkpi"><div class="lkpi-l">Capital investi total</div><div class="lkpi-v">1 000 000$</div><div class="lkpi-s">740k propre + 260k Lombard</div></div>
-    <div class="lkpi"><div class="lkpi-l">Taux Lombard Interactive Brokers</div><div class="lkpi-v blue">3,15%/an</div><div class="lkpi-s">€STR + 1,25% — meilleur taux du marché</div></div>
-    <div class="lkpi"><div class="lkpi-l">Intérêts mensuels</div><div class="lkpi-v">919€/mois</div><div class="lkpi-s">couverts par les dividendes</div></div>
-    <div class="lkpi"><div class="lkpi-l">Spread net annuel</div><div class="lkpi-v green">+5,80%</div><div class="lkpi-s">8,8% - 3,15% = gain pur</div></div>
-  </div>
-
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1.25rem">
-    <div class="card">
-      <div class="card-title">Compte de résultat annuel</div>
-      <div class="fees-row"><span class="fees-l">Revenus portefeuille (8,95% × 1 000 000$)</span><span class="fees-v" style="color:var(--green)">+89 500$/an</span></div>
-      <div class="fees-row"><span class="fees-l">Intérêts Lombard (3,15% × 260 000$)</span><span class="fees-v" style="color:var(--red)">-8 190$/an</span></div>
-      <div class="fees-row"><span class="fees-l">Frais ETFs (0,09% × 1 000 000$)</span><span class="fees-v" style="color:var(--red)">-900$/an</span></div>
-      <div style="display:flex;justify-content:space-between;align-items:center;padding-top:1rem;border-top:1px solid var(--border)">
-        <span style="font-size:13px;color:var(--text2)">Revenu net annuel</span>
-        <span style="font-family:'Cormorant Garamond',serif;font-size:24px;color:var(--green)">+80 410$/an</span>
-      </div>
-      <div style="font-size:11px;color:var(--text3);margin-top:6px">Soit 6 701$/mois net — Lombard et frais déjà déduits</div>
-    </div>
-    <div class="card">
-      <div class="card-title">Pourquoi Interactive Brokers plutôt qu'une banque ?</div>
-      <div style="font-size:13px;color:var(--text2);font-weight:300;line-height:1.8">
-        <div style="margin-bottom:8px">✅ <strong>Taux les plus bas du marché</strong> — 3,15% vs 3,25% BoursoBank vs 4%+ banque privée</div>
-        <div style="margin-bottom:8px">✅ <strong>Accès à tous les ETFs US</strong> — JAAA, USHY, ARCC, SCHD, DGRO, VNQ en un seul compte</div>
-        <div style="margin-bottom:8px">✅ <strong>Zéro frais de courtage</strong> sur le compte premium</div>
-        <div style="margin-bottom:8px">✅ <strong>Rebasement Lombard automatique</strong> au fur et à mesure que le patrimoine croît</div>
-        <div>✅ <strong>Liquidité totale</strong> — vendre n'importe quelle position en J+1</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-title">Simulation Lombard dynamique — rebasement annuel à 35%</div>
-    <div style="overflow-x:auto">
-      <table class="ttable">
-        <thead><tr><th>Année</th><th>Capital investi</th><th>Revenus (8,8%)</th><th>Intérêts Lombard</th><th>Apport</th><th>Nets réinv.</th><th>Patrimoine net</th><th>Lombard (35%)</th><th>Rebasement</th></tr></thead>
-        <tbody>
-          <tr><td>0</td><td class="gold">1 000 000$</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="green">740 000$</td><td class="blue">260 000$</td><td>Départ</td></tr>
-          <tr><td>1</td><td class="gold">1 102 005$</td><td>88 000$</td><td class="red">-8 190$</td><td>+12 500$</td><td>92 310$</td><td class="green">832 310$</td><td class="blue">291 309$</td><td style="color:var(--blue2)">+31 309$</td></tr>
-          <tr><td>2</td><td class="gold">1 212 509$</td><td>97 008$</td><td class="red">-9 175$</td><td>+12 500$</td><td>100 333$</td><td class="green">932 643$</td><td class="blue">326 425$</td><td style="color:var(--blue2)">+35 116$</td></tr>
-          <tr><td>3</td><td class="gold">1 332 519$</td><td>106 701$</td><td class="red">-10 282$</td><td>+12 500$</td><td>108 919$</td><td class="green">1 041 562$</td><td class="blue">364 547$</td><td style="color:var(--blue2)">+38 122$</td></tr>
-          <tr><td>4</td><td class="gold">1 463 248$</td><td>117 262$</td><td class="red">-11 483$</td><td>+12 500$</td><td>118 279$</td><td class="green">1 159 841$</td><td class="blue">405 944$</td><td style="color:var(--blue2)">+41 397$</td></tr>
-          <tr><td>5</td><td class="gold">1 605 985$</td><td>128 766$</td><td class="red">-12 787$</td><td>+12 500$</td><td>128 479$</td><td class="green">1 288 320$</td><td class="blue">450 912$</td><td style="color:var(--blue2)">+44 968$</td></tr>
-          <tr><td>7</td><td class="gold">1 935 412$</td><td>153 945$</td><td class="red">-15 708$</td><td>+12 500$</td><td>150 737$</td><td class="green">1 563 875$</td><td class="blue">547 356$</td><td style="color:var(--blue2)">+54 219$</td></tr>
-          <tr style="background:rgba(45,106,79,0.04)"><td><strong>10</strong></td><td class="gold"><strong>2 535 137$</strong></td><td><strong>199 008$</strong></td><td class="red"><strong>-20 713$</strong></td><td>+12 500$</td><td><strong>190 795$</strong></td><td class="green"><strong>1 913 918$</strong></td><td class="blue"><strong>669 871$</strong></td><td style="color:var(--blue2)"><strong>+66 321$</strong></td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1.25rem">
-      <div style="background:var(--paper2);border-radius:4px;padding:1rem;text-align:center">
-        <div style="font-size:10px;color:var(--text3);margin-bottom:6px;text-transform:uppercase;letter-spacing:.06em">Patrimoine net an 10</div>
-        <div style="font-family:'Cormorant Garamond',serif;font-size:28px;color:var(--gold)">1 913 918$</div>
-        <div style="font-size:11px;color:var(--text3);margin-top:3px">+154% sur capital propre</div>
-      </div>
-      <div style="background:var(--paper2);border-radius:4px;padding:1rem;text-align:center">
-        <div style="font-size:10px;color:var(--text3);margin-bottom:6px;text-transform:uppercase;letter-spacing:.06em">Lombard an 10</div>
-        <div style="font-family:'Cormorant Garamond',serif;font-size:28px;color:var(--blue2)">669 871$</div>
-        <div style="font-size:11px;color:var(--text3);margin-top:3px">vs 260 000$ au départ (+158%)</div>
-      </div>
-      <div style="background:var(--green-pale);border-radius:4px;padding:1rem;text-align:center;border:1px solid rgba(45,106,79,0.2)">
-        <div style="font-size:10px;color:var(--green);margin-bottom:6px;text-transform:uppercase;letter-spacing:.06em">Avantage vs sans levier</div>
-        <div style="font-family:'Cormorant Garamond',serif;font-size:28px;color:var(--green)">+87 589$</div>
-        <div style="font-size:11px;color:var(--text3);margin-top:3px">gain pur du levier sur 10 ans</div>
-      </div>
-    </div>
-  </div>
-  <div class="disclaimer">Le crédit Lombard amplifie les gains mais aussi les pertes potentielles. En cas de baisse du portefeuille, un appel de marge peut être déclenché. À valider avec un conseiller financier agréé et un expert fiscal israélien avant toute mise en œuvre.</div>
-</div>
-
-<!-- ARBITRAGE -->
-<div class="section" id="s-arbitrage">
-  <div style="margin-bottom:1.5rem">
-    <div class="eyebrow">Gestion active disciplinée</div>
-    <h2 style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:400">Stratégie d'arbitrage — vases communicants</h2>
-  </div>
-
-  <div class="card" style="margin-bottom:1.25rem">
-    <div class="card-title">Le principe fondamental</div>
-    <p style="font-size:13px;color:var(--text2);font-weight:300;line-height:1.8;margin-bottom:1rem">Le portefeuille fonctionne comme un système de <strong style="color:var(--ink)">vases communicants</strong>. Aucun capital ne sort — tout se déplace intelligemment selon les signaux du marché. La somme reste toujours 100%.</p>
-    <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:8px">
-      <div style="background:var(--paper2);border-radius:4px;padding:.875rem;text-align:center"><div style="font-family:'DM Mono',monospace;color:#2563A8;font-size:13px;margin-bottom:4px">JAAA</div><div style="font-size:10px;color:var(--text3)">Réservoir munitions</div></div>
-      <div style="background:var(--paper2);border-radius:4px;padding:.875rem;text-align:center"><div style="font-family:'DM Mono',monospace;color:var(--gold2);font-size:13px;margin-bottom:4px">USHY</div><div style="font-size:10px;color:var(--text3)">Cash flow taux</div></div>
-      <div style="background:var(--paper2);border-radius:4px;padding:.875rem;text-align:center"><div style="font-family:'DM Mono',monospace;color:var(--purple);font-size:13px;margin-bottom:4px">ARCC</div><div style="font-size:10px;color:var(--text3)">Revenu PME US</div></div>
-      <div style="background:var(--paper2);border-radius:4px;padding:.875rem;text-align:center"><div style="font-family:'DM Mono',monospace;color:var(--green);font-size:13px;margin-bottom:4px">SCHD</div><div style="font-size:10px;color:var(--text3)">Cœur croissance</div></div>
-      <div style="background:var(--paper2);border-radius:4px;padding:.875rem;text-align:center"><div style="font-family:'DM Mono',monospace;color:#7B5EA7;font-size:13px;margin-bottom:4px">DGRO</div><div style="font-size:10px;color:var(--text3)">Satellite — plafonné 15%</div></div>
-      <div style="background:var(--paper2);border-radius:4px;padding:.875rem;text-align:center"><div style="font-family:'DM Mono',monospace;color:var(--red);font-size:13px;margin-bottom:4px">VNQ</div><div style="font-size:10px;color:var(--text3)">Levier taux baissiers</div></div>
-    </div>
-  </div>
-
-  <div class="rule-grid" style="margin-bottom:1.25rem">
-    <div class="rule">
-      <div class="rule-type buy">▲ Signal d'achat — Correction marché</div>
-      <div style="font-size:13px;color:var(--text2);font-weight:300;margin-bottom:.875rem">Bascule <strong>JAAA → SCHD/VNQ</strong></div>
-      <div class="rule-item">Correction marché confirmée de <strong>-10% minimum</strong></div>
-      <div class="rule-item">Transférer +10 à 15 points de JAAA vers l'ETF en correction</div>
-      <div class="rule-item">Répéter à chaque nouvelle tranche de -10%</div>
-      <div class="rule-item">SCHD/VNQ plancher absolu : <strong>20% minimum</strong></div>
-      <div style="margin-top:.875rem;padding:8px 12px;background:var(--green-pale);border-radius:3px;font-size:11px;color:var(--green)">Accumuler les actifs de qualité quand tout le monde panique</div>
-    </div>
-    <div class="rule">
-      <div class="rule-type sell">▼ Prise de profit — Forte hausse</div>
-      <div style="font-size:13px;color:var(--text2);font-weight:300;margin-bottom:.875rem">Bascule <strong>SCHD/VNQ → JAAA</strong></div>
-      <div class="rule-item">ETF en hausse de <strong>+15%</strong> depuis le dernier achat</div>
-      <div class="rule-item">Transférer -10 points vers JAAA</div>
-      <div class="rule-item">Maximum <strong>1 opération tous les 2 mois</strong></div>
-      <div class="rule-item">Ne jamais descendre sous 20% de SCHD</div>
-      <div style="margin-top:.875rem;padding:8px 12px;background:var(--gold-pale);border-radius:3px;font-size:11px;color:var(--gold)">Cristalliser les plus-values, recharger les munitions</div>
-    </div>
-    <div class="rule">
-      <div class="rule-type rate">📉 Baisse des taux — Double bénéfice VNQ + USHY</div>
-      <div style="font-size:13px;color:var(--text2);font-weight:300;margin-bottom:.875rem">Renforcer VNQ et USHY</div>
-      <div class="rule-item">VNQ : grand gagnant — coûts d'emprunt REITs baissent</div>
-      <div class="rule-item">USHY : coupon maintenu + gain en capital +3,5%</div>
-      <div class="rule-item">Réduire JAAA — son rendement baisse avec les taux</div>
-      <div class="rule-item">Scénario -2% taux → portefeuille fait <strong>+16%/an</strong></div>
-      <div style="margin-top:.875rem;padding:8px 12px;background:var(--blue-pale);border-radius:3px;font-size:11px;color:var(--blue2)">Contexte actuel favorable — BCE en cycle de baisse</div>
-    </div>
-    <div class="rule">
-      <div class="rule-type" style="color:var(--gold)">★ Take Profit annuel — Année exceptionnelle</div>
-      <div style="font-size:13px;color:var(--text2);font-weight:300;margin-bottom:.875rem">Cristallisation partielle si +12% avant juin</div>
-      <div class="rule-item">Si +12% atteint avant le 30 juin → cristalliser 60-70%</div>
-      <div class="rule-item">Replacer en JAAA — l'année est faite</div>
-      <div class="rule-item">Les gains excédentaires → Portefeuille B opportuniste</div>
-      <div class="rule-item">On joue avec <strong>"house money"</strong> sans risquer le capital</div>
-      <div style="margin-top:.875rem;padding:8px 12px;background:var(--gold-pale);border-radius:3px;font-size:11px;color:var(--gold)">2-3 années exceptionnelles sur 10 ans = +200 000$ supplémentaires</div>
-    </div>
-  </div>
-
-  <div style="background:var(--ink);border-radius:4px;padding:1.5rem">
-    <div style="font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--gold2);margin-bottom:1rem">La règle d'or — Mécanique, pas émotionnelle</div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem">
-      <div style="font-size:12px;color:rgba(240,236,228,0.6);line-height:1.7;font-weight:300"><strong style="color:var(--gold2)">Règles définies à froid.</strong> Chaque arbitrage est déclenché par un signal précis — jamais par une intuition du moment. L'émotion est l'ennemi du patrimoine.</div>
-      <div style="font-size:12px;color:rgba(240,236,228,0.6);line-height:1.7;font-weight:300"><strong style="color:var(--gold2)">Maximum 1 transaction/mois.</strong> La sur-activité est l'ennemi du rendement. 4 à 5 transactions par an suffisent amplement.</div>
-      <div style="font-size:12px;color:rgba(240,236,228,0.6);line-height:1.7;font-weight:300"><strong style="color:var(--gold2)">0% fiscal pendant 10 ans.</strong> Chaque arbitrage est fiscalement neutre — une liberté structurelle que 99% des investisseurs n'ont pas.</div>
-    </div>
-  </div>
-  <div class="disclaimer">Les signaux d'arbitrage sont des règles indicatives. Chaque décision doit tenir compte de la situation de marché au moment concerné. Ceci ne constitue pas un conseil en investissement personnalisé.</div>
-</div>
-
-<!-- FRAIS -->
-<div class="section" id="s-frais">
-  <div style="margin-bottom:1.5rem">
-    <div class="eyebrow">Analyse comparative</div>
-    <h2 style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:400">L'avantage décisif des frais</h2>
-  </div>
-
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1.5rem">
-    <div class="card">
-      <div class="card-title">Notre portefeuille 6 ETFs</div>
-      <div class="fees-row"><span class="fees-l">Frais de courtage</span><span class="fees-v zero">0 $</span></div>
-      <div class="fees-row"><span class="fees-l">Frais ETF JAAA</span><span class="fees-v gold">0,21 %/an</span></div>
-      <div class="fees-row"><span class="fees-l">Frais ETF USHY</span><span class="fees-v gold">0,08 %/an</span></div>
-      <div class="fees-row"><span class="fees-l">Frais ARCC (action directe)</span><span class="fees-v zero">0 %</span></div>
-      <div class="fees-row"><span class="fees-l">Frais ETF SCHD</span><span class="fees-v gold">0,06 %/an</span></div>
-      <div class="fees-row"><span class="fees-l">Frais ETF DGRO</span><span class="fees-v gold">0,08 %/an</span></div>
-      <div class="fees-row"><span class="fees-l">Frais ETF VNQ</span><span class="fees-v gold">0,13 %/an</span></div>
-      <div class="fees-row"><span class="fees-l">Rétrocessions</span><span class="fees-v zero">0 €</span></div>
-      <div class="fees-row"><span class="fees-l">Impôts dividendes/PV (10 ans)</span><span class="fees-v zero">0 % — PEA (après 5 ans)</span></div>
-      <div style="background:var(--green-pale);border-radius:3px;padding:.875rem;margin-top:.75rem;display:flex;justify-content:space-between;align-items:center">
-        <span style="font-size:12px;color:var(--green)">Coût total annuel pondéré</span>
-        <span style="font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--green)">0,09%/an</span>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-title">CGP traditionnel (typique)</div>
-      <div class="fees-row"><span class="fees-l">Frais de gestion</span><span class="fees-v" style="color:var(--red)">1,00 %/an</span></div>
-      <div class="fees-row"><span class="fees-l">Rétrocessions produits structurés</span><span class="fees-v" style="color:var(--red)">0,75 %/an</span></div>
-      <div class="fees-row"><span class="fees-l">Frais entrée produits structurés</span><span class="fees-v" style="color:var(--red)">1,50 % à l'entrée</span></div>
-      <div class="fees-row"><span class="fees-l">Frais de courtage</span><span class="fees-v" style="color:var(--red)">0,25 %/an</span></div>
-      <div class="fees-row"><span class="fees-l">Fiscalité PFU 30%</span><span class="fees-v" style="color:var(--red)">2,00 %/an</span></div>
-      <div style="background:var(--red-pale);border-radius:3px;padding:.875rem;margin-top:.75rem;display:flex;justify-content:space-between;align-items:center">
-        <span style="font-size:12px;color:var(--red)">Coût total annuel réel</span>
-        <span style="font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--red)">2,00%/an</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-title">L'impact sur 10 ans — 1 000 000 $</div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem">
-      <div style="text-align:center;padding:1.5rem;background:var(--paper2);border-radius:4px">
-        <div style="font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px">CGP classique (3% net réel)</div>
-        <div style="font-family:'Cormorant Garamond',serif;font-size:32px;color:var(--text2)">1 344 000$</div>
-        <div style="font-size:11px;color:var(--text3);margin-top:4px">+34% sur 10 ans</div>
-      </div>
-      <div style="text-align:center;padding:1.5rem;background:var(--gold-pale);border-radius:4px;border:1px solid var(--border)">
-        <div style="font-size:10px;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px">Notre stratégie (8,95% net)</div>
-        <div style="font-family:'Cormorant Garamond',serif;font-size:32px;color:var(--gold)">2 341 000$</div>
-        <div style="font-size:11px;color:var(--text3);margin-top:4px">+134% sur 10 ans</div>
-      </div>
-      <div style="text-align:center;padding:1.5rem;background:var(--green-pale);border-radius:4px">
-        <div style="font-size:10px;color:var(--green);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px">Avantage net</div>
-        <div style="font-family:'Cormorant Garamond',serif;font-size:32px;color:var(--green)">+997 000$</div>
-        <div style="font-size:11px;color:var(--text3);margin-top:4px">soit un revenu supplémentaire de 1 250€/mois</div>
-      </div>
-    </div>
-  </div>
-  <div class="disclaimer">Comparatif établi à titre illustratif. Les frais réels varient selon les établissements et produits. Ceci ne constitue pas un conseil en investissement. Consultez un professionnel agréé.</div>
-</div>
-
-<!-- ===== VERSIONS ===== -->
-<div class="section" id="s-versions">
-  <div style="margin-bottom:2rem">
-    <div class="eyebrow" id="ver-eyebrow">Adaptation aux conditions de marché</div>
-    <h2 style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:400" id="ver-h2">Versions du portefeuille</h2>
-  </div>
-
-  <div class="card" style="margin-bottom:1.5rem">
-    <div class="card-title" id="ver-intro-title">Notre portefeuille est directionnel — assumons-le intelligemment</div>
-    <p style="font-size:13px;color:var(--text2);font-weight:300;line-height:1.85;margin-bottom:1.25rem" id="ver-intro-p">Le portefeuille de référence est optimisé pour les marchés haussiers ou stables. Mais selon les conditions de marché, l'allocation peut être adaptée pour réduire l'exposition directionnelle ou au contraire l'amplifier.</p>
-    <div style="overflow-x:auto">
-      <table class="ttable">
-        <thead><tr>
-          <th id="ver-th1">ETF</th><th id="ver-th2">Corrélation marchés</th>
-          <th id="ver-th3">Baisse S&P -20%</th><th id="ver-th4">Hausse S&P +20%</th>
-          <th id="ver-th5">Caractéristique clé</th>
-        </tr></thead>
-        <tbody>
-          <tr><td class="blue">JAAA</td><td class="green">Quasi nulle</td><td class="green">0%</td><td class="green">~+6%</td><td id="ver-jaaa-role">Bouclier absolu — insensible aux cycles</td></tr>
-          <tr><td class="gold">USHY</td><td>Modérée</td><td class="red">-10 à -15%</td><td class="green">+8 à +12%</td><td id="ver-ushy-role">Coupon maintenu même en baisse</td></tr>
-          <tr><td style="color:var(--purple)">ARCC</td><td>Modérée</td><td class="red">-20 à -30%</td><td class="green">+10 à +15%</td><td id="ver-arcc-role">Dividende résilient — jamais coupé depuis 2004</td></tr>
-          <tr><td class="green">SCHD</td><td>Forte</td><td style="color:var(--amber)">-3% en 2022 vs S&P -19%</td><td class="green">+27% en 2023</td><td id="ver-schd-role">Résistance remarquable grâce aux défensives</td></tr>
-          <tr><td style="color:#7B5EA7">DGRO</td><td>Forte</td><td class="red">-20 à -30%</td><td class="green">+25 à +35%</td><td id="ver-dgro-role">Plus volatile — capte pleinement la hausse</td></tr>
-          <tr><td class="red">VNQ</td><td>Forte + taux</td><td class="red">-20 à -35%</td><td class="green">+20 à +30%</td><td id="ver-vnq-role">Levier baisse des taux — double sensibilité</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.25rem">
-      <div style="background:var(--green-pale);border-radius:4px;padding:1rem;border-left:3px solid var(--green)">
-        <div style="font-size:11px;color:var(--green);font-weight:500;margin-bottom:4px" id="ver-schd-star-title">★ L'éloge de SCHD en période de crise</div>
-        <div style="font-size:12px;color:var(--text2);font-weight:300;line-height:1.7" id="ver-schd-star-body">En 2022, le S&P 500 perdait <strong>-19,4%</strong>. SCHD ne reculait que de <strong>-3,2%</strong>. Ses secteurs défensifs résistent naturellement aux cycles. Ces entreprises versent et augmentent leurs dividendes depuis 10+ ans — pendant 2008, le Covid, et 2022.</div>
-      </div>
-      <div style="background:var(--blue-pale);border-radius:4px;padding:1rem;border-left:3px solid var(--blue2)">
-        <div style="font-size:11px;color:var(--blue2);font-weight:500;margin-bottom:4px" id="ver-jaaa-star-title">★ L'éloge de JAAA en toutes conditions</div>
-        <div style="font-size:12px;color:var(--text2);font-weight:300;line-height:1.7" id="ver-jaaa-star-body">CLOs AAA à taux variable — insensible aux cycles. En 2008 et 2020, les CLOs AAA n'ont enregistré aucune perte. Votre réserve de munitions pour acheter les actifs bradés au creux du marché.</div>
-      </div>
-    </div>
-  </div>
-
-  <div style="font-size:10px;text-transform:uppercase;letter-spacing:.15em;color:var(--gold);margin-bottom:1rem;font-family:'DM Mono',monospace" id="ver-3title">Les 3 configurations selon les conditions de marché</div>
-
-  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-bottom:1.5rem">
-    <div style="background:white;border:1px solid var(--border2);border-radius:4px;overflow:hidden">
-      <div style="background:var(--green);padding:1rem 1.25rem">
-        <div style="font-size:10px;color:rgba(255,255,255,0.7);text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px" id="ver-v1-tag">Marché haussier</div>
-        <div style="font-family:'Cormorant Garamond',serif;font-size:20px;color:white;font-weight:500" id="ver-v1-title">Version offensive</div>
-        <div style="font-size:11px;color:rgba(255,255,255,0.7);margin-top:3px" id="ver-v1-sub">Maximiser le rendement</div>
-      </div>
-      <div style="padding:1.25rem">
-        <div style="display:flex;flex-direction:column;gap:5px;margin-bottom:1rem">
-          <div style="display:flex;justify-content:space-between;font-size:12px"><span style="font-family:'DM Mono',monospace;color:#2563A8">JAAA</span><span style="color:var(--text2)">10%</span></div>
-          <div style="display:flex;justify-content:space-between;font-size:12px"><span style="font-family:'DM Mono',monospace;color:var(--gold2)">USHY</span><span style="color:var(--text2)">15%</span></div>
-          <div style="display:flex;justify-content:space-between;font-size:12px"><span style="font-family:'DM Mono',monospace;color:var(--purple)">ARCC</span><span style="color:var(--text2)">15%</span></div>
-          <div style="display:flex;justify-content:space-between;font-size:12px"><span style="font-family:'DM Mono',monospace;color:var(--green)">SCHD</span><span style="font-weight:500;color:var(--green)">35%</span></div>
-          <div style="display:flex;justify-content:space-between;font-size:12px"><span style="font-family:'DM Mono',monospace;color:#7B5EA7">DGRO</span><span style="font-weight:500;color:var(--green)">15%</span></div>
-          <div style="display:flex;justify-content:space-between;font-size:12px"><span style="font-family:'DM Mono',monospace;color:var(--red)">VNQ</span><span style="color:var(--text2)">10%</span></div>
-        </div>
-        <div style="background:var(--green-pale);border-radius:3px;padding:.75rem;text-align:center">
-          <div style="font-size:9px;color:var(--green);text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px" id="ver-v1-ret-lbl">Rendement estimé</div>
-          <div style="font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--green)">9,4%/an</div>
-        </div>
-        <div style="font-size:11px;color:var(--text3);margin-top:.875rem;line-height:1.6" id="ver-v1-desc">Plus d'actions dividende, moins de sécurité. Pertinent en tendance haussière claire avec taux en baisse.</div>
-      </div>
-    </div>
-
-    <div style="background:white;border:2px solid var(--gold2);border-radius:4px;overflow:hidden">
-      <div style="background:var(--ink);padding:1rem 1.25rem">
-        <div style="font-size:10px;color:rgba(196,163,90,0.7);text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px" id="ver-v2-tag">★ Toutes conditions — Référence</div>
-        <div style="font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--gold2);font-weight:500" id="ver-v2-title">Version équilibrée</div>
-        <div style="font-size:11px;color:rgba(196,163,90,0.6);margin-top:3px" id="ver-v2-sub">Notre portefeuille actuel</div>
-      </div>
-      <div style="padding:1.25rem">
-        <div style="display:flex;flex-direction:column;gap:5px;margin-bottom:1rem">
-          <div style="display:flex;justify-content:space-between;font-size:12px"><span style="font-family:'DM Mono',monospace;color:#2563A8">JAAA</span><span style="color:var(--gold);font-weight:500">15%</span></div>
-          <div style="display:flex;justify-content:space-between;font-size:12px"><span style="font-family:'DM Mono',monospace;color:var(--gold2)">USHY</span><span style="color:var(--gold);font-weight:500">15%</span></div>
-          <div style="display:flex;justify-content:space-between;font-size:12px"><span style="font-family:'DM Mono',monospace;color:var(--purple)">ARCC</span><span style="color:var(--gold);font-weight:500">20%</span></div>
-          <div style="display:flex;justify-content:space-between;font-size:12px"><span style="font-family:'DM Mono',monospace;color:var(--green)">SCHD</span><span style="color:var(--gold);font-weight:500">30%</span></div>
-          <div style="display:flex;justify-content:space-between;font-size:12px"><span style="font-family:'DM Mono',monospace;color:#7B5EA7">DGRO</span><span style="color:var(--gold);font-weight:500">10%</span></div>
-          <div style="display:flex;justify-content:space-between;font-size:12px"><span style="font-family:'DM Mono',monospace;color:var(--red)">VNQ</span><span style="color:var(--gold);font-weight:500">10%</span></div>
-        </div>
-        <div style="background:var(--gold-pale);border-radius:3px;padding:.75rem;text-align:center;border:1px solid var(--border)">
-          <div style="font-size:9px;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px" id="ver-v2-ret-lbl">Rendement estimé</div>
-          <div style="font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--gold)">8,95%/an</div>
-        </div>
-        <div style="font-size:11px;color:var(--text3);margin-top:.875rem;line-height:1.6" id="ver-v2-desc">Positionnement actuel 2025-2026 — marchés élevés, taux en baisse progressive, environnement favorable aux dividendes.</div>
-      </div>
-    </div>
-
-    <div style="background:white;border:1px solid var(--border2);border-radius:4px;overflow:hidden">
-      <div style="background:#92400E;padding:1rem 1.25rem">
-        <div style="font-size:10px;color:rgba(255,255,255,0.7);text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px" id="ver-v3-tag">Marché baissier / incertitude</div>
-        <div style="font-family:'Cormorant Garamond',serif;font-size:20px;color:white;font-weight:500" id="ver-v3-title">Version défensive</div>
-        <div style="font-size:11px;color:rgba(255,255,255,0.7);margin-top:3px" id="ver-v3-sub">Préserver le capital</div>
-      </div>
-      <div style="padding:1.25rem">
-        <div style="display:flex;flex-direction:column;gap:5px;margin-bottom:1rem">
-          <div style="display:flex;justify-content:space-between;font-size:12px"><span style="font-family:'DM Mono',monospace;color:#2563A8">JAAA</span><span style="font-weight:500;color:#2563A8">30%</span></div>
-          <div style="display:flex;justify-content:space-between;font-size:12px"><span style="font-family:'DM Mono',monospace;color:var(--gold2)">USHY</span><span style="color:var(--text2)">20%</span></div>
-          <div style="display:flex;justify-content:space-between;font-size:12px"><span style="font-family:'DM Mono',monospace;color:var(--purple)">ARCC</span><span style="color:var(--text2)">10%</span></div>
-          <div style="display:flex;justify-content:space-between;font-size:12px"><span style="font-family:'DM Mono',monospace;color:var(--green)">SCHD</span><span style="color:var(--text2)">25%</span></div>
-          <div style="display:flex;justify-content:space-between;font-size:12px"><span style="font-family:'DM Mono',monospace;color:#7B5EA7">DGRO</span><span style="color:var(--text2)">5%</span></div>
-          <div style="display:flex;justify-content:space-between;font-size:12px"><span style="font-family:'DM Mono',monospace;color:var(--red)">VNQ</span><span style="color:var(--text2)">5%</span></div>
-          <div style="display:flex;justify-content:space-between;font-size:12px"><span style="font-family:'DM Mono',monospace;color:#B45309">GLD 🥇</span><span style="font-weight:500;color:#B45309">5%</span></div>
-        </div>
-        <div style="background:#FEF3C7;border-radius:3px;padding:.75rem;text-align:center">
-          <div style="font-size:9px;color:#92400E;text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px" id="ver-v3-ret-lbl">Rendement estimé</div>
-          <div style="font-family:'Cormorant Garamond',serif;font-size:22px;color:#92400E">7,2%/an</div>
-        </div>
-        <div style="font-size:11px;color:var(--text3);margin-top:.875rem;line-height:1.6" id="ver-v3-desc">-1,75% de rendement en échange d'une protection significative. JAAA 30% = munitions maximales. GLD comme couverture anti-crise décorrélée.</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="card" style="margin-bottom:1.25rem">
-    <div class="card-title" id="ver-when-title">Quand passer d'une version à l'autre ?</div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem">
-      <div style="background:var(--green-pale);border-radius:4px;padding:1.25rem">
-        <div style="font-size:11px;color:var(--green);font-weight:500;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.75rem" id="ver-sig1-title">Signaux version offensive</div>
-        <div style="font-size:12px;color:var(--text2);font-weight:300;line-height:1.8" id="ver-sig1-body">→ Tendance haussière depuis 3+ mois<br>→ Fed/BCE en cycle de baisse<br>→ VIX sous 15 (marché calme)<br>→ S&P 500 au-dessus MM200<br>→ Croissance PIB +2%+</div>
-      </div>
-      <div style="background:var(--gold-pale);border-radius:4px;padding:1.25rem;border:1px solid var(--border)">
-        <div style="font-size:11px;color:var(--gold);font-weight:500;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.75rem" id="ver-sig2-title">Version équilibrée — par défaut</div>
-        <div style="font-size:12px;color:var(--text2);font-weight:300;line-height:1.8" id="ver-sig2-body">→ Aucun signal extrême<br>→ Marchés élevés mais stables<br>→ Taux stables ou légèrement baissiers<br>→ Incertitude modérée<br>→ <strong>Positionnement actuel 2025-2026</strong></div>
-      </div>
-      <div style="background:#FEF3C7;border-radius:4px;padding:1.25rem">
-        <div style="font-size:11px;color:#92400E;font-weight:500;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.75rem" id="ver-sig3-title">Signaux version défensive</div>
-        <div style="font-size:12px;color:var(--text2);font-weight:300;line-height:1.8" id="ver-sig3-body">→ S&P 500 -10% depuis son sommet<br>→ VIX au-dessus de 25<br>→ Fed remonte les taux<br>→ Récession annoncée (PIB négatif)<br>→ Spreads crédit HY qui s'élargissent</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="card" style="margin-bottom:1.25rem">
-    <div class="card-title" id="ver-crisis-title">Simulation d'une crise — S&P 500 -30%</div>
-    <div style="overflow-x:auto">
-      <table class="ttable">
-        <thead><tr>
-          <th id="ver-ct1">Version</th><th id="ver-ct2">Perte estimée</th>
-          <th id="ver-ct3">Dividendes maintenus</th><th id="ver-ct4">Potentiel rebond</th>
-          <th id="ver-ct5">Action recommandée</th>
-        </tr></thead>
-        <tbody>
-          <tr><td style="color:var(--green);font-weight:500" id="ver-cr1">Offensive</td><td class="red">-18 à -22%</td><td class="green">Oui</td><td class="green">Fort (+40%)</td><td id="ver-cr1r">Tenir — dividendes compensent</td></tr>
-          <tr style="background:var(--gold-pale)"><td style="color:var(--gold);font-weight:500" id="ver-cr2">Équilibrée ★</td><td style="color:var(--amber)">-12 à -16%</td><td class="green">Oui</td><td class="green">Bon (+30%)</td><td id="ver-cr2r">Basculer JAAA → SCHD au creux</td></tr>
-          <tr><td style="color:#92400E;font-weight:500" id="ver-cr3">Défensive</td><td class="green">-6 à -9%</td><td class="green">Oui</td><td style="color:var(--amber)">Modéré (+20%)</td><td id="ver-cr3r">Basculer JAAA massivement au creux</td></tr>
-          <tr><td style="color:var(--red)">S&P 500 pur</td><td class="red">-30%</td><td class="red">Non</td><td class="green">Très fort (+43%)</td><td id="ver-cr4r">Référence — pas notre approche</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <div style="background:var(--ink);border-radius:4px;padding:1.5rem;margin-bottom:1.5rem">
-    <div style="font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--gold2);margin-bottom:.875rem" id="ver-note-title">La philosophie derrière ces versions</div>
-    <div style="font-size:13px;color:rgba(240,236,228,0.65);font-weight:300;line-height:1.85" id="ver-note-body">Ces trois versions ne sont pas des portefeuilles distincts — c'est le <strong style="color:var(--gold2)">même portefeuille adapté</strong> par glissement des curseurs. Le passage d'une version à l'autre ne nécessite que <strong style="color:var(--gold2)">2 à 3 transactions</strong> sur Interactive Brokers. L'objectif : ne pas être surexposé quand les signaux indiquent une fragilité, et ne pas être trop défensif quand les conditions sont favorables.</div>
-  </div>
-
-  <div class="disclaimer" id="ver-disclaimer">Ces versions sont présentées à titre illustratif. Les conditions de marché évoluent et nécessitent une analyse régulière. Ceci ne constitue pas un conseil en investissement personnalisé.</div>
-</div>
 
 
-<!-- ===== CONTACT ===== -->
+
+
 <div class="section" id="s-contact">
   <div style="max-width:680px;margin:0 auto">
 
@@ -2179,7 +1172,7 @@ function showQResult() {
   var msg = (messages[obj] && messages[obj][risk]) ? messages[obj][risk] : 'Votre profil est mixte. Nous analyserons votre situation en détail.';
   var fiscNote = '';
   if(fisc === 'pea') fiscNote = '<br><br>🇫🇷 <strong>Option PEA activée</strong> — Votre portefeuille sera construit avec des ETFs éligibles PEA (CW8, GERD, EPRA…). Même exposition internationale, fiscalité exonérée après 5 ans de détention.';
-  else if(fisc === 'cto') fiscNote = '<br><br>📊 <strong>Compte-titres ordinaire</strong> — Accès à l'intégralité des ETFs américains (JAAA, USHY, ARCC, SCHD, DGRO, VNQ). Fiscalité PFU 30% sur dividendes.';
+  else if(fisc === 'cto') fiscNote = '<br><br>📊 <strong>Compte-titres ordinaire</strong> — Acces à l\'ensemble des ETFs americains. Fiscalite PFU 30% sur dividendes.';
   else if(fisc === 'expatrie') fiscNote = '<br><br>✈️ <strong>Profil expatrié</strong> — Nous adapterons votre allocation à votre fiscalité de résidence. Accès aux ETFs US complets via IBKR.';
   msg += fiscNote;
 
@@ -2339,7 +1332,7 @@ function setLang(lang) {
   fs.forEach(function(a){var el=document.getElementById(a[0]);if(el)el.textContent=lang==='fr'?a[1]:a[2]});
   var fi=[['f1-i1','Identification de votre profil investisseur','Identification of your investor profile'],['f1-i2','Traduction de vos réponses en stratégie concrète','Translating your answers into a concrete strategy'],['f1-i3','Allocation optimisée entre 4 et 6 ETF','Optimised allocation of 4 to 6 ETFs'],['f1-i4','Adaptée à votre objectif, horizon & comportement','Tailored to your objective, horizon & behaviour'],['f1-i5','Répartition en % précise — ordres simples à exécuter','Precise % split — simple orders to execute'],['f1-i6','Pourquoi cet ETF — ce qu\'il apporte au portefeuille','Why this ETF — what it brings to the portfolio'],['f1-i7','Sans simulateur personnalisé','No personalised simulator'],['f1-i8','Lump sum ou DCA — recommandation adaptée à votre profil','Lump sum or DCA — recommendation tailored to your profile'],['f1-i9','Quand ajuster & comment réagir — règles claires','When to adjust & how to react — clear rules'],['f1-i10','Haussier · Neutre · Baissier — comportement de votre portefeuille','Bullish · Neutral · Bearish — how your portfolio reacts'],['f2-base-label','✓ Tout de la formule Essentiel inclus','✓ Everything in the Essential package included'],['f2-plus-label','+ Exclusivités Premium','+ Premium exclusives'],['f2-i1','Portail personnel hébergé — lien privé partageable','Hosted personal portal — private shareable link'],['f2-i2','Bilingue FR / EN — partageable avec banquier, comptable, famille','Bilingual FR / EN — shareable with banker, accountant, family'],['f2-i3','Vos chiffres réels — capital, horizon, apports mensuels','Your real figures — capital, horizon, monthly contributions'],['f2-i4','Projection sur 10 ans — capital final, rente mensuelle, gain net','10-year projection — final capital, monthly income, net gain'],['f2-i5','Comparaison avec un CGP traditionnel à 1,5%/an','Comparison with a traditional advisor at 1.5%/yr'],['f2-i6','Basculement en 1 clic haussier / neutre / baissier','1-click switch bullish / neutral / bearish'],['f2-i7','Signaux de rééquilibrage intégrés','Integrated rebalancing signals'],['f2-i8','Métriques complètes : rendement, TER, bêta, AUM, ISIN','Complete metrics: return, TER, beta, AUM, ISIN'],['f2-i9','Pourquoi ce choix vs le concurrent direct écarté','Why this choice vs the direct competitor excluded'],['f2-i10','Ordres précis à passer sur Interactive Brokers','Precise orders to place on Interactive Brokers'],['f2-i11','Revenu mensuel estimé par ETF — tableau récapitulatif','Estimated monthly income per ETF — summary table'],['f2-i12','Sans suivi mensuel ni révision continue','No monthly follow-up or ongoing revision']];
   fi.forEach(function(a){var el=document.getElementById(a[0]);if(el)el.innerHTML=lang==='fr'?a[1]:a[2]});
-  var fp=[['f1-q10','Questionnaire exclusif de <strong>10 questions</strong> envoyé après paiement — pour cibler précisément vos ETF','Exclusive <strong>10-question</strong> questionnaire sent after payment — to precisely target your ETFs'],['f1-ex-lbl','Exemple · Profil pré-retraite','Example · Pre-retirement profile'],['f1-ex-note','8,95%/an · 3 355 titres · Distributif','8.95%/yr · 3,355 holdings · Distributing'],['f2-preview-lbl','Ce que vous recevez','What you receive'],['f2-preview-body','Un portail comme celui-ci — à votre nom, avec vos ETFs et votre simulation personnelle.','A portal like this one — in your name, with your ETFs and your personal simulation.'],['f1-detail-body','Idéal pour démarrer rapidement avec une stratégie solide. Document complet et actionnable : profil analysé, portefeuille 4 à 6 ETF sur mesure, répartition en % prête à investir, rôle de chaque ETF, stratégie d\'entrée, plan d\'arbitrage et 3 scénarios de marché.','Ideal for getting started quickly with a solid strategy. Complete, actionable document: analysed profile, bespoke 4 to 6 ETF portfolio, ready-to-invest % allocation, each ETF explained, entry strategy, arbitrage plan and 3 market scenarios.'],['f2-detail-title','Ce que vous recevez concrètement','What you receive concretely'],['f2-q10','Questionnaire exclusif de <strong>10 questions</strong> envoyé après paiement — pour cibler précisément vos ETF','Exclusive <strong>10-question</strong> questionnaire sent after payment — to precisely target your ETFs'],['f2-detail-body','Vous recevez un lien vers votre propre portail web personnalisé — exactement comme ce site, mais configuré avec vos données réelles : capital, ETFs, horizon et simulation sur 10 ans. Livré en 48 à 72h.','You receive a link to your own personalised web portal — exactly like this site, but set up with your real data: capital, ETFs, horizon and 10-year simulation. Delivered in 48 to 72 hours.'],['f2-preview-lbl','Aperçu — votre portail','Preview — your portal'],['f2-preview-name','Prénom N. · Réf. ETF-BLU-2025-XXX','First name N. · Ref. ETF-BLU-2025-XXX'],['f2-kpi1','Rendement','Return'],['f2-kpi2','Rente / mois','Income / month'],['f2-kpi3','Frais TER','TER fees'],['f2-preview-note','Exemple illustratif · votre portail sera personnalisé avec vos données réelles','Illustrative example · your portal will be personalised with your real data'],['f2-detail-sections-title','Sections disponibles dans votre portail','Sections available in your portal']];
+  var fp=[['f1-q10','Questionnaire exclusif de <strong>une dizaine de questions</strong> envoyé après paiement — pour cibler précisément vos ETF','Exclusive questionnaire of <strong>about ten questions</strong> sent after payment — to precisely target your ETFs'],['f1-ex-lbl','Exemple · Profil pré-retraite','Example · Pre-retirement profile'],['f1-ex-note','8,95%/an · 3 355 titres · Distributif','8.95%/yr · 3,355 holdings · Distributing'],['f2-preview-lbl','Ce que vous recevez','What you receive'],['f2-preview-body','Un portail comme celui-ci — à votre nom, avec vos ETFs et votre simulation personnelle.','A portal like this one — in your name, with your ETFs and your personal simulation.'],['f1-detail-body','Idéal pour démarrer rapidement avec une stratégie solide. Document complet et actionnable : profil analysé, portefeuille 4 à 6 ETF sur mesure, répartition en % prête à investir, rôle de chaque ETF, stratégie d\'entrée, plan d\'arbitrage et 3 scénarios de marché.','Ideal for getting started quickly with a solid strategy. Complete, actionable document: analysed profile, bespoke 4 to 6 ETF portfolio, ready-to-invest % allocation, each ETF explained, entry strategy, arbitrage plan and 3 market scenarios.'],['f2-detail-title','Ce que vous recevez concrètement','What you receive concretely'],['f2-q10','Questionnaire exclusif de <strong>une dizaine de questions</strong> envoyé après paiement — pour cibler précisément vos ETF','Exclusive questionnaire of <strong>about ten questions</strong> sent after payment — to precisely target your ETFs'],['f2-detail-body','Vous recevez un lien vers votre propre portail web personnalisé — exactement comme ce site, mais configuré avec vos données réelles : capital, ETFs, horizon et simulation sur 10 ans. Livré en 48 à 72h.','You receive a link to your own personalised web portal — exactly like this site, but set up with your real data: capital, ETFs, horizon and 10-year simulation. Delivered in 48 to 72 hours.'],['f2-preview-lbl','Aperçu — votre portail','Preview — your portal'],['f2-preview-name','Prénom N. · Réf. ETF-BLU-2025-XXX','First name N. · Ref. ETF-BLU-2025-XXX'],['f2-kpi1','Rendement','Return'],['f2-kpi2','Rente / mois','Income / month'],['f2-kpi3','Frais TER','TER fees'],['f2-preview-note','Exemple illustratif · votre portail sera personnalisé avec vos données réelles','Illustrative example · your portal will be personalised with your real data'],['f2-detail-sections-title','Sections disponibles dans votre portail','Sections available in your portal']];
   fp.forEach(function(a){var el=document.getElementById(a[0]);if(el)el.innerHTML=lang==='fr'?a[1]:a[2]});
   var fb=[['f1-btn','Commander →','Order →'],['f1-more','En savoir plus ↓','Learn more ↓'],['f2-btn','Je veux mon site →','I want my site →'],['f2-more','En savoir plus ↓','Learn more ↓']];
   fb.forEach(function(a){var el=document.getElementById(a[0]);if(el)el.textContent=lang==='fr'?a[1]:a[2]});
@@ -2629,7 +1622,7 @@ function setLang(lang) {
 
   // CTA final
   var actb=document.getElementById('acc-cta-title'); if(actb)actb.textContent=lang==='fr'?'Prêt à construire votre portefeuille ?':'Ready to build your portfolio?';
-  var acbb=document.getElementById('acc-cta-body'); if(acbb)acbb.textContent=lang==='fr'?'Choisissez votre formule, effectuez votre paiement — vous recevrez ensuite votre questionnaire personnalisé de 10 questions.':'Choose your package, complete your payment — you will then receive your personalised 10-question questionnaire.';
+  var acbb=document.getElementById('acc-cta-body'); if(acbb)acbb.textContent=lang==='fr'?'Choisissez votre formule, effectuez votre paiement — vous recevrez ensuite votre questionnaire d'une dizaine de questions.':'Choose your package, complete your payment — you will then receive your personalised 10-question questionnaire.';
   var acb1=document.getElementById('acc-cta-btn'); if(acb1)acb1.textContent=lang==='fr'?'Commander mon portefeuille →':'Order my portfolio →';
   var acb2=document.getElementById('acc-cta-btn2'); if(acb2)acb2.textContent=lang==='fr'?'Nous contacter →':'Contact us →';
 
@@ -2702,7 +1695,9 @@ function show(id,btn){
   document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
   document.getElementById('s-'+id).classList.add('active');
   btn.classList.add('active');
-  window.scrollTo({top:0,behavior:'smooth'});
+  document.documentElement.scrollTop=0;
+  document.body.scrollTop=0;
+  window.scrollTo({top:0,behavior:'instant'});
 }
 
 var simChart=null,simMode='reinvest';
@@ -2791,107 +1786,5 @@ calc();
   <div style="font-size:10px;color:rgba(196,163,90,0.4);letter-spacing:.06em;margin-bottom:.75rem">
     ETF Blueprint · Michael · CGP · IAS · AMF · France
   </div>
-  <div class="offres-wrap" style="margin-bottom:1.75rem">
-    <!-- ESSENTIEL -->
-    <div class="offre-new" id="offre-f1">
-      <div class="offre-head-new">
-        <div class="offre-tag-new" id="f1-tag">Formule Essentiel</div>
-          <div style="font-size:10px;color:var(--cta);font-weight:500;margin-bottom:.25rem;font-family:'DM Mono',monospace;letter-spacing:.04em">→ Votre allocation prête à investir en 48h</div>
-        <div class="offre-price-new" id="f1-price">45€</div>
-        <div class="offre-price-sub-new" id="f1-price-sub">paiement unique · livraison sous 48h</div>
-      </div>
-      <div class="offre-divider"></div>
-      <div class="offre-badge-q10">
-        <div class="offre-badge-q10-icon">📋</div>
-        <div class="offre-badge-q10-text" id="f1-q10">Questionnaire exclusif de <strong>10 questions</strong> envoyé après paiement — pour cibler précisément vos ETF</div>
-      </div>
-      <div class="offre-body-new">
-        <div class="offre-section-new"><div class="offre-section-title-new"><span>🧠</span>Analyse &amp; profil</div><div class="check-item"><div class="check-icon"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#1D4E89" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="check-text">Identification de votre profil investisseur</div></div><div class="check-item"><div class="check-icon"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#1D4E89" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="check-text">Traduction de vos réponses en stratégie concrète</div></div></div>
-        <div class="offre-section-new"><div class="offre-section-title-new"><span>📊</span>Portefeuille sur mesure</div><div class="check-item"><div class="check-icon"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#1D4E89" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="check-text">Allocation optimisée entre 4 et 6 ETF</div></div><div class="check-item"><div class="check-icon"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#1D4E89" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="check-text">Adaptée à votre objectif, horizon &amp; comportement face au marché</div></div></div>
-        <div class="offre-section-new"><div class="offre-section-title-new"><span>⚙️</span>Allocation prête à investir</div><div class="check-item"><div class="check-icon"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#1D4E89" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="check-text">Répartition en % précise — ordres simples à exécuter, pas de réflexion supplémentaire</div></div></div>
-        <div class="offre-section-new"><div class="offre-section-title-new"><span>🧩</span>Rôle de chaque ETF</div><div class="check-item"><div class="check-icon"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#1D4E89" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="check-text">Pourquoi cet ETF est présent — ce qu'il apporte au portefeuille</div></div></div>
-        <div class="offre-section-new"><div class="offre-section-title-new"><span>📈</span>Stratégie d'entrée</div><div class="check-item"><div class="check-icon"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#1D4E89" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="check-text">Lump sum ou DCA — recommandation adaptée à votre profil</div></div></div>
-        <div class="offre-section-new"><div class="offre-section-title-new"><span>🔁</span>Plan d'arbitrage simple</div><div class="check-item"><div class="check-icon"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#1D4E89" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="check-text">Quand ajuster &amp; comment réagir — règles claires, sans complexité</div></div></div>
-        <div class="offre-section-new"><div class="offre-section-title-new"><span>🌦️</span>3 scénarios de marché</div><div class="check-item"><div class="check-icon"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#1D4E89" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="check-text">Haussier · Neutre · Baissier — pour comprendre comment votre portefeuille réagit</div></div></div>
-        <div class="check-item-ghost"><div class="check-icon-ghost"><svg viewBox="0 0 12 12" fill="none"><path d="M3 6h6" stroke="#8A8278" stroke-width="1.5" stroke-linecap="round"/></svg></div><div class="check-text-ghost">Sans simulateur personnalisé</div></div>
-      </div>
-      <div class="offre-foot-new">
-        <button class="offre-btn-new" onclick="window.location.href='checkout.html?formule=essentiel'" style="background:var(--cta);color:white;border-color:var(--cta)" id="f1-btn">Recevoir mon allocation →</button>
-        <button class="offre-more-new" onclick="showDetail('f1-new')" id="f1-more">En savoir plus ↓</button>
-      </div>
-      <div class="offre-detail-new" id="detail-f1-new">
-        <div style="padding:1.5rem 2.25rem">
-          <div style="font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--ink);margin-bottom:.75rem" id="f1-detail-title">Idéal pour démarrer rapidement</div>
-          <div style="font-size:12px;color:var(--text2);font-weight:300;line-height:1.85" id="f1-detail-body">Vous recevez un document complet et actionnable — profil analysé, portefeuille 4 à 6 ETF sur mesure, répartition en % prête à investir, rôle de chaque ETF expliqué clairement, stratégie d'entrée recommandée, plan d'arbitrage simple et 3 scénarios de marché. Suffisant pour passer vos ordres le jour même chez votre courtier.</div>
-        </div>
-      </div>
-    </div>
 
-    <!-- PREMIUM -->
-    <div class="offre-new featured-new" id="offre-f2">
-      <div class="offre-popular-new" id="f2-popular">Le plus demandé</div>
-      <div class="offre-head-new">
-        <div class="offre-tag-new gold" id="f2-tag">Formule Premium</div>
-          <div style="font-size:10px;color:var(--gold);font-weight:500;margin-bottom:.25rem;font-family:'DM Mono',monospace;letter-spacing:.04em">→ Votre futur financier visualisé · outil réutilisable</div>
-        <div class="offre-price-new gold" id="f2-price">70€</div>
-        <div class="offre-price-sub-new" id="f2-price-sub">paiement unique · livraison sous 48-72h</div>
-      </div>
-      <div class="offre-divider"></div>
-      <div class="offre-badge-q10">
-        <div class="offre-badge-q10-icon">📋</div>
-        <div class="offre-badge-q10-text" id="f2-q10">Questionnaire exclusif de <strong>10 questions</strong> envoyé après paiement — pour cibler précisément vos ETF</div>
-      </div>
-      <div class="offre-body-new">
-        <div class="offre-inherited" id="f2-base-label">✓ Tout de la formule Essentiel inclus — 7 livrables : analyse, portefeuille, allocation, rôles, entrée, arbitrage, scénarios</div>
-        <div class="offre-sep-label"><span id="f2-plus-label">+ Exclusivités Premium</span></div>
-        <div class="offre-section-new"><div class="offre-section-title-new"><span>🌐</span>Site web dédié à votre nom</div><div class="check-item"><div class="check-icon"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#1D4E89" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="check-text">Portail personnel hébergé — lien privé partageable</div></div><div class="check-item"><div class="check-icon"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#1D4E89" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="check-text">Bilingue FR / EN — partageable avec banquier, comptable, famille</div></div></div>
-        <div class="offre-section-new"><div class="offre-section-title-new"><span>📱</span>Simulateur interactif personnel</div><div class="check-item"><div class="check-icon"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#1D4E89" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="check-text">Vos chiffres réels — capital, horizon, apports mensuels</div></div><div class="check-item"><div class="check-icon"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#1D4E89" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="check-text">Projection sur 10 ans — capital final, rente mensuelle, gain net</div></div><div class="check-item"><div class="check-icon"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#1D4E89" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="check-text">Comparaison avec un CGP traditionnel à 1,5%/an</div></div></div>
-        <div class="offre-section-new"><div class="offre-section-title-new"><span>🌦️</span>Versions marché interactives</div><div class="check-item"><div class="check-icon"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#1D4E89" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="check-text">Basculement en 1 clic haussier / neutre / baissier</div></div><div class="check-item"><div class="check-icon"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#1D4E89" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="check-text">Signaux de rééquilibrage intégrés</div></div></div>
-        <div class="offre-section-new"><div class="offre-section-title-new"><span>📋</span>Fiches ETF détaillées</div><div class="check-item"><div class="check-icon"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#1D4E89" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="check-text">Métriques complètes : rendement, TER, bêta, AUM, ISIN</div></div><div class="check-item"><div class="check-icon"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#1D4E89" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="check-text">Pourquoi ce choix vs le concurrent direct écarté</div></div></div>
-        <div class="offre-section-new"><div class="offre-section-title-new"><span>⚡</span>Plan d'exécution complet</div><div class="check-item"><div class="check-icon"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#1D4E89" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="check-text">Ordres précis à passer sur Interactive Brokers</div></div><div class="check-item"><div class="check-icon"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#1D4E89" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="check-text">Revenu mensuel estimé par ETF — tableau récapitulatif</div></div></div>
-        <div class="check-item-ghost"><div class="check-icon-ghost"><svg viewBox="0 0 12 12" fill="none"><path d="M3 6h6" stroke="#8A8278" stroke-width="1.5" stroke-linecap="round"/></svg></div><div class="check-text-ghost">Sans suivi mensuel ni révision continue</div></div>
-      </div>
-      <div class="offre-foot-new">
-        <button class="offre-btn-new gold-btn" onclick="window.location.href='checkout.html?formule=premium'" style="background:var(--cta);color:white;border-color:var(--cta)" id="f2-btn">Recevoir mon site personnalisé →</button>
-        <button class="offre-more-new" onclick="showDetail('f2-new')" id="f2-more">En savoir plus ↓</button>
-      </div>
-      <div class="offre-detail-new" id="detail-f2-new">
-        <div style="padding:1.5rem 2.25rem">
-          <div style="font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--ink);margin-bottom:.75rem" id="f2-detail-title">Ce que vous recevez concrètement</div>
-          <div style="font-size:12px;color:var(--text2);font-weight:300;line-height:1.85;margin-bottom:1.25rem" id="f2-detail-body">Vous recevez un lien vers votre propre portail web personnalisé — exactement comme ce site, mais entièrement configuré avec vos données réelles : votre capital, vos ETFs, votre horizon et votre simulation sur 10 ans. Votre banquier, comptable ou famille peut y accéder via le lien privé. Livré en 48 à 72h.</div>
-          <!-- Aperçu mini portail -->
-          <div style="background:var(--ink);border-radius:4px;overflow:hidden;margin-bottom:1rem">
-            <div style="background:#161208;padding:.5rem 1rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(196,163,90,0.15)">
-              <div style="font-size:9px;color:rgba(196,163,90,0.5);font-family:'DM Mono',monospace;letter-spacing:.1em;text-transform:uppercase" id="f2-preview-lbl">Aperçu — votre portail</div>
-              <div style="font-size:9px;color:rgba(196,163,90,0.35);font-family:'DM Mono',monospace" id="f2-preview-name">Prénom N. · Réf. ETF-BLU-2025</div>
-            </div>
-            <div style="padding:1rem">
-              <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:.875rem">
-                <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(196,163,90,0.12);border-radius:3px;padding:.5rem;text-align:center">
-                  <div style="font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--gold2)">8,95%</div>
-                  <div style="font-size:8px;color:rgba(196,163,90,0.4);text-transform:uppercase;letter-spacing:.06em;margin-top:2px" id="f2-kpi1">Rendement</div>
-                </div>
-                <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(196,163,90,0.12);border-radius:3px;padding:.5rem;text-align:center">
-                  <div style="font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--gold2)">~1 492€</div>
-                  <div style="font-size:8px;color:rgba(196,163,90,0.4);text-transform:uppercase;letter-spacing:.06em;margin-top:2px" id="f2-kpi2">Rente / mois</div>
-                </div>
-                <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(196,163,90,0.12);border-radius:3px;padding:.5rem;text-align:center">
-                  <div style="font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--gold2)">0,09%</div>
-                  <div style="font-size:8px;color:rgba(196,163,90,0.4);text-transform:uppercase;letter-spacing:.06em;margin-top:2px" id="f2-kpi3">Frais TER</div>
-                </div>
-              </div>
-              <div style="display:flex;flex-direction:column;gap:5px">
-                <div style="display:flex;align-items:center;gap:6px"><div style="font-family:'DM Mono',monospace;font-size:9px;color:#2563A8;width:32px">JAAA</div><div style="flex:1;background:rgba(255,255,255,0.06);border-radius:2px;height:4px;overflow:hidden"><div style="height:100%;background:#2563A8;width:15%;border-radius:2px"></div></div><div style="font-family:'DM Mono',monospace;font-size:9px;color:rgba(255,255,255,0.4);width:22px">15%</div></div><div style="display:flex;align-items:center;gap:6px"><div style="font-family:'DM Mono',monospace;font-size:9px;color:#C4A35A;width:32px">USHY</div><div style="flex:1;background:rgba(255,255,255,0.06);border-radius:2px;height:4px;overflow:hidden"><div style="height:100%;background:#C4A35A;width:15%;border-radius:2px"></div></div><div style="font-family:'DM Mono',monospace;font-size:9px;color:rgba(255,255,255,0.4);width:22px">15%</div></div><div style="display:flex;align-items:center;gap:6px"><div style="font-family:'DM Mono',monospace;font-size:9px;color:#6B3FA0;width:32px">ARCC</div><div style="flex:1;background:rgba(255,255,255,0.06);border-radius:2px;height:4px;overflow:hidden"><div style="height:100%;background:#6B3FA0;width:20%;border-radius:2px"></div></div><div style="font-family:'DM Mono',monospace;font-size:9px;color:rgba(255,255,255,0.4);width:22px">20%</div></div><div style="display:flex;align-items:center;gap:6px"><div style="font-family:'DM Mono',monospace;font-size:9px;color:#2D6A4F;width:32px">SCHD</div><div style="flex:1;background:rgba(255,255,255,0.06);border-radius:2px;height:4px;overflow:hidden"><div style="height:100%;background:#2D6A4F;width:30%;border-radius:2px"></div></div><div style="font-family:'DM Mono',monospace;font-size:9px;color:rgba(255,255,255,0.4);width:22px">30%</div></div><div style="display:flex;align-items:center;gap:6px"><div style="font-family:'DM Mono',monospace;font-size:9px;color:#7B5EA7;width:32px">DGRO</div><div style="flex:1;background:rgba(255,255,255,0.06);border-radius:2px;height:4px;overflow:hidden"><div style="height:100%;background:#7B5EA7;width:10%;border-radius:2px"></div></div><div style="font-family:'DM Mono',monospace;font-size:9px;color:rgba(255,255,255,0.4);width:22px">10%</div></div><div style="display:flex;align-items:center;gap:6px"><div style="font-family:'DM Mono',monospace;font-size:9px;color:#C0392B;width:32px">VNQ</div><div style="flex:1;background:rgba(255,255,255,0.06);border-radius:2px;height:4px;overflow:hidden"><div style="height:100%;background:#C0392B;width:10%;border-radius:2px"></div></div><div style="font-family:'DM Mono',monospace;font-size:9px;color:rgba(255,255,255,0.4);width:22px">10%</div></div>
-              </div>
-              <div style="font-size:9px;color:rgba(196,163,90,0.3);margin-top:.625rem;font-style:italic;text-align:center" id="f2-preview-note">Exemple illustratif · votre portail sera personnalisé</div>
-            </div>
-          </div>
-          <div style="font-size:10px;font-family:'DM Mono',monospace;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.625rem" id="f2-detail-sections-title">8 sections dans votre portail</div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px">
-            <div style='display:flex;gap:6px;font-size:11px;color:var(--text2)'><span style='color:var(--green)'>✓</span>Vue d'ensemble &amp; KPIs</div><div style='display:flex;gap:6px;font-size:11px;color:var(--text2)'><span style='color:var(--green)'>✓</span>Fiches détaillées ETF</div><div style='display:flex;gap:6px;font-size:11px;color:var(--text2)'><span style='color:var(--green)'>✓</span>Simulateur interactif</div><div style='display:flex;gap:6px;font-size:11px;color:var(--text2)'><span style='color:var(--green)'>✓</span>Versions haussier/neutre/baissier</div><div style='display:flex;gap:6px;font-size:11px;color:var(--text2)'><span style='color:var(--green)'>✓</span>Stratégie Lump Sum vs DCA</div><div style='display:flex;gap:6px;font-size:11px;color:var(--text2)'><span style='color:var(--green)'>✓</span>Plan d'exécution &amp; ordres</div><div style='display:flex;gap:6px;font-size:11px;color:var(--text2)'><span style='color:var(--green)'>✓</span>Revenus par ETF</div><div style='display:flex;gap:6px;font-size:11px;color:var(--text2)'><span style='color:var(--green)'>✓</span>Signaux de rééquilibrage</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 
