@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ETF Blueprint — Aperçu du rapport Premium</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@200;300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0A0A0A;--dark:#1E1A12;--paper:#F6F3EE;--paper2:#FBF8F3;--white:#FFFFFF;--gold:#9B7D3A;--gold2:#C4A35A;--gold-pale:#F5EDD6;--text:#1A1814;--text2:#4A4540;--text3:#8A8278;--cta:#1A6B45;--cta2:#145436;--cta-pale:#E8F5EE;--border:rgba(155,125,58,.18);}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:"Jost",sans-serif;background:var(--dark);min-height:100vh;display:flex;flex-direction:column;align-items:center;overflow-x:hidden;position:relative;}
+body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellipse 70% 50% at 15% 60%,rgba(155,125,58,.07) 0%,transparent 60%),radial-gradient(ellipse 50% 70% at 85% 25%,rgba(26,107,69,.05) 0%,transparent 60%);pointer-events:none;z-index:0;}
+
+.demo-header{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(30,26,18,.96);backdrop-filter:blur(14px);border-bottom:1px solid rgba(196,163,90,.2);padding:.875rem 2rem;display:flex;align-items:center;justify-content:space-between;}
+.demo-brand{font-family:"Cormorant Garamond",serif;color:var(--gold2);font-size:19px;font-weight:600;}
+.demo-sub{font-size:9px;color:rgba(196,163,90,.45);font-family:"DM Mono",monospace;letter-spacing:.1em;text-transform:uppercase;margin-top:2px;}
+.demo-badge{font-family:"DM Mono",monospace;font-size:9px;color:rgba(196,163,90,.6);letter-spacing:.12em;text-transform:uppercase;background:rgba(196,163,90,.08);border:1px solid rgba(196,163,90,.18);padding:5px 12px;border-radius:20px;}
+.demo-cta{background:var(--cta);color:white;padding:9px 20px;border-radius:20px;font-family:"Jost",sans-serif;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;border:none;cursor:pointer;text-decoration:none;transition:.2s;display:inline-block;}
+.demo-cta:hover{background:var(--cta2);transform:translateY(-1px);}
+
+.intro{position:relative;z-index:1;text-align:center;padding:100px 20px 28px;max-width:600px;margin:0 auto;}
+.intro-eyebrow{font-family:"DM Mono",monospace;font-size:9px;color:var(--gold);letter-spacing:.2em;text-transform:uppercase;margin-bottom:12px;}
+.intro-title{font-family:"Cormorant Garamond",serif;font-size:clamp(28px,5vw,42px);color:white;font-weight:400;line-height:1.1;margin-bottom:10px;}
+.intro-title em{color:var(--gold2);font-style:italic;}
+.intro-sub{font-size:13px;color:rgba(255,255,255,.45);font-weight:300;line-height:1.7;}
+
+.scroll-outer{position:relative;z-index:1;width:min(820px,96vw);margin:0 auto 80px;}
+.frame{background:var(--paper);border:1px solid rgba(196,163,90,.18);border-radius:14px;overflow:hidden;box-shadow:0 48px 96px rgba(0,0,0,.55),0 0 0 1px rgba(255,255,255,.04);}
+.viewport{height:540px;overflow:hidden;position:relative;}
+.viewport::after{content:"";position:absolute;bottom:0;left:0;right:0;height:90px;background:linear-gradient(transparent,rgba(30,26,18,.85));pointer-events:none;z-index:10;}
+.viewport::before{content:"";position:absolute;top:0;left:0;right:0;height:30px;background:linear-gradient(rgba(30,26,18,.4),transparent);pointer-events:none;z-index:10;}
+
+.scroll-track{animation:masterScroll 24s cubic-bezier(.4,0,.2,1) infinite;animation-delay:2s;}
+@keyframes masterScroll{
+  0%,6%{transform:translateY(0);}
+  12%,18%{transform:translateY(-480px);}
+  24%,30%{transform:translateY(-1010px);}
+  36%,42%{transform:translateY(-1520px);}
+  48%,54%{transform:translateY(-2050px);}
+  60%,66%{transform:translateY(-2560px);}
+  72%,78%{transform:translateY(-3050px);}
+  84%,90%{transform:translateY(-3540px);}
+  96%,100%{transform:translateY(0);}
+}
+
+.rapport{font-family:"Jost",sans-serif;}
+
+/* COVER */
+.r-cover{background:var(--dark);padding:44px 36px 36px;position:relative;overflow:hidden;}
+.r-cover::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold2),var(--gold));}
+.r-eyebrow{font-family:"DM Mono",monospace;font-size:8.5px;color:rgba(196,163,90,.5);letter-spacing:.18em;text-transform:uppercase;margin-bottom:6px;}
+.cover-main{font-family:"Cormorant Garamond",serif;font-size:38px;color:white;font-weight:400;line-height:1;margin-bottom:4px;}
+.cover-formule{font-size:13px;color:var(--gold2);font-weight:300;margin-bottom:26px;}
+.cover-grid{display:grid;grid-template-columns:80px 1fr;gap:5px 20px;max-width:420px;}
+.cg-key{font-family:"DM Mono",monospace;font-size:8.5px;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;padding:3px 0;}
+.cg-val{font-size:11.5px;color:rgba(255,255,255,.65);font-weight:300;padding:3px 0;}
+.cover-ref{margin-top:20px;font-family:"DM Mono",monospace;font-size:8px;color:rgba(255,255,255,.2);letter-spacing:.1em;}
+
+/* SECTIONS */
+.r-sec{padding:26px 32px;background:var(--paper);}
+.r-sec.white{background:white;}
+.r-sec+.r-sec{border-top:1px solid rgba(155,125,58,.1);}
+.sec-eyebrow{font-family:"DM Mono",monospace;font-size:8px;color:var(--gold);letter-spacing:.18em;text-transform:uppercase;margin-bottom:5px;}
+.sec-title{font-family:"Cormorant Garamond",serif;font-size:20px;color:var(--ink);font-weight:500;margin-bottom:14px;line-height:1.1;}
+
+/* KPI */
+.kpi-row{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:rgba(155,125,58,.12);border-radius:8px;overflow:hidden;margin-bottom:14px;}
+.kpi{background:white;padding:12px 8px;text-align:center;}
+.kpi-v{font-family:"Cormorant Garamond",serif;font-size:18px;color:var(--gold);font-weight:400;line-height:1;}
+.kpi-l{font-size:8px;color:var(--text3);margin-top:3px;font-weight:300;line-height:1.3;}
+
+/* ETF CARD */
+.etf-card{background:white;border:1px solid rgba(155,125,58,.1);border-radius:8px;padding:13px 15px;margin-bottom:7px;display:grid;grid-template-columns:50px 1fr 46px;gap:10px;align-items:start;}
+.etf-t{font-family:"DM Mono",monospace;font-size:12px;color:var(--cta);font-weight:500;padding-top:2px;}
+.etf-n{font-size:11.5px;color:var(--ink);font-weight:500;margin-bottom:3px;line-height:1.2;}
+.etf-r{font-size:10px;color:var(--text3);font-weight:300;line-height:1.5;}
+.etf-a{font-family:"Cormorant Garamond",serif;font-size:24px;color:var(--gold);font-weight:400;text-align:right;}
+
+/* ALLOC BAR */
+.abar{height:10px;border-radius:6px;overflow:hidden;display:flex;gap:2px;margin-bottom:8px;}
+.aseg{height:100%;border-radius:2px;}
+.aleg{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px;}
+.aleg-item{display:flex;align-items:center;gap:5px;font-size:9.5px;color:var(--text2);}
+.adot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+
+/* FICHE ETF */
+.etf-fiche{background:white;border:1px solid rgba(155,125,58,.1);border-radius:8px;overflow:hidden;margin-bottom:8px;}
+.fiche-head{display:grid;grid-template-columns:1fr auto;align-items:center;padding:10px 14px 6px;}
+.fiche-ticker{font-family:"DM Mono",monospace;font-size:11px;color:var(--cta);font-weight:500;}
+.fiche-name{font-size:11px;color:var(--ink);font-weight:500;}
+.fiche-alloc{font-family:"Cormorant Garamond",serif;font-size:24px;color:var(--gold);}
+.fiche-metrics{display:flex;background:var(--paper2);}
+.fiche-met{flex:1;padding:7px 10px;text-align:center;border-right:1px solid rgba(155,125,58,.1);}
+.fiche-met:last-child{border-right:none;}
+.fiche-mv{font-size:11px;font-weight:600;color:var(--ink);}
+.fiche-ml{font-size:8.5px;color:var(--text3);font-weight:300;}
+.fiche-why{padding:10px 14px;}
+.fiche-why-label{font-family:"DM Mono",monospace;font-size:7.5px;color:var(--cta);letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px;}
+.fiche-why-text{font-size:10.5px;color:var(--text2);font-weight:300;line-height:1.65;}
+
+/* TABLES */
+.r-table{width:100%;border-collapse:collapse;font-size:10.5px;}
+.r-table thead tr{background:var(--dark);}
+.r-table thead th{color:var(--gold2);font-family:"DM Mono",monospace;font-size:7px;letter-spacing:.08em;text-transform:uppercase;padding:7px 8px;text-align:left;}
+.r-table tbody tr:nth-child(even){background:rgba(155,125,58,.04);}
+.r-table tbody td{padding:6px 8px;color:var(--text2);font-weight:300;border-bottom:1px solid rgba(155,125,58,.07);}
+.r-table tbody td:first-child{color:var(--ink);font-weight:500;}
+.r-table tbody td.gold-val{font-family:"Cormorant Garamond",serif;font-size:13px;color:var(--gold);font-weight:400;}
+.r-table tbody td.cta-val{color:var(--cta);font-weight:600;}
+.r-table tfoot td{padding:7px 8px;background:var(--gold-pale);font-weight:600;border-top:1.5px solid var(--gold);}
+
+/* SCENARIOS */
+.scen-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:12px;}
+.scen{border-radius:8px;padding:14px;text-align:center;}
+.scen.p{background:#FFF5F5;border:1px solid rgba(192,57,43,.2);}
+.scen.n{background:var(--cta-pale);border:1px solid rgba(26,107,69,.2);}
+.scen.d{background:var(--gold-pale);border:1px solid var(--border);}
+.scen-l{font-family:"DM Mono",monospace;font-size:8px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px;}
+.scen.p .scen-l{color:#C0392B;}.scen.n .scen-l{color:var(--cta);}.scen.d .scen-l{color:var(--gold);}
+.scen-r{font-family:"Cormorant Garamond",serif;font-size:30px;font-weight:400;line-height:1;margin-bottom:4px;}
+.scen.p .scen-r{color:#C0392B;}.scen.n .scen-r{color:var(--cta);}.scen.d .scen-r{color:var(--gold);}
+.scen-d{font-size:10px;color:var(--text3);font-weight:300;}
+
+/* SIMULATEUR */
+.sim-controls{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:18px;}
+.sim-ctrl label{display:block;font-family:"DM Mono",monospace;font-size:8px;color:var(--gold);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px;}
+.sim-ctrl input[type=range]{width:100%;accent-color:var(--cta);cursor:pointer;margin-bottom:4px;}
+.sim-ctrl .val-disp{font-family:"Cormorant Garamond",serif;font-size:22px;color:var(--cta);font-weight:400;}
+.sim-results{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+.sim-res{background:var(--paper);border:1px solid var(--border);border-radius:8px;padding:14px;text-align:center;}
+.sim-res.hl{background:var(--cta-pale);border-color:rgba(26,107,69,.3);}
+.sim-res-label{font-family:"DM Mono",monospace;font-size:8px;color:var(--text3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;}
+.sim-res-val{font-family:"Cormorant Garamond",serif;font-size:24px;color:var(--ink);font-weight:400;line-height:1;}
+.sim-res.hl .sim-res-val{color:var(--cta);}
+.sim-res-sub{font-size:10px;color:var(--text3);font-weight:300;margin-top:3px;}
+
+/* SIGNAUX */
+.sig-list{display:flex;flex-direction:column;gap:6px;}
+.sig{display:flex;align-items:center;gap:10px;background:white;border:1px solid rgba(155,125,58,.1);border-radius:6px;padding:10px 12px;}
+.sig-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.sig-cond{font-size:11px;color:var(--text2);font-weight:300;flex:1;}
+.sig-act{font-size:10px;color:var(--cta);font-weight:500;white-space:nowrap;font-family:"DM Mono",monospace;font-size:9px;}
+
+/* LEXIQUE */
+.lex{border:1px solid rgba(155,125,58,.12);border-radius:8px;overflow:hidden;margin-top:8px;}
+.lex-row{display:grid;grid-template-columns:90px 1fr;border-bottom:1px solid rgba(155,125,58,.08);}
+.lex-row:last-child{border-bottom:none;}
+.lex-t{background:var(--paper2);padding:10px 12px;font-family:"DM Mono",monospace;font-size:8.5px;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;font-weight:500;}
+.lex-d{padding:10px 14px;font-size:10.5px;color:var(--text2);font-weight:300;line-height:1.65;}
+
+/* PROGRESS */
+.prog-wrap{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:7px;background:rgba(30,26,18,.88);backdrop-filter:blur(10px);border:1px solid rgba(196,163,90,.2);border-radius:24px;padding:8px 18px;z-index:100;}
+.p-dot{width:6px;height:6px;border-radius:50%;background:rgba(196,163,90,.25);transition:.3s;}
+.p-dot.on{background:var(--gold2);transform:scale(1.5);}
+.p-lbl{font-family:"DM Mono",monospace;font-size:9px;color:rgba(196,163,90,.5);letter-spacing:.1em;margin-left:4px;min-width:130px;}
+.toast{position:fixed;top:76px;left:50%;transform:translateX(-50%);background:rgba(30,26,18,.92);backdrop-filter:blur(10px);border:1px solid rgba(196,163,90,.2);border-radius:20px;padding:5px 16px;font-family:"DM Mono",monospace;font-size:9px;color:var(--gold2);letter-spacing:.12em;text-transform:uppercase;z-index:100;opacity:0;transition:opacity .4s;pointer-events:none;}
+.toast.show{opacity:1;}
+.pause-btn{position:fixed;bottom:22px;right:24px;z-index:100;background:rgba(30,26,18,.88);backdrop-filter:blur(10px);border:1px solid rgba(196,163,90,.2);border-radius:50%;width:36px;height:36px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:rgba(196,163,90,.6);font-size:13px;transition:.2s;}
+.pause-btn:hover{color:var(--gold2);}
+</style>
+</head>
+<body>
+
+<header class="demo-header">
+  <div><div class="demo-brand">ETF Blueprint</div><div class="demo-sub">Apercu du rapport livre</div></div>
+  <div class="demo-badge">Rapport Premium · Formule 70€</div>
+  <a href="checkout.html?formule=premium" class="demo-cta">Obtenir le mien →</a>
+</header>
+
+<div class="intro">
+  <div class="intro-eyebrow">Ce que vous recevez sous 48h</div>
+  <div class="intro-title">Un rapport complet,<br><em>construit a la main pour vous</em></div>
+  <div class="intro-sub">Faites defiler pour voir chaque section du rapport — exactement tel que vos clients le recoivent.</div>
+</div>
+
+<div class="scroll-outer">
+  <div class="frame">
+    <div class="viewport">
+      <div class="scroll-track rapport" id="track">
+
+        <!-- 1. COUVERTURE -->
+        <div class="r-cover">
+          <div class="r-eyebrow">ETF Blueprint · Portefeuilles ETF sur mesure · Independant</div>
+          <div class="cover-main">Rapport<br>de Portefeuille</div>
+          <div class="cover-formule">ETF Blueprint — Formule Premium</div>
+          <div class="cover-grid">
+            <div class="cg-key">Profil</div><div class="cg-val">Resident francais · PEA · Revenus 2 500€/mois</div>
+            <div class="cg-key">Objectif</div><div class="cg-val">Generer des revenus reguliers · Horizon 3-7 ans</div>
+            <div class="cg-key">Capital</div><div class="cg-val">150 000€ a 500 000€ (illustration sur 300 000€)</div>
+            <div class="cg-key">Fiscalite</div><div class="cg-val">France — PEA prioritaire</div>
+            <div class="cg-key">Date</div><div class="cg-val">06 Mai 2026</div>
+          </div>
+          <div class="cover-ref">Reference : ETF-BLU-2026-003 · Ce rapport est strictement confidentiel · etf-blueprint.com</div>
+        </div>
+
+        <!-- 2. RESUME EXECUTIF -->
+        <div class="r-sec">
+          <div class="sec-eyebrow">Resume executif</div>
+          <div class="sec-title">Votre portefeuille en un coup d'oeil</div>
+          <div class="kpi-row">
+            <div class="kpi"><div class="kpi-v">6,8%</div><div class="kpi-l">Rendement est./an</div></div>
+            <div class="kpi"><div class="kpi-v">env. 1 050€</div><div class="kpi-l">Rente mensuelle</div></div>
+            <div class="kpi"><div class="kpi-v">0,27%</div><div class="kpi-l">Frais ponderes</div></div>
+            <div class="kpi"><div class="kpi-v">0,55</div><div class="kpi-l">Beta</div></div>
+            <div class="kpi"><div class="kpi-v">2 200+</div><div class="kpi-l">Titres</div></div>
+            <div class="kpi"><div class="kpi-v">4</div><div class="kpi-l">Classes actifs</div></div>
+          </div>
+          <p style="font-size:11px;color:var(--text2);font-weight:300;line-height:1.8;">Ce portefeuille est construit sur mesure pour votre profil de resident francais souhaitant generer des revenus reguliers. La strategie repose sur une allocation PEA optimisee — 5 ETF distribuants selectionnes pour leur complementarite, leurs calendriers de versement et leur historique de distribution. Chaque ligne a un role precis. Aucun doublon.</p>
+        </div>
+
+        <!-- 3. ALLOCATION -->
+        <div class="r-sec white">
+          <div class="sec-eyebrow">Allocation du portefeuille</div>
+          <div class="sec-title">Vos 5 ETF · 4 classes actifs</div>
+          <div class="abar">
+            <div class="aseg" style="width:30%;background:#1A6B45;"></div>
+            <div class="aseg" style="width:25%;background:#C4A35A;"></div>
+            <div class="aseg" style="width:15%;background:#9B7D3A;"></div>
+            <div class="aseg" style="width:20%;background:#4A7C6F;"></div>
+            <div class="aseg" style="width:10%;background:#8A8278;"></div>
+          </div>
+          <div class="aleg">
+            <div class="aleg-item"><div class="adot" style="background:#1A6B45;"></div>EWLD 30%</div>
+            <div class="aleg-item"><div class="adot" style="background:#C4A35A;"></div>ZDIV 25%</div>
+            <div class="aleg-item"><div class="adot" style="background:#9B7D3A;"></div>LYPS 15%</div>
+            <div class="aleg-item"><div class="adot" style="background:#4A7C6F;"></div>OBLI 20%</div>
+            <div class="aleg-item"><div class="adot" style="background:#8A8278;"></div>GOEU 10%</div>
+          </div>
+          <div class="etf-card"><div class="etf-t">EWLD</div><div><div class="etf-n">Lyxor MSCI World UCITS ETF Distributing (PEA)</div><div class="etf-r">Socle mondial — Dividendes trimestriels · PEA · Distribuant</div></div><div class="etf-a">30%</div></div>
+          <div class="etf-card"><div class="etf-t">ZDIV</div><div><div class="etf-n">Amundi Euro Stoxx Select Dividend 30 Dist</div><div class="etf-r">Dividendes europeens eleves · PEA · Distribuant</div></div><div class="etf-a">25%</div></div>
+          <div class="etf-card"><div class="etf-t">LYPS</div><div><div class="etf-n">Lyxor STOXX Europe 600 Banks Dist</div><div class="etf-r">Secteur bancaire europeen · PEA · Distribuant</div></div><div class="etf-a">15%</div></div>
+          <div class="etf-card"><div class="etf-t">OBLI</div><div><div class="etf-n">Amundi Euro Govt Bond 3-5Y Dist</div><div class="etf-r">Stabilisateur obligataire · PEA · Distribuant</div></div><div class="etf-a">20%</div></div>
+          <div class="etf-card"><div class="etf-t">GOEU</div><div><div class="etf-n">Amundi Physical Gold ETC</div><div class="etf-r">Couverture inflation et crise · CTO · Or physique</div></div><div class="etf-a">10%</div></div>
+        </div>
+
+        <!-- 4. FICHES ETF HUMANISEES -->
+        <div class="r-sec">
+          <div class="sec-eyebrow">Analyse detaillee · Fiche par ETF</div>
+          <div class="sec-title">Ce que vous possedez vraiment</div>
+          <div class="etf-fiche">
+            <div class="fiche-head"><div><div class="fiche-ticker">EWLD</div><div class="fiche-name">Lyxor MSCI World UCITS ETF Distributing</div></div><div class="fiche-alloc">30%</div></div>
+            <div class="fiche-metrics">
+              <div class="fiche-met"><div class="fiche-mv">7,8%/an</div><div class="fiche-ml">Rendement total</div></div>
+              <div class="fiche-met"><div class="fiche-mv">2,5%</div><div class="fiche-ml">Distribue/an</div></div>
+              <div class="fiche-met"><div class="fiche-mv">0,45%</div><div class="fiche-ml">Frais TER</div></div>
+              <div class="fiche-met"><div class="fiche-mv">Trim.</div><div class="fiche-ml">Distribution</div></div>
+              <div class="fiche-met"><div class="fiche-mv">PEA</div><div class="fiche-ml">Enveloppe</div></div>
+            </div>
+            <div class="fiche-why">
+              <div class="fiche-why-label">Pourquoi cet ETF</div>
+              <div class="fiche-why-text">Avec 30% de votre capital, vous devenez copropriétaire de 1 500 grandes entreprises mondiales — Apple, LVMH, Toyota, Nestlé. Ces entreprises vous versent une partie de leurs bénéfices chaque trimestre, directement sur votre compte PEA. Et les titres s'apprécient aussi en valeur : vous touchez les dividendes ET votre capital grandit.</div>
+            </div>
+          </div>
+          <div class="etf-fiche">
+            <div class="fiche-head"><div><div class="fiche-ticker">ZDIV</div><div class="fiche-name">Amundi Euro Stoxx Select Dividend 30 Dist</div></div><div class="fiche-alloc">25%</div></div>
+            <div class="fiche-metrics">
+              <div class="fiche-met"><div class="fiche-mv">6,5%/an</div><div class="fiche-ml">Rendement total</div></div>
+              <div class="fiche-met"><div class="fiche-mv">4,2%</div><div class="fiche-ml">Distribue/an</div></div>
+              <div class="fiche-met"><div class="fiche-mv">0,30%</div><div class="fiche-ml">Frais TER</div></div>
+              <div class="fiche-met"><div class="fiche-mv">Sem.</div><div class="fiche-ml">Distribution</div></div>
+              <div class="fiche-met"><div class="fiche-mv">PEA</div><div class="fiche-ml">Enveloppe</div></div>
+            </div>
+            <div class="fiche-why">
+              <div class="fiche-why-label">Pourquoi cet ETF</div>
+              <div class="fiche-why-text">Avec 25% de votre capital, vous investissez dans les 30 entreprises européennes qui versent les dividendes les plus généreux et réguliers — ENI, Orange, Stellantis. 4,2% versés chaque année dans votre PEA. Deux sources de performance : les dividendes touchés en cash, ET la hausse du cours de l'ETF.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. RENTE MENSUELLE -->
+        <div class="r-sec white">
+          <div class="sec-eyebrow">Rente mensuelle estimee · Base 300 000€</div>
+          <div class="sec-title">Ce que vous percevez chaque mois</div>
+          <table class="r-table">
+            <thead><tr><th>ETF</th><th>Capital alloue</th><th>Rendement dist.</th><th>Revenu annuel</th><th>Revenu mensuel</th><th>Frequence</th></tr></thead>
+            <tbody>
+              <tr><td>EWLD</td><td>90 000€</td><td>2,8%</td><td>2 520€</td><td class="gold-val">env. 210€</td><td>Trimestriel</td></tr>
+              <tr><td>ZDIV</td><td>75 000€</td><td>4,2%</td><td>3 150€</td><td class="gold-val">env. 263€</td><td>Semestriel</td></tr>
+              <tr><td>LYPS</td><td>45 000€</td><td>5,1%</td><td>2 295€</td><td class="gold-val">env. 191€</td><td>Annuel</td></tr>
+              <tr><td>OBLI</td><td>60 000€</td><td>3,8%</td><td>2 280€</td><td class="gold-val">env. 190€</td><td>Semestriel</td></tr>
+              <tr><td>GOEU</td><td>30 000€</td><td>0%</td><td>0€</td><td>—</td><td>Capitalisant</td></tr>
+            </tbody>
+            <tfoot><tr><td><strong>TOTAL</strong></td><td><strong>300 000€</strong></td><td class="gold-val" style="font-size:12px">4,2%</td><td><strong>12 600€/an</strong></td><td class="gold-val" style="font-size:14px">env. 1 050€/mois</td><td>Mixte</td></tr></tfoot>
+          </table>
+          <p style="font-size:10px;color:var(--text3);font-weight:300;margin-top:10px;line-height:1.65;">Note : Les rendements distribues sont bases sur les moyennes historiques 3-5 ans. Fournis a titre illustratif — les distributions effectives varient selon les conditions de marche.</p>
+        </div>
+
+        <!-- 6. PROJECTIONS -->
+        <div class="r-sec">
+          <div class="sec-eyebrow">Projections · Simulation sur 7 ans</div>
+          <div class="sec-title">Capital estime · Base 300 000€</div>
+          <table class="r-table">
+            <thead><tr><th>Annee</th><th>Haussier +8,2%/an</th><th>Neutre +6,8%/an ★</th><th>Baissier +4,8%/an</th></tr></thead>
+            <tbody>
+              <tr><td>An 1</td><td>324 600€</td><td class="cta-val">320 400€</td><td>314 400€</td></tr>
+              <tr><td>An 2</td><td>351 217€</td><td class="cta-val">342 187€</td><td>329 491€</td></tr>
+              <tr><td>An 3</td><td>380 017€</td><td class="cta-val">365 656€</td><td>345 486€</td></tr>
+              <tr><td>An 5</td><td>445 051€</td><td class="cta-val">418 103€</td><td>379 487€</td></tr>
+              <tr><td>An 7</td><td>521 205€</td><td class="gold-val">478 250€</td><td>416 933€</td></tr>
+            </tbody>
+            <tfoot><tr><td><strong>★ Scenario le plus probable</strong></td><td>+74%</td><td style="color:var(--cta);font-weight:700">+59%</td><td>+39%</td></tr></tfoot>
+          </table>
+          <div class="scen-row">
+            <div class="scen p"><div class="scen-l">Prudent</div><div class="scen-r">+4,8%</div><div class="scen-d">300k → 417k en 7 ans</div></div>
+            <div class="scen n"><div class="scen-l">Neutre ★</div><div class="scen-r">+6,8%</div><div class="scen-d">300k → 478k en 7 ans</div></div>
+            <div class="scen d"><div class="scen-l">Dynamique</div><div class="scen-r">+8,2%</div><div class="scen-d">300k → 521k en 7 ans</div></div>
+          </div>
+        </div>
+
+        <!-- 7. SIMULATEUR -->
+        <div class="r-sec white">
+          <div class="sec-eyebrow">Simulateur interactif · Formule Premium</div>
+          <div class="sec-title">Ajustez votre capital — voyez votre rente</div>
+          <div class="sim-controls">
+            <div class="sim-ctrl">
+              <label>Capital a investir</label>
+              <input type="range" id="sim-capital" min="50000" max="1000000" step="10000" value="300000" oninput="updateSim()">
+              <div class="val-disp" id="sim-cap-val">300 000€</div>
+            </div>
+            <div class="sim-ctrl">
+              <label>Horizon (annees)</label>
+              <input type="range" id="sim-horizon" min="3" max="15" step="1" value="7" oninput="updateSim()">
+              <div class="val-disp" id="sim-hor-val">7 ans</div>
+            </div>
+          </div>
+          <div class="sim-results">
+            <div class="sim-res hl">
+              <div class="sim-res-label">Rente mensuelle</div>
+              <div class="sim-res-val" id="sim-rente">1 050€</div>
+              <div class="sim-res-sub">env. 4,2%/an distribue</div>
+            </div>
+            <div class="sim-res">
+              <div class="sim-res-label">Capital an <span id="sim-hor-lbl">7</span></div>
+              <div class="sim-res-val" id="sim-cap-fin">478 250€</div>
+              <div class="sim-res-sub">Scenario neutre +6,8%/an</div>
+            </div>
+            <div class="sim-res">
+              <div class="sim-res-label">Revenu annuel</div>
+              <div class="sim-res-val" id="sim-annuel">12 600€</div>
+              <div class="sim-res-sub">Dividendes + coupons</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 8. SIGNAUX + LEXIQUE -->
+        <div class="r-sec">
+          <div class="sec-eyebrow">Signaux de reequilibrage · Lexique</div>
+          <div class="sec-title">Quand agir — et ce que chaque mot veut dire</div>
+          <div class="sig-list">
+            <div class="sig"><div class="sig-dot" style="background:#C0392B;"></div><div class="sig-cond">MSCI World en correction confirmee -10%</div><div class="sig-act">Basculer +10pts OBLI → EWLD</div></div>
+            <div class="sig"><div class="sig-dot" style="background:var(--gold2);"></div><div class="sig-cond">ETF en hausse de +15% depuis l'achat</div><div class="sig-act">Reduire -10pts → renforcer OBLI</div></div>
+            <div class="sig"><div class="sig-dot" style="background:var(--cta);"></div><div class="sig-cond">BCE baisse les taux de -0,25% ou plus</div><div class="sig-act">Renforcer OBLI +5pts</div></div>
+            <div class="sig"><div class="sig-dot" style="background:#4A4540;"></div><div class="sig-cond">Reeequilibrage annuel — derive > 5% des cibles</div><div class="sig-act">Ramener aux % de reference</div></div>
+          </div>
+          <div class="lex">
+            <div class="lex-row"><div class="lex-t">ETF</div><div class="lex-d">Un panier de centaines d'actions achete en une seule transaction. Vous devenez copropriétaire de toutes les entreprises qu'il contient.</div></div>
+            <div class="lex-row"><div class="lex-t">Distribuant</div><div class="lex-d">L'ETF vous verse regulierement les profits en dividendes — directement sur votre compte. Comme un loyer, sans que vous vendiez quoi que ce soit.</div></div>
+            <div class="lex-row"><div class="lex-t">TER</div><div class="lex-d">Le cout annuel de l'ETF. 0,27% = 810€ par an pour 300 000€ investis. Preleve automatiquement, sans facture.</div></div>
+            <div class="lex-row"><div class="lex-t">Beta</div><div class="lex-d">Sensibilite aux marches. Beta 0,55 = si les marches perdent 10%, votre portefeuille perd environ 5,5%.</div></div>
+            <div class="lex-row"><div class="lex-t">PEA</div><div class="lex-d">Enveloppe fiscale francaise. Apres 5 ans : 0% d'impot sur les gains — seulement 17,2% de prelevements sociaux.</div></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="prog-wrap">
+  <div class="p-dot on" id="p0"></div>
+  <div class="p-dot" id="p1"></div>
+  <div class="p-dot" id="p2"></div>
+  <div class="p-dot" id="p3"></div>
+  <div class="p-dot" id="p4"></div>
+  <div class="p-dot" id="p5"></div>
+  <div class="p-dot" id="p6"></div>
+  <div class="p-dot" id="p7"></div>
+  <div class="p-lbl" id="p-lbl">Couverture</div>
+</div>
+<div class="toast" id="toast"></div>
+<button class="pause-btn" id="pause-btn" title="Pause / Reprendre">⏸</button>
+
+<script>
+function updateSim(){
+  const cap=parseInt(document.getElementById("sim-capital").value);
+  const hor=parseInt(document.getElementById("sim-horizon").value);
+  document.getElementById("sim-cap-val").textContent=cap.toLocaleString("fr-FR")+"€";
+  document.getElementById("sim-hor-val").textContent=hor+" an"+(hor>1?"s":"");
+  document.getElementById("sim-hor-lbl").textContent=hor;
+  document.getElementById("sim-rente").textContent=Math.round(cap*0.042/12).toLocaleString("fr-FR")+"€";
+  document.getElementById("sim-cap-fin").textContent=Math.round(cap*Math.pow(1.068,hor)).toLocaleString("fr-FR")+"€";
+  document.getElementById("sim-annuel").textContent=Math.round(cap*0.042).toLocaleString("fr-FR")+"€";
+}
+
+const labels=["Couverture","Resume executif","Allocation · 5 ETF","Fiches ETF","Rente mensuelle","Projections 7 ans","Simulateur","Signaux · Lexique"];
+const kfPct=[0,.0625,.125,.1875,.25,.3125,.375,.4375,.5,.5625,.625,.6875,.75,.8125,.875,.9375];
+const secAt=[0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7];
+let paused=false,pauseStart=0,totalPaused=0,startTime=Date.now()+2000,cur=0;
+
+document.getElementById("pause-btn").addEventListener("click",function(){
+  const tr=document.getElementById("track");
+  if(!paused){
+    tr.style.animation="none";
+    pauseStart=Date.now();
+    this.textContent="▶";paused=true;
+  } else {
+    totalPaused+=Date.now()-pauseStart;
+    tr.style.animation="";
+    this.textContent="⏸";paused=false;
+  }
+});
+
+function tick(){
+  if(!paused){
+    const el=(Date.now()-startTime-totalPaused);
+    if(el>=0){
+      const pct=(el%24000)/24000;
+      let s=0;
+      for(let i=0;i<kfPct.length;i++){if(pct>=kfPct[i])s=secAt[i];}
+      if(s!==cur){
+        cur=s;
+        document.querySelectorAll(".p-dot").forEach((d,i)=>d.classList.toggle("on",i===s));
+        document.getElementById("p-lbl").textContent=labels[s]||"";
+        const t=document.getElementById("toast");
+        t.textContent=labels[s]||"";t.classList.add("show");
+        setTimeout(()=>t.classList.remove("show"),2000);
+      }
+    }
+  }
+  requestAnimationFrame(tick);
+}
+requestAnimationFrame(tick);
+</script>
+</body>
+</html>
