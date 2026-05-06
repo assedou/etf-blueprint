@@ -3,883 +3,412 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ETF Blueprint — Votre questionnaire investisseur</title>
+<title>ETF Blueprint — Questionnaire investisseur</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@200;300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>emailjs.init("dwVOiqvHtQAXWqqfo");</script>
 <style>
-:root {
-  --ink:#0A0A0A; --dark:#1E1A12; --paper:#F6F3EE; --white:#FFFFFF;
-  --gold:#9B7D3A; --gold2:#C4A35A; --gold-pale:#F5EDD6;
-  --text:#1A1814; --text2:#4A4540; --text3:#8A8278;
-  --cta:#1A6B45; --cta2:#145436; --cta-pale:#E8F5EE;
-  --border:rgba(155,125,58,.18); --border2:rgba(155,125,58,.09);
-  --red:#C0392B; --red-pale:#FEF0EE;
-  --radius:10px; --shadow:0 8px 32px rgba(20,18,14,.08);
-}
+:root{--ink:#0A0A0A;--dark:#1E1A12;--paper:#F6F3EE;--white:#FFFFFF;--gold:#9B7D3A;--gold2:#C4A35A;--gold-pale:#F5EDD6;--text:#1A1814;--text2:#4A4540;--text3:#8A8278;--cta:#1A6B45;--cta2:#145436;--cta-pale:#E8F5EE;--border:rgba(155,125,58,.18);--border2:rgba(155,125,58,.09);--radius:10px;--shadow:0 8px 32px rgba(20,18,14,.08);}
 *{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:'Jost',sans-serif;background:var(--paper);color:var(--text);min-height:100vh;}
-
-/* HEADER */
-.header{background:var(--dark);padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(196,163,90,.3);}
-.brand{font-family:'Cormorant Garamond',serif;color:var(--gold2);font-size:20px;font-weight:600;}
-.brand-sub{font-size:9px;color:rgba(196,163,90,.5);font-family:'DM Mono',monospace;letter-spacing:.1em;text-transform:uppercase;margin-top:2px;}
-.step-indicator{font-size:10px;color:rgba(196,163,90,.5);font-family:'DM Mono',monospace;letter-spacing:.08em;}
-
-/* PROGRESS */
-.progress-wrap{background:var(--dark);padding:.75rem 2rem;border-bottom:1px solid rgba(196,163,90,.15);}
+body{font-family:"Jost",sans-serif;background:var(--paper);color:var(--text);min-height:100vh;}
+.header{background:var(--dark);padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(196,163,90,.3);position:sticky;top:0;z-index:50;}
+.brand{font-family:"Cormorant Garamond",serif;color:var(--gold2);font-size:20px;font-weight:600;}
+.brand-sub{font-size:9px;color:rgba(196,163,90,.5);font-family:"DM Mono",monospace;letter-spacing:.1em;text-transform:uppercase;margin-top:2px;}
+.step-indicator{font-size:10px;color:rgba(196,163,90,.55);font-family:"DM Mono",monospace;letter-spacing:.08em;}
+.progress-wrap{background:var(--dark);padding:.75rem 2rem;border-bottom:1px solid rgba(196,163,90,.12);}
 .progress-bar{height:3px;background:rgba(196,163,90,.15);border-radius:3px;overflow:hidden;}
-.progress-fill{height:100%;background:var(--cta);border-radius:3px;transition:width .4s ease;width:10%;}
-.progress-label{font-size:10px;color:rgba(196,163,90,.45);font-family:'DM Mono',monospace;margin-top:6px;letter-spacing:.06em;}
-
-/* LAYOUT */
-.main{max-width:720px;margin:0 auto;padding:2.5rem 1.5rem 4rem;}
-
-/* QUESTION CARD */
+.progress-fill{height:100%;background:var(--cta);border-radius:3px;transition:width .4s ease;width:9%;}
+.progress-label{font-size:10px;color:rgba(196,163,90,.4);font-family:"DM Mono",monospace;margin-top:5px;letter-spacing:.06em;}
+.main{max-width:700px;margin:0 auto;padding:2.5rem 1.5rem 5rem;}
 .q-card{background:var(--white);border:1px solid var(--border2);border-radius:var(--radius);padding:2rem 2.25rem;box-shadow:var(--shadow);display:none;}
 .q-card.active{display:block;animation:slideIn .3s ease;}
-@keyframes slideIn{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
-
-.q-number{font-family:'DM Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:.16em;text-transform:uppercase;margin-bottom:.75rem;}
-.q-title{font-family:'Cormorant Garamond',serif;font-size:clamp(22px,4vw,30px);font-weight:400;color:var(--ink);line-height:1.15;margin-bottom:.5rem;}
-.q-hint{font-size:12px;color:var(--text3);font-weight:300;margin-bottom:1.5rem;line-height:1.65;}
-
-/* OPTIONS */
-.options{display:grid;gap:.625rem;}
+@keyframes slideIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+.q-number{font-family:"DM Mono",monospace;font-size:10px;color:var(--gold);letter-spacing:.16em;text-transform:uppercase;margin-bottom:.5rem;}
+.q-title{font-family:"Cormorant Garamond",serif;font-size:clamp(21px,4vw,28px);font-weight:400;color:var(--ink);line-height:1.2;margin-bottom:.5rem;}
+.why-box{background:rgba(155,125,58,.06);border-left:3px solid var(--gold2);border-radius:0 7px 7px 0;padding:.75rem 1rem;margin-bottom:1.25rem;font-size:12px;color:var(--text2);font-weight:300;line-height:1.7;}
+.why-box strong{font-weight:500;color:var(--gold);}
+.options{display:grid;gap:.575rem;}
 .options.two-col{grid-template-columns:1fr 1fr;}
-.opt{
-  border:1.5px solid var(--border);border-radius:8px;
-  padding:.875rem 1.125rem;cursor:pointer;
-  transition:all .2s;background:var(--white);
-  display:flex;align-items:flex-start;gap:.75rem;
-  text-align:left;
-}
+.opt{border:1.5px solid var(--border);border-radius:8px;padding:.875rem 1.125rem;cursor:pointer;transition:all .18s;background:var(--white);display:flex;align-items:flex-start;gap:.75rem;text-align:left;width:100%;}
 .opt:hover{border-color:var(--gold2);background:var(--gold-pale);}
 .opt.selected{border-color:var(--cta);background:var(--cta-pale);}
-.opt-icon{font-size:20px;flex-shrink:0;margin-top:1px;}
+.opt-icon{font-size:18px;flex-shrink:0;margin-top:1px;}
 .opt-label{font-size:13px;font-weight:500;color:var(--text);line-height:1.3;}
 .opt-desc{font-size:11px;color:var(--text3);font-weight:300;margin-top:2px;line-height:1.5;}
 .opt.selected .opt-label{color:var(--cta);}
-
-/* INPUT */
-.inp-group{display:flex;flex-direction:column;gap:.5rem;}
-.inp-label{font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--text2);}
-.inp{
-  width:100%;padding:.875rem 1rem;
-  border:1.5px solid var(--border);border-radius:8px;
-  font-family:'Jost',sans-serif;font-size:15px;color:var(--text);
-  background:var(--white);outline:none;transition:border-color .2s;
-}
+.sub-question{background:var(--cta-pale);border:1px solid rgba(26,107,69,.2);border-radius:8px;padding:1.125rem 1.25rem;margin-top:.875rem;display:none;}
+.sub-question.visible{display:block;animation:slideIn .2s ease;}
+.sub-q-label{font-size:11px;font-weight:600;color:var(--cta);letter-spacing:.06em;text-transform:uppercase;margin-bottom:.75rem;font-family:"DM Mono",monospace;}
+.inp{width:100%;padding:.75rem 1rem;border:1.5px solid var(--border);border-radius:6px;font-family:"Jost",sans-serif;font-size:14px;color:var(--text);background:var(--white);outline:none;transition:border-color .2s;}
 .inp:focus{border-color:var(--cta);}
-.inp-row{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;}
-.inp-unit{position:relative;}
-.inp-unit .inp{padding-right:3rem;}
-.inp-unit .unit{position:absolute;right:1rem;top:50%;transform:translateY(-50%);font-size:12px;color:var(--text3);font-family:'DM Mono',monospace;}
-
-/* SLIDER */
-.slider-wrap{padding:.5rem 0;}
-input[type=range]{width:100%;accent-color:var(--cta);cursor:pointer;}
-.slider-labels{display:flex;justify-content:space-between;font-size:11px;color:var(--text3);margin-top:.5rem;font-weight:300;}
-.slider-value{text-align:center;font-family:'Cormorant Garamond',serif;font-size:28px;color:var(--cta);margin:.5rem 0;}
-
-/* TEXTAREA */
-textarea.inp{resize:vertical;min-height:90px;font-size:13px;line-height:1.65;}
-
-/* NAV BUTTONS */
+textarea.inp{resize:vertical;min-height:85px;font-size:13px;line-height:1.65;}
+.free-field{margin-top:.75rem;}
+.sub-field{background:var(--cta-pale);border:1px solid rgba(26,107,69,.2);border-radius:7px;padding:.875rem 1rem;margin-top:.75rem;display:none;}
+.sub-field.visible{display:block;animation:slideIn .2s ease;}
 .q-nav{display:flex;justify-content:space-between;align-items:center;margin-top:1.75rem;gap:.75rem;}
-.btn-back{
-  padding:10px 20px;background:transparent;color:var(--text2);
-  font-family:'Jost',sans-serif;font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;
-  border:1.5px solid var(--border);border-radius:6px;cursor:pointer;transition:all .2s;
-}
+.btn-back{padding:10px 20px;background:transparent;color:var(--text2);font-family:"Jost",sans-serif;font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;border:1.5px solid var(--border);border-radius:6px;cursor:pointer;transition:all .2s;}
 .btn-back:hover{border-color:var(--gold2);color:var(--gold);}
-.btn-next{
-  padding:12px 28px;background:var(--cta);color:white;
-  font-family:'Jost',sans-serif;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
-  border:none;border-radius:6px;cursor:pointer;transition:all .2s;
-  box-shadow:0 4px 14px rgba(26,107,69,.28);
-}
+.btn-next{padding:12px 28px;background:var(--cta);color:white;font-family:"Jost",sans-serif;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;border:none;border-radius:6px;cursor:pointer;transition:all .2s;box-shadow:0 4px 14px rgba(26,107,69,.28);}
 .btn-next:hover{background:var(--cta2);transform:translateY(-1px);}
-.btn-next:disabled{opacity:.5;cursor:not-allowed;transform:none;}
-
-/* RESULT SECTION */
+.btn-next:disabled{opacity:.45;cursor:not-allowed;transform:none;box-shadow:none;}
 #result-section{display:none;}
-.result-loading{text-align:center;padding:4rem 2rem;}
-.loading-icon{font-size:48px;animation:spin 2s linear infinite;display:inline-block;margin-bottom:1.5rem;}
-@keyframes spin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
-.loading-title{font-family:'Cormorant Garamond',serif;font-size:28px;color:var(--ink);margin-bottom:.75rem;}
-.loading-steps{display:flex;flex-direction:column;gap:.5rem;max-width:360px;margin:1.5rem auto 0;}
-.loading-step{display:flex;align-items:center;gap:.75rem;font-size:13px;color:var(--text3);font-weight:300;}
-.loading-step.done{color:var(--cta);}
-.loading-step .dot{width:8px;height:8px;border-radius:50%;background:var(--border);flex-shrink:0;}
-.loading-step.done .dot{background:var(--cta);}
-.loading-step.active .dot{background:var(--gold2);animation:pulse .8s ease infinite;}
-@keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.4);}}
-
-/* PORTFOLIO RESULT */
-.portfolio-result{background:var(--white);border:1px solid var(--border2);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);}
-.portfolio-header{background:var(--dark);padding:1.75rem 2rem;}
-.portfolio-eyebrow{font-family:'DM Mono',monospace;font-size:9px;color:rgba(196,163,90,.5);letter-spacing:.16em;text-transform:uppercase;margin-bottom:.5rem;}
-.portfolio-title{font-family:'Cormorant Garamond',serif;font-size:28px;color:var(--gold2);font-weight:400;line-height:1.15;}
-.portfolio-sub{font-size:12px;color:rgba(255,255,255,.45);font-weight:300;margin-top:.5rem;}
-.portfolio-body{padding:1.75rem 2rem;}
-.result-content{font-size:14px;color:var(--text);line-height:1.85;font-weight:300;}
-.result-content h3{font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--ink);margin:1.5rem 0 .75rem;font-weight:500;}
-.result-content h3:first-child{margin-top:0;}
-.result-content strong{font-weight:600;color:var(--ink);}
-.result-content ul{padding-left:1.25rem;margin:.5rem 0;}
-.result-content li{margin-bottom:.5rem;}
-.result-content em{color:var(--gold);font-style:italic;}
-.result-content .etf-row{
-  background:var(--paper);border:1px solid var(--border2);border-radius:7px;
-  padding:1rem 1.25rem;margin:.75rem 0;
-  display:flex;flex-direction:column;gap:.25rem;
-}
-.etf-ticker{font-family:'DM Mono',monospace;font-size:13px;color:var(--cta);font-weight:500;}
-.etf-name{font-size:13px;font-weight:500;color:var(--ink);}
-.etf-alloc{font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--gold);font-weight:400;}
-.etf-desc{font-size:12px;color:var(--text3);font-weight:300;line-height:1.6;margin-top:.25rem;}
-
-.portfolio-actions{padding:1.25rem 2rem;border-top:1px solid var(--border2);display:flex;gap:.75rem;flex-wrap:wrap;}
-.btn-print{
-  padding:10px 20px;background:var(--dark);color:var(--gold2);
-  font-family:'Jost',sans-serif;font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;
-  border:1px solid rgba(196,163,90,.3);border-radius:5px;cursor:pointer;transition:all .2s;
-}
-.btn-print:hover{background:#2A2318;}
-.btn-restart{
-  padding:10px 20px;background:transparent;color:var(--text3);
-  font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.08em;text-transform:uppercase;
-  border:1.5px solid var(--border);border-radius:5px;cursor:pointer;transition:all .2s;
-}
-.btn-restart:hover{border-color:var(--gold2);color:var(--gold);}
-
-/* ERROR */
-.error-banner{background:var(--red-pale);border:1px solid rgba(192,57,43,.2);border-radius:7px;padding:1rem 1.25rem;color:var(--red);font-size:13px;margin-top:1rem;display:none;}
-
-@media(max-width:600px){
-  .options.two-col{grid-template-columns:1fr;}
-  .inp-row{grid-template-columns:1fr;}
-  .main{padding:1.5rem 1rem 3rem;}
-  .q-card{padding:1.5rem 1.25rem;}
-}
+#confirmation-client{display:none;}
+@media(max-width:600px){.options.two-col{grid-template-columns:1fr;}.main{padding:1.5rem 1rem 4rem;}.q-card{padding:1.5rem 1.25rem;}}
+@media print{.header,.progress-wrap,.q-nav{display:none!important;}body{background:white;}}
 </style>
-<!-- EmailJS -->
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-<script>emailjs.init('dwVOiqvHtQAXWqqfo');</script>
 </head>
 <body>
-
 <div class="header">
-  <div>
-    <div class="brand">ETF Blueprint</div>
-    <div class="brand-sub">Questionnaire investisseur</div>
-  </div>
-  <div class="step-indicator" id="step-label">Question 1 / 10</div>
+  <div><div class="brand">ETF Blueprint</div><div class="brand-sub">Questionnaire investisseur</div></div>
+  <div class="step-indicator" id="step-label">Question 1 / 11</div>
 </div>
-
 <div class="progress-wrap">
   <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
-  <div class="progress-label" id="progress-label">Profil & objectif</div>
+  <div class="progress-label" id="progress-label">Objectif principal</div>
 </div>
-
 <div class="main">
 
-  <!-- ══ Q1 — OBJECTIF ══ -->
-  <div class="q-card active" id="q1">
-    <div class="q-number">Question 01 / 10</div>
-    <div class="q-title">Quel est votre objectif principal ?</div>
-    <div class="q-hint">Choisissez celui qui correspond le mieux à votre priorité actuelle.</div>
-    <div class="options">
-      <div class="opt" onclick="select(this,'q1','retraite')">
-        <span class="opt-icon">🏖️</span>
-        <div><div class="opt-label">Préparer ma retraite</div><div class="opt-desc">Constituer un capital sur le long terme pour ma retraite</div></div>
-      </div>
-      <div class="opt" onclick="select(this,'q1','revenus')">
-        <span class="opt-icon">💰</span>
-        <div><div class="opt-label">Générer des revenus complémentaires</div><div class="opt-desc">Obtenir des dividendes ou des revenus réguliers</div></div>
-      </div>
-      <div class="opt" onclick="select(this,'q1','patrimoine')">
-        <span class="opt-icon">🏛️</span>
-        <div><div class="opt-label">Constituer / faire fructifier mon patrimoine</div><div class="opt-desc">Accumuler du capital sur le moyen-long terme</div></div>
-      </div>
-      <div class="opt" onclick="select(this,'q1','transmission')">
-        <span class="opt-icon">👨‍👩‍👧</span>
-        <div><div class="opt-label">Transmission patrimoniale</div><div class="opt-desc">Construire quelque chose à transmettre à mes proches</div></div>
-      </div>
-      <div class="opt" onclick="select(this,'q1','tresorerie')">
-        <span class="opt-icon">📈</span>
-        <div><div class="opt-label">Faire fructifier une trésorerie</div><div class="opt-desc">Optimiser un capital existant à court/moyen terme</div></div>
-      </div>
-    </div>
-    <div class="q-nav">
-      <div></div>
-      <button class="btn-next" onclick="next(1)" disabled id="next1">Suivant →</button>
+<div class="q-card active" id="q1">
+  <div class="q-number">Question 01 / 11</div>
+  <div class="q-title">Quel est votre objectif principal ?</div>
+  <div class="why-box">💡 <strong>Pourquoi cette question ?</strong> C'est le cap de tout le portefeuille. Chaque ETF sera sélectionné pour servir cet objectif précis. Un portefeuille orienté revenus n'a rien à voir avec un portefeuille orienté croissance.</div>
+  <div class="options">
+    <div class="opt" onclick="sel(this,&#39;q1&#39;,&#39;revenus&#39;)"><span class="opt-icon">&#128184;</span><div><div class="opt-label">Générer des revenus réguliers</div><div class="opt-desc">Percevoir des dividendes ou coupons périodiquement</div></div></div>
+    <div class="opt" onclick="sel(this,&#39;q1&#39;,&#39;croissance&#39;)"><span class="opt-icon">&#128200;</span><div><div class="opt-label">Faire croître mon capital</div><div class="opt-desc">Valorisation du capital sur le long terme</div></div></div>
+    <div class="opt" onclick="sel(this,&#39;q1&#39;,&#39;capitalisation&#39;)"><span class="opt-icon">&#128260;</span><div><div class="opt-label">Profiter des intérêts composés</div><div class="opt-desc">Capitalisation automatique — effet boule de neige</div></div></div>
+    <div class="opt" onclick="sel(this,&#39;q1&#39;,&#39;retraite&#39;)"><span class="opt-icon">&#127958;&#65039;</span><div><div class="opt-label">Préparer ma retraite</div><div class="opt-desc">Constituer un capital pour vivre de mes investissements</div></div></div>
+    <div class="opt" onclick="sel(this,&#39;q1&#39;,&#39;performance&#39;)"><span class="opt-icon">&#128640;</span><div><div class="opt-label">Rechercher la performance maximale</div><div class="opt-desc">Exposition croissance — volatilité acceptée</div></div></div>
+    <div class="opt" onclick="sel(this,&#39;q1&#39;,&#39;preservation&#39;)"><span class="opt-icon">&#128737;&#65039;</span><div><div class="opt-label">Préserver mon patrimoine</div><div class="opt-desc">Capital protégé en priorité, croissance secondaire</div></div></div>
+  </div>
+  <div class="q-nav"><div></div><button class="btn-next" onclick="next(1)" disabled id="next1">Suivant →</button></div>
+</div>
+
+<div class="q-card" id="q2">
+  <div class="q-number">Question 02 / 11</div>
+  <div class="q-title">Quel est votre horizon d'investissement ?</div>
+  <div class="why-box">💡 <strong>Pourquoi cette question ?</strong> L'horizon détermine le niveau de risque acceptable. Sur 15 ans, les fluctuations s'effacent — on peut prendre plus de risque. Sur 2 ans, chaque baisse compte — on sécurise davantage.</div>
+  <div class="options">
+    <div class="opt" onclick="sel(this,&#39;q2&#39;,&#39;moins3ans&#39;)"><span class="opt-icon">&#9889;</span><div><div class="opt-label">Moins de 3 ans</div><div class="opt-desc">Court terme - priorité stabilité et liquidité</div></div></div>
+    <div class="opt" onclick="sel(this,&#39;q2&#39;,&#39;3-7ans&#39;)"><span class="opt-icon">&#127807;</span><div><div class="opt-label">3 a 7 ans</div><div class="opt-desc">Moyen terme - équilibre croissance et sécurité</div></div></div>
+    <div class="opt" onclick="sel(this,&#39;q2&#39;,&#39;7-15ans&#39;)"><span class="opt-icon">&#127795;</span><div><div class="opt-label">7 a 15 ans</div><div class="opt-desc">Long terme - capitalisation optimale</div></div></div>
+    <div class="opt" onclick="sel(this,&#39;q2&#39;,&#39;plus15ans&#39;)"><span class="opt-icon">&#127956;</span><div><div class="opt-label">Plus de 15 ans</div><div class="opt-desc">Tres long terme - croissance maximale acceptée</div></div></div>
+  </div>
+  <div class="q-nav"><button class="btn-back" onclick="back(2)">← Retour</button><button class="btn-next" onclick="next(2)" disabled id="next2">Suivant →</button></div>
+</div>
+
+<div class="q-card" id="q3">
+  <div class="q-number">Question 03 / 11</div>
+  <div class="q-title">Cet argent, en avez-vous besoin à court terme ?</div>
+  <div class="why-box">💡 <strong>Pourquoi cette question ?</strong> Si vous pourriez avoir besoin de cet argent rapidement, le portefeuille doit intégrer une poche stable et liquide. Un capital bloqué 15 ans peut prendre beaucoup plus de risque qu'un capital potentiellement mobilisable dans 18 mois.</div>
+  <div class="options">
+    <div class="opt" onclick="sel(this,&#39;q3&#39;,&#39;non&#39;)"><span class="opt-icon">&#128274;</span><div><div class="opt-label">Non — c'est de l'épargne long terme</div><div class="opt-desc">Je n'en aurai pas besoin avant 10 ans minimum</div></div></div>
+    <div class="opt" onclick="sel(this,&#39;q3&#39;,&#39;peu-probable&#39;)"><span class="opt-icon">&#129300;</span><div><div class="opt-label">Peu probable — mais je préfère garder une marge</div><div class="opt-desc">Je veux une petite poche de sécurité accessible</div></div></div>
+    <div class="opt" onclick="sel(this,&#39;q3&#39;,&#39;possible&#39;)"><span class="opt-icon">&#128197;</span><div><div class="opt-label">Possible — dans 3 à 5 ans pour un projet</div><div class="opt-desc">Achat immobilier, projet de vie à moyen terme</div></div></div>
+    <div class="opt" onclick="sel(this,&#39;q3&#39;,&#39;oui&#39;)"><span class="opt-icon">&#9888;&#65039;</span><div><div class="opt-label">Oui — je pourrais en avoir besoin sous 2 ans</div><div class="opt-desc">Capital partiellement disponible rapidement</div></div></div>
+  </div>
+  <div class="q-nav"><button class="btn-back" onclick="back(3)">← Retour</button><button class="btn-next" onclick="next(3)" disabled id="next3">Suivant →</button></div>
+</div>
+
+<div class="q-card" id="q4">
+  <div class="q-number">Question 04 / 11</div>
+  <div class="q-title">Quel est votre capital approximatif à investir ?</div>
+  <div class="why-box">💡 <strong>Pourquoi cette question ?</strong> En dessous de 10 000€, on simplifie à 3-4 ETF pour éviter les petits montants non rentables. Au-delà de 150 000€, on peut affiner avec 6 lignes et optimiser fiscalement chaque tranche.</div>
+  <div class="options">
+    <div class="opt" onclick="sel(this,&#39;q4&#39;,&#39;moins10k&#39;)"><span class="opt-icon">&#127807;</span><div><div class="opt-label">Moins de 10 000€</div><div class="opt-desc">Démarrage — allocation simplifiée 3-4 ETF</div></div></div>
+    <div class="opt" onclick="sel(this,&#39;q4&#39;,&#39;10k-50k&#39;)"><span class="opt-icon">&#128188;</span><div><div class="opt-label">10 000€ à 50 000€</div><div class="opt-desc">Allocation équilibrée sur 4 à 5 ETF</div></div></div>
+    <div class="opt" onclick="sel(this,&#39;q4&#39;,&#39;50k-150k&#39;)"><span class="opt-icon">&#128202;</span><div><div class="opt-label">50 000€ à 150 000€</div><div class="opt-desc">Diversification optimale sur 5 à 6 ETF</div></div></div>
+    <div class="opt" onclick="sel(this,&#39;q4&#39;,&#39;150k-500k&#39;)"><span class="opt-icon">&#127974;</span><div><div class="opt-label">150 000€ à 500 000€</div><div class="opt-desc">Stratégie patrimoniale complète multi-classes</div></div></div>
+    <div class="opt" onclick="sel(this,&#39;q4&#39;,&#39;500k+&#39;)"><span class="opt-icon">&#128142;</span><div><div class="opt-label">Plus de 500 000€</div><div class="opt-desc">Allocation avancée — optimisation fiscale maximale</div></div></div>
+  </div>
+  <div class="q-nav"><button class="btn-back" onclick="back(4)">← Retour</button><button class="btn-next" onclick="next(4)" disabled id="next4">Suivant →</button></div>
+</div>
+
+<div class="q-card" id="q5">
+  <div class="q-number">Question 05 / 11</div>
+  <div class="q-title">Dans quel pays résidez-vous fiscalement ?</div>
+  <div class="why-box">💡 <strong>Pourquoi cette question ?</strong> La fiscalité locale change radicalement les ETF recommandés. Un résident français avec PEA peut économiser des dizaines de milliers d'euros. Un expatrié en Israël peut toucher des dividendes à 0%. Chaque pays a ses règles.</div>
+  <div class="options">
+    <div class="opt" onclick="sel(this,&#39;q5&#39;,&#39;france&#39;)"><span class="opt-icon">&#127467;&#127479;</span><div><div class="opt-label">France</div><div class="opt-desc">PEA disponible — fiscalité avantageuse après 5 ans</div></div></div>
+    <div class="opt" onclick="sel(this,&#39;q5&#39;,&#39;benelux-suisse&#39;)"><span class="opt-icon">&#127463;&#127466;</span><div><div class="opt-label">Belgique / Luxembourg / Suisse</div><div class="opt-desc">Pas de PEA — CTO avec avantages locaux spécifiques</div></div></div>
+    <div class="opt" onclick="sel(this,&#39;q5&#39;,&#39;israel&#39;)"><span class="opt-icon">&#127470;&#127473;</span><div><div class="opt-label">Israel / Moyen-Orient</div><div class="opt-desc">Statut Oleh Hadash possible — 0% sur revenus étrangers</div></div></div>
+    <div class="opt" onclick="sel(this,&#39;q5&#39;,&#39;uk-usa&#39;)"><span class="opt-icon">&#127468;&#127463;</span><div><div class="opt-label">UK / USA</div><div class="opt-desc">ISA / 401k / enveloppes locales spécifiques</div></div></div>
+    <div class="opt" onclick="sel(this,&#39;q5&#39;,&#39;europe-autre&#39;)"><span class="opt-icon">&#127466;&#127482;</span><div><div class="opt-label">Autre pays européen</div><div class="opt-desc">Allemagne, Espagne, Italie, Pays-Bas...</div></div></div>
+    <div class="opt" onclick="sel(this,&#39;q5&#39;,&#39;autre&#39;)"><span class="opt-icon">&#127757;</span><div><div class="opt-label">Autre pays hors Europe</div><div class="opt-desc">Asie, Amériques, Afrique — fiscalité à préciser</div></div></div>
+  </div>
+  <div class="free-field"><input class="inp" type="text" placeholder="Précisez votre pays si besoin..." oninput="answers.q5detail=this.value"></div>
+  <div class="q-nav"><button class="btn-back" onclick="back(5)">← Retour</button><button class="btn-next" onclick="next(5)" disabled id="next5">Suivant →</button></div>
+</div>
+
+<div class="q-card" id="q6">
+  <div class="q-number">Question 06 / 11</div>
+  <div class="q-title">Souhaitez-vous générer des revenus mensuels ?</div>
+  <div class="why-box">💡 <strong>Pourquoi cette question ?</strong> Si vous voulez un revenu mensuel, on sélectionne des ETF distribuants avec des calendriers complémentaires pour couvrir chaque mois. Sinon, on privilégie la capitalisation pure pour maximiser l'effet boule de neige.</div>
+  <div class="options">
+    <div class="opt" onclick="selRevenu(this,&#39;oui&#39;)"><span class="opt-icon">&#9989;</span><div><div class="opt-label">Oui — je veux des revenus mensuels</div><div class="opt-desc">Précisez le montant souhaité ci-dessous</div></div></div>
+    <div class="opt" onclick="selRevenu(this,&#39;non&#39;)"><span class="opt-icon">&#10060;</span><div><div class="opt-label">Non — priorité à la capitalisation</div><div class="opt-desc">Les gains se réinvestissent automatiquement</div></div></div>
+  </div>
+  <div class="sub-field" id="revenu-field">
+    <div style="font-size:11px;font-weight:600;color:var(--cta);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.5rem;font-family:&#39;DM Mono&#39;,monospace">Montant mensuel souhaité (indicatif)</div>
+    <div style="position:relative"><input class="inp" type="number" placeholder="ex : 500" min="0" oninput="answers.revenuMontant=this.value"><span style="position:absolute;right:1rem;top:50%;transform:translateY(-50%);font-family:&#39;DM Mono&#39;,monospace;font-size:12px;color:var(--text3)">&#8364; / mois</span></div>
+  </div>
+  <div class="q-nav"><button class="btn-back" onclick="back(6)">← Retour</button><button class="btn-next" onclick="next(6)" disabled id="next6">Suivant →</button></div>
+</div>
+
+<div class="q-card" id="q7">
+  <div class="q-number">Question 07 / 11</div>
+  <div class="q-title">Avez-vous déjà des investissements en cours ?</div>
+  <div class="why-box">💡 <strong>Pourquoi cette question ?</strong> Inutile de doubler une exposition que vous avez déjà. Votre portefeuille sera construit de façon <strong>complémentaire</strong> à ce que vous possédez — pas en doublon.</div>
+  <div class="options" id="q7-opts">
+    <div class="opt" onclick="selExistant(this,&#39;non&#39;)"><span class="opt-icon">&#128313;</span><div><div class="opt-label">Non — je pars de zéro</div><div class="opt-desc">Aucun investissement boursier existant</div></div></div>
+    <div class="opt" onclick="selExistant(this,&#39;livrets&#39;)"><span class="opt-icon">&#127974;</span><div><div class="opt-label">Livrets / Assurance-vie fonds euros uniquement</div><div class="opt-desc">Épargne sécurisée mais pas encore en bourse</div></div></div>
+    <div class="opt" onclick="selExistant(this,&#39;quelques&#39;)"><span class="opt-icon">&#128202;</span><div><div class="opt-label">Quelques actions ou ETF en bourse</div><div class="opt-desc">Des positions mais pas encore de stratégie structurée</div></div></div>
+    <div class="opt" onclick="selExistant(this,&#39;portefeuille&#39;)"><span class="opt-icon">&#127919;</span><div><div class="opt-label">Un portefeuille deja structure</div><div class="opt-desc">J'ai déjà une stratégie — je cherche à l'optimiser</div></div></div>
+  </div>
+  <div class="sub-question" id="sub-q7">
+    <div class="sub-q-label">Quels types d'ETF ou indices possédez-vous déjà ?</div>
+    <div style="font-size:11px;color:var(--text3);font-weight:300;margin-bottom:.875rem">Plusieurs choix possibles — pour éviter les doublons dans votre nouveau portefeuille.</div>
+    <div class="options" id="sub-q7-opts">
+      <div class="opt multi-sub" onclick="toggleSub(this,&#39;world&#39;)"><span class="opt-icon">&#127760;</span><div><div class="opt-label">MSCI World / S&amp;P 500</div><div class="opt-desc">Marchés développés larges (CW8, IWDA, SP5...)</div></div></div>
+      <div class="opt multi-sub" onclick="toggleSub(this,&#39;sectoriel&#39;)"><span class="opt-icon">&#127981;</span><div><div class="opt-label">ETF sectoriels</div><div class="opt-desc">Tech, sante, energie, immobilier...</div></div></div>
+      <div class="opt multi-sub" onclick="toggleSub(this,&#39;oblig&#39;)"><span class="opt-icon">&#128203;</span><div><div class="opt-label">ETF obligations / fonds euros</div><div class="opt-desc">Obligations d&#39;Etat ou d&#39;entreprises</div></div></div>
+      <div class="opt multi-sub" onclick="toggleSub(this,&#39;emergents&#39;)"><span class="opt-icon">&#127759;</span><div><div class="opt-label">ETF marches emergents</div><div class="opt-desc">Chine, Inde, Asie, Brésil...</div></div></div>
+      <div class="opt multi-sub" onclick="toggleSub(this,&#39;dividendes&#39;)"><span class="opt-icon">&#128181;</span><div><div class="opt-label">ETF dividendes / revenus</div><div class="opt-desc">SCHD, VHYL, ETF haut rendement...</div></div></div>
+      <div class="opt multi-sub" onclick="toggleSub(this,&#39;sais-pas&#39;)"><span class="opt-icon">&#129335;</span><div><div class="opt-label">Je ne sais pas exactement</div><div class="opt-desc">Laissez-moi optimiser librement</div></div></div>
     </div>
   </div>
+  <div class="q-nav"><button class="btn-back" onclick="back(7)">← Retour</button><button class="btn-next" onclick="next(7)" disabled id="next7">Suivant →</button></div>
+</div>
 
-  <!-- ══ Q2 — HORIZON ══ -->
-  <div class="q-card" id="q2">
-    <div class="q-number">Question 02 / 10</div>
-    <div class="q-title">Sur quel horizon souhaitez-vous investir ?</div>
-    <div class="q-hint">La durée influe directement sur la sélection des ETF et leur pondération.</div>
-    <div class="options two-col">
-      <div class="opt" onclick="select(this,'q2','1-3ans')">
-        <span class="opt-icon">⚡</span>
-        <div><div class="opt-label">1 à 3 ans</div><div class="opt-desc">Court terme</div></div>
-      </div>
-      <div class="opt" onclick="select(this,'q2','3-5ans')">
-        <span class="opt-icon">📅</span>
-        <div><div class="opt-label">3 à 5 ans</div><div class="opt-desc">Moyen terme</div></div>
-      </div>
-      <div class="opt" onclick="select(this,'q2','5-10ans')">
-        <span class="opt-icon">🌱</span>
-        <div><div class="opt-label">5 à 10 ans</div><div class="opt-desc">Long terme</div></div>
-      </div>
-      <div class="opt" onclick="select(this,'q2','10ans+')">
-        <span class="opt-icon">🌳</span>
-        <div><div class="opt-label">Plus de 10 ans</div><div class="opt-desc">Très long terme</div></div>
-      </div>
-    </div>
-    <div class="q-nav">
-      <button class="btn-back" onclick="back(2)">← Retour</button>
-      <button class="btn-next" onclick="next(2)" disabled id="next2">Suivant →</button>
-    </div>
+<div class="q-card" id="q8">
+  <div class="q-number">Question 08 / 11</div>
+  <div class="q-title">Quel est votre niveau en investissement ?</div>
+  <div class="why-box">💡 <strong>Pourquoi cette question ?</strong> Le rapport que vous recevrez sera calibré à votre niveau. Langage simple pour un débutant, technique sans filtre pour un expert. Inutile d'être trop technique pour quelqu'un qui découvre, et trop simplifié pour quelqu'un qui maîtrise.</div>
+  <div class="options">
+    <div class="opt" onclick="sel(this,&#39;q8&#39;,&#39;debutant&#39;)"><span class="opt-icon">&#127807;</span><div><div class="opt-label">Débutant complet</div><div class="opt-desc">Je découvre — tout m'est expliqué simplement, sans jargon</div></div></div>
+    <div class="opt" onclick="sel(this,&#39;q8&#39;,&#39;curieux&#39;)"><span class="opt-icon">&#128218;</span><div><div class="opt-label">Curieux — quelques notions de base</div><div class="opt-desc">Je comprends les grandes lignes de la bourse et des ETF</div></div></div>
+    <div class="opt" onclick="sel(this,&#39;q8&#39;,&#39;intermediaire&#39;)"><span class="opt-icon">&#128202;</span><div><div class="opt-label">Intermediaire</div><div class="opt-desc">Je comprends les marchés, les ETF et les enveloppes fiscales</div></div></div>
+    <div class="opt" onclick="sel(this,&#39;q8&#39;,&#39;avance&#39;)"><span class="opt-icon">&#127919;</span><div><div class="opt-label">Avance</div><div class="opt-desc">À l'aise avec stratégies, métriques et allocation d'actifs</div></div></div>
+    <div class="opt" onclick="sel(this,&#39;q8&#39;,&#39;expert&#39;)"><span class="opt-icon">&#127942;</span><div><div class="opt-label">Expert</div><div class="opt-desc">Je veux un rapport technique complet, sans simplification</div></div></div>
   </div>
+  <div class="q-nav"><button class="btn-back" onclick="back(8)">← Retour</button><button class="btn-next" onclick="next(8)" disabled id="next8">Suivant →</button></div>
+</div>
 
-  <!-- ══ Q3 — CAPITAL ══ -->
-  <div class="q-card" id="q3">
-    <div class="q-number">Question 03 / 10</div>
-    <div class="q-title">Quel capital souhaitez-vous investir ?</div>
-    <div class="q-hint">Approximatif, confidentiel. Permet d'adapter les ETF à votre situation réelle.</div>
-    <div class="options">
-      <div class="opt" onclick="select(this,'q3','moins10k')">
-        <span class="opt-icon">🌱</span>
-        <div><div class="opt-label">Moins de 10 000€</div><div class="opt-desc">Démarrage — allocation simplifiée</div></div>
-      </div>
-      <div class="opt" onclick="select(this,'q3','10k-50k')">
-        <span class="opt-icon">💼</span>
-        <div><div class="opt-label">10 000€ à 50 000€</div><div class="opt-desc">Allocation équilibrée sur 4 à 5 ETF</div></div>
-      </div>
-      <div class="opt" onclick="select(this,'q3','50k-150k')">
-        <span class="opt-icon">📊</span>
-        <div><div class="opt-label">50 000€ à 150 000€</div><div class="opt-desc">Diversification optimale sur 5 à 6 ETF</div></div>
-      </div>
-      <div class="opt" onclick="select(this,'q3','150k-500k')">
-        <span class="opt-icon">🏦</span>
-        <div><div class="opt-label">150 000€ à 500 000€</div><div class="opt-desc">Allocation multi-classes d'actifs complète</div></div>
-      </div>
-      <div class="opt" onclick="select(this,'q3','500k+')">
-        <span class="opt-icon">💎</span>
-        <div><div class="opt-label">Plus de 500 000€</div><div class="opt-desc">Stratégie patrimoniale avancée</div></div>
-      </div>
-    </div>
-    <div class="q-nav">
-      <button class="btn-back" onclick="back(3)">← Retour</button>
-      <button class="btn-next" onclick="next(3)" disabled id="next3">Suivant →</button>
-    </div>
+<div class="q-card" id="q9">
+  <div class="q-number">Question 09 / 11</div>
+  <div class="q-title">Souhaitez-vous exclure certaines classes d'actifs ?</div>
+  <div class="why-box">💡 <strong>Pourquoi cette question ?</strong> Certains actifs peuvent être incompatibles avec vos convictions ou votre situation. On les retire de la sélection pour construire un portefeuille qui vous ressemble vraiment.</div>
+  <div class="options" id="q9-opts">
+    <div class="opt multi" onclick="toggleMulti(this,&#39;aucune&#39;)"><span class="opt-icon">&#9989;</span><div><div class="opt-label">Aucune exclusion</div><div class="opt-desc">Liberté totale de sélection</div></div></div>
+    <div class="opt multi" onclick="toggleMulti(this,&#39;crypto&#39;)"><span class="opt-icon">&#8383;</span><div><div class="opt-label">Crypto-actifs</div><div class="opt-desc">Exclure tout ETF exposé aux cryptomonnaies</div></div></div>
+    <div class="opt multi" onclick="toggleMulti(this,&#39;commodities&#39;)"><span class="opt-icon">&#128738;&#65039;</span><div><div class="opt-label">Matières premières</div><div class="opt-desc">Pétrole, gaz, métaux industriels, agricole</div></div></div>
+    <div class="opt multi" onclick="toggleMulti(this,&#39;reits&#39;)"><span class="opt-icon">&#127962;</span><div><div class="opt-label">Immobilier cote (REITs)</div><div class="opt-desc">Foncières cotées, ETF immobilier</div></div></div>
+    <div class="opt multi" onclick="toggleMulti(this,&#39;high-yield&#39;)"><span class="opt-icon">&#9888;&#65039;</span><div><div class="opt-label">Obligations high yield</div><div class="opt-desc">Obligations d'entreprises à haut rendement / haut risque</div></div></div>
+    <div class="opt multi" onclick="toggleMulti(this,&#39;esg-exclu&#39;)"><span class="opt-icon">&#127807;</span><div><div class="opt-label">Secteurs non-ESG</div><div class="opt-desc">Armes, tabac, fossiles — exclure secteurs controversés</div></div></div>
   </div>
+  <div class="free-field"><input class="inp" type="text" placeholder="Autres exclusions spécifiques..." oninput="answers.exclusionsLibres=this.value"></div>
+  <div class="q-nav"><button class="btn-back" onclick="back(9)">← Retour</button><button class="btn-next" onclick="next(9)" id="next9">Suivant →</button></div>
+</div>
 
-  <!-- ══ Q4 — TOLÉRANCE AU RISQUE ══ -->
-  <div class="q-card" id="q4">
-    <div class="q-number">Question 04 / 10</div>
-    <div class="q-title">Quelle est votre tolérance aux variations de marché ?</div>
-    <div class="q-hint">Si votre portefeuille perd 20% en 3 mois, quelle est votre réaction naturelle ?</div>
-    <div class="options">
-      <div class="opt" onclick="select(this,'q4','tres-prudent')">
-        <span class="opt-icon">🛡️</span>
-        <div><div class="opt-label">Je vends immédiatement</div><div class="opt-desc">Profil très prudent — capital préservé avant tout</div></div>
-      </div>
-      <div class="opt" onclick="select(this,'q4','prudent')">
-        <span class="opt-icon">😟</span>
-        <div><div class="opt-label">Je suis inquiet mais j'attends</div><div class="opt-desc">Profil prudent — quelques nuits difficiles acceptées</div></div>
-      </div>
-      <div class="opt" onclick="select(this,'q4','equilibre')">
-        <span class="opt-icon">😐</span>
-        <div><div class="opt-label">Je reste calme et j'attends la remontée</div><div class="opt-desc">Profil équilibré — confiance dans le long terme</div></div>
-      </div>
-      <div class="opt" onclick="select(this,'q4','dynamique')">
-        <span class="opt-icon">💪</span>
-        <div><div class="opt-label">J'en profite pour renforcer mes positions</div><div class="opt-desc">Profil dynamique — les baisses sont des opportunités</div></div>
-      </div>
-    </div>
-    <div class="q-nav">
-      <button class="btn-back" onclick="back(4)">← Retour</button>
-      <button class="btn-next" onclick="next(4)" disabled id="next4">Suivant →</button>
-    </div>
+<div class="q-card" id="q10">
+  <div class="q-number">Question 10 / 11</div>
+  <div class="q-title">Avez-vous des préférences géographiques ou sectorielles ?</div>
+  <div class="why-box">💡 <strong>Pourquoi cette question ?</strong> Si vous avez des convictions sur certaines zones ou secteurs, on les intègre. Attention : trop de concentration nuit à la diversification — on vous le signalera si nécessaire.</div>
+  <div class="options">
+    <div class="opt" onclick="sel(this,&#39;q10&#39;,&#39;libre&#39;)"><span class="opt-icon">&#127760;</span><div><div class="opt-label">Aucune préférence — optimisez librement</div><div class="opt-desc">Construction 100% basée sur l'analyse objective</div></div></div>
+    <div class="opt" onclick="sel(this,&#39;q10&#39;,&#39;regions&#39;)"><span class="opt-icon">&#128510;</span><div><div class="opt-label">Favoriser certaines régions</div><div class="opt-desc">USA, Europe, emergents, Asie...</div></div></div>
+    <div class="opt" onclick="sel(this,&#39;q10&#39;,&#39;secteurs&#39;)"><span class="opt-icon">&#127981;</span><div><div class="opt-label">Favoriser certains secteurs</div><div class="opt-desc">Tech, sante, energie, dividendes...</div></div></div>
+    <div class="opt" onclick="sel(this,&#39;q10&#39;,&#39;eviter&#39;)"><span class="opt-icon">&#128683;</span><div><div class="opt-label">Éviter certaines régions ou secteurs</div><div class="opt-desc">Precisez ci-dessous</div></div></div>
   </div>
+  <div class="free-field"><textarea class="inp" placeholder="Précisez vos préférences ou zones à éviter (optionnel)..." rows="3" oninput="answers.prefLibre=this.value"></textarea></div>
+  <div class="q-nav"><button class="btn-back" onclick="back(10)">← Retour</button><button class="btn-next" onclick="next(10)" disabled id="next10">Suivant →</button></div>
+</div>
 
-  <!-- ══ Q5 — FISCALITÉ ══ -->
-  <div class="q-card" id="q5">
-    <div class="q-number">Question 05 / 10</div>
-    <div class="q-title">Quelle enveloppe fiscale utilisez-vous (ou souhaitez-vous utiliser) ?</div>
-    <div class="q-hint">Détermine les ETF éligibles et la stratégie fiscale optimale.</div>
-    <div class="options">
-      <div class="opt" onclick="select(this,'q5','pea')">
-        <span class="opt-icon">🇫🇷</span>
-        <div><div class="opt-label">PEA</div><div class="opt-desc">Plan d'Épargne en Actions — fiscalité avantageuse après 5 ans</div></div>
-      </div>
-      <div class="opt" onclick="select(this,'q5','cto')">
-        <span class="opt-icon">🌍</span>
-        <div><div class="opt-label">Compte-titres ordinaire (CTO)</div><div class="opt-desc">Accès mondial — plus flexible mais moins avantageux fiscalement</div></div>
-      </div>
-      <div class="opt" onclick="select(this,'q5','pea-cto')">
-        <span class="opt-icon">⚖️</span>
-        <div><div class="opt-label">PEA + CTO combinés</div><div class="opt-desc">Stratégie hybride pour optimiser les deux enveloppes</div></div>
-      </div>
-      <div class="opt" onclick="select(this,'q5','assurance-vie')">
-        <span class="opt-icon">📋</span>
-        <div><div class="opt-label">Assurance-vie en UC</div><div class="opt-desc">Unités de compte — selon les ETF disponibles chez votre assureur</div></div>
-      </div>
-      <div class="opt" onclick="select(this,'q5','pas-sur')">
-        <span class="opt-icon">🤷</span>
-        <div><div class="opt-label">Je ne sais pas encore</div><div class="opt-desc">Nous recommanderons l'enveloppe la plus adaptée</div></div>
-      </div>
-    </div>
-    <div class="q-nav">
-      <button class="btn-back" onclick="back(5)">← Retour</button>
-      <button class="btn-next" onclick="next(5)" disabled id="next5">Suivant →</button>
-    </div>
+<div class="q-card" id="q11">
+  <div class="q-number">Question 11 / 11</div>
+  <div class="q-title">Y a-t-il un événement de vie important dans les 5 prochaines années ?</div>
+  <div class="why-box">💡 <strong>Pourquoi cette question ?</strong> Un achat immobilier, un départ à la retraite, une transmission — ces événements changent radicalement la stratégie. Si vous avez besoin d'une partie du capital dans 3 ans, votre portefeuille doit l'anticiper maintenant.</div>
+  <div class="options">
+    <div class="opt" onclick="sel(this,&#39;q11&#39;,&#39;rien&#39;)"><span class="opt-icon">&#9989;</span><div><div class="opt-label">Non — pas de projet majeur prévu</div><div class="opt-desc">Horizon dégagé, stratégie long terme sans contrainte</div></div></div>
+    <div class="opt" onclick="sel(this,&#39;q11&#39;,&#39;immo&#39;)"><span class="opt-icon">&#127968;</span><div><div class="opt-label">Achat immobilier envisagé</div><div class="opt-desc">Apport à constituer — une partie du capital sera mobilisée</div></div></div>
+    <div class="opt" onclick="sel(this,&#39;q11&#39;,&#39;retraite-proche&#39;)"><span class="opt-icon">&#127749;&#65039;</span><div><div class="opt-label">Départ à la retraite dans moins de 5 ans</div><div class="opt-desc">Transition vers des revenus réguliers à planifier</div></div></div>
+    <div class="opt" onclick="sel(this,&#39;q11&#39;,&#39;transmission&#39;)"><span class="opt-icon">&#128104;&#8205;&#128105;&#8205;&#128103;</span><div><div class="opt-label">Transmission patrimoniale prévue</div><div class="opt-desc">Donation, succession — optimisation fiscale successorale</div></div></div>
+    <div class="opt" onclick="sel(this,&#39;q11&#39;,&#39;autre-projet&#39;)"><span class="opt-icon">&#127919;</span><div><div class="opt-label">Autre projet important</div><div class="opt-desc">Precisez ci-dessous</div></div></div>
   </div>
-
-  <!-- ══ Q6 — REVENUS ══ -->
-  <div class="q-card" id="q6">
-    <div class="q-number">Question 06 / 10</div>
-    <div class="q-title">Préférez-vous des revenus réguliers ou une capitalisation ?</div>
-    <div class="q-hint">Impacte le choix entre ETF distribuants (dividendes) et ETF capitalisants (accumulation).</div>
-    <div class="options">
-      <div class="opt" onclick="select(this,'q6','revenus-reguliers')">
-        <span class="opt-icon">💸</span>
-        <div><div class="opt-label">Revenus réguliers</div><div class="opt-desc">Je veux percevoir des dividendes périodiquement</div></div>
-      </div>
-      <div class="opt" onclick="select(this,'q6','capitalisation')">
-        <span class="opt-icon">📈</span>
-        <div><div class="opt-label">Capitalisation maximale</div><div class="opt-desc">Je veux que mes gains se réinvestissent automatiquement</div></div>
-      </div>
-      <div class="opt" onclick="select(this,'q6','mixte')">
-        <span class="opt-icon">⚖️</span>
-        <div><div class="opt-label">Un mix des deux</div><div class="opt-desc">Un peu de revenus, un peu de capitalisation</div></div>
-      </div>
-    </div>
-    <div class="q-nav">
-      <button class="btn-back" onclick="back(6)">← Retour</button>
-      <button class="btn-next" onclick="next(6)" disabled id="next6">Suivant →</button>
-    </div>
+  <div class="free-field"><input class="inp" type="text" placeholder="Précisez votre projet (optionnel)..." oninput="answers.q11detail=this.value"></div>
+  <div class="q-nav">
+    <button class="btn-back" onclick="back(11)">← Retour</button>
+    <button class="btn-next" onclick="generatePortfolio()" id="next11" style="padding:13px 26px;font-size:12px">🎯 Envoyer ma demande →</button>
   </div>
+</div>
 
-  <!-- ══ Q7 — SITUATION ══ -->
-  <div class="q-card" id="q7">
-    <div class="q-number">Question 07 / 10</div>
-    <div class="q-title">Quelle est votre situation actuelle ?</div>
-    <div class="q-hint">Permet d'adapter la stratégie à votre réalité patrimoniale et fiscale.</div>
-    <div class="options two-col">
-      <div class="opt" onclick="select(this,'q7','salarie')">
-        <span class="opt-icon">💼</span>
-        <div><div class="opt-label">Salarié</div></div>
-      </div>
-      <div class="opt" onclick="select(this,'q7','independant')">
-        <span class="opt-icon">🚀</span>
-        <div><div class="opt-label">Indépendant / entrepreneur</div></div>
-      </div>
-      <div class="opt" onclick="select(this,'q7','retraite')">
-        <span class="opt-icon">🌅</span>
-        <div><div class="opt-label">Retraité</div></div>
-      </div>
-      <div class="opt" onclick="select(this,'q7','pre-retraite')">
-        <span class="opt-icon">⏳</span>
-        <div><div class="opt-label">Pré-retraite (5-10 ans)</div></div>
-      </div>
-      <div class="opt" onclick="select(this,'q7','investisseur')">
-        <span class="opt-icon">📊</span>
-        <div><div class="opt-label">Investisseur actif</div></div>
-      </div>
-      <div class="opt" onclick="select(this,'q7','autre')">
-        <span class="opt-icon">🔹</span>
-        <div><div class="opt-label">Autre</div></div>
-      </div>
-    </div>
-    <div class="q-nav">
-      <button class="btn-back" onclick="back(7)">← Retour</button>
-      <button class="btn-next" onclick="next(7)" disabled id="next7">Suivant →</button>
-    </div>
-  </div>
+<div id="result-section">
+  <div id="confirmation-client"></div>
+</div>
 
-  <!-- ══ Q8 — EXPÉRIENCE ══ -->
-  <div class="q-card" id="q8">
-    <div class="q-number">Question 08 / 10</div>
-    <div class="q-title">Quelle est votre expérience en investissement ?</div>
-    <div class="q-hint">Sans jugement — permet d'adapter le niveau d'explication du portefeuille.</div>
-    <div class="options">
-      <div class="opt" onclick="select(this,'q8','debutant')">
-        <span class="opt-icon">🌱</span>
-        <div><div class="opt-label">Débutant</div><div class="opt-desc">Je commence, je n'ai pas encore investi en bourse</div></div>
-      </div>
-      <div class="opt" onclick="select(this,'q8','intermediaire')">
-        <span class="opt-icon">📚</span>
-        <div><div class="opt-label">Intermédiaire</div><div class="opt-desc">J'ai déjà investi, je connais les bases</div></div>
-      </div>
-      <div class="opt" onclick="select(this,'q8','avance')">
-        <span class="opt-icon">🎯</span>
-        <div><div class="opt-label">Avancé</div><div class="opt-desc">Je suis à l'aise avec les marchés financiers</div></div>
-      </div>
-    </div>
-    <div class="q-nav">
-      <button class="btn-back" onclick="back(8)">← Retour</button>
-      <button class="btn-next" onclick="next(8)" disabled id="next8">Suivant →</button>
-    </div>
-  </div>
-
-  <!-- ══ Q9 — CONTRAINTES ══ -->
-  <div class="q-card" id="q9">
-    <div class="q-number">Question 09 / 10</div>
-    <div class="q-title">Avez-vous des contraintes ou préférences particulières ?</div>
-    <div class="q-hint">Plusieurs choix possibles. Ces éléments seront intégrés dans la construction.</div>
-    <div class="options" id="q9-opts">
-      <div class="opt multi" onclick="toggleMulti(this,'q9','esg')">
-        <span class="opt-icon">🌿</span>
-        <div><div class="opt-label">Investissement responsable (ESG)</div><div class="opt-desc">Privilégier des ETF à critères environnementaux et sociaux</div></div>
-      </div>
-      <div class="opt multi" onclick="toggleMulti(this,'q9','pas-tech')">
-        <span class="opt-icon">🚫</span>
-        <div><div class="opt-label">Éviter le secteur technologique</div><div class="opt-desc">Pas d'exposition forte aux GAFAM</div></div>
-      </div>
-      <div class="opt multi" onclick="toggleMulti(this,'q9','dividendes')">
-        <span class="opt-icon">💵</span>
-        <div><div class="opt-label">Maximiser les dividendes</div><div class="opt-desc">Privilégier les ETF à haut rendement de dividendes</div></div>
-      </div>
-      <div class="opt multi" onclick="toggleMulti(this,'q9','or')">
-        <span class="opt-icon">🥇</span>
-        <div><div class="opt-label">Inclure de l'or / métaux précieux</div><div class="opt-desc">Couverture contre l'inflation et les crises</div></div>
-      </div>
-      <div class="opt multi" onclick="toggleMulti(this,'q9','immobilier')">
-        <span class="opt-icon">🏢</span>
-        <div><div class="opt-label">Inclure de l'immobilier (REIT)</div><div class="opt-desc">Exposition à l'immobilier coté via des foncières</div></div>
-      </div>
-      <div class="opt multi" onclick="toggleMulti(this,'q9','aucune')">
-        <span class="opt-icon">✅</span>
-        <div><div class="opt-label">Aucune contrainte particulière</div><div class="opt-desc">Laisser le conseiller construire librement</div></div>
-      </div>
-    </div>
-    <div class="q-nav">
-      <button class="btn-back" onclick="back(9)">← Retour</button>
-      <button class="btn-next" onclick="next(9)" id="next9">Suivant →</button>
-    </div>
-  </div>
-
-  <!-- ══ Q10 — COMMENTAIRE LIBRE ══ -->
-  <div class="q-card" id="q10">
-    <div class="q-number">Question 10 / 10</div>
-    <div class="q-title">Y a-t-il autre chose d'important à savoir sur votre situation ?</div>
-    <div class="q-hint">Optionnel mais précieux — contexte de vie, projets, événements à venir, situation familiale, etc.</div>
-    <div class="inp-group">
-      <textarea class="inp" id="q10-text" placeholder="Ex : Je pars à la retraite dans 7 ans. J'ai déjà un PEA ouvert depuis 3 ans avec 45 000€. Je veux générer 800€/mois de rente à partir de 62 ans..." rows="5" oninput="answers.q10=this.value"></textarea>
-    </div>
-    <div class="q-nav">
-      <button class="btn-back" onclick="back(10)">← Retour</button>
-      <button class="btn-next" onclick="generatePortfolio()" id="next10" style="background:var(--cta);padding:13px 28px;font-size:12px">
-        🎯 Générer mon portefeuille →
-      </button>
-    </div>
-  </div>
-
-  <!-- ══ RÉSULTAT ══ -->
-  <div id="result-section">
-    <div class="result-loading" id="loading-state">
-      <div class="loading-icon">⚙️</div>
-      <div class="loading-title">Construction de votre portefeuille en cours…</div>
-      <div style="font-size:13px;color:var(--text3);font-weight:300">Michael analyse vos réponses et sélectionne vos ETF</div>
-      <div class="loading-steps">
-        <div class="loading-step active" id="ls1"><div class="dot"></div>Analyse de votre profil investisseur</div>
-        <div class="loading-step" id="ls2"><div class="dot"></div>Sélection des classes d'actifs</div>
-        <div class="loading-step" id="ls3"><div class="dot"></div>Construction de l'allocation</div>
-        <div class="loading-step" id="ls4"><div class="dot"></div>Optimisation fiscale</div>
-        <div class="loading-step" id="ls5"><div class="dot"></div>Rédaction des recommandations</div>
-      </div>
-    </div>
-
-    <!-- CONFIRMATION CLIENT -->
-    <div id="confirmation-client" style="display:none">
-      <div style="background:var(--white);border:1px solid var(--border2);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);">
-        <div style="background:var(--cta);padding:2rem 2.25rem;text-align:center">
-          <div style="font-size:48px;margin-bottom:.75rem">✅</div>
-          <div style="font-family:'Cormorant Garamond',serif;font-size:26px;color:white;font-weight:400;margin-bottom:.5rem">Votre demande a bien été reçue !</div>
-          <div style="font-size:13px;color:rgba(255,255,255,.75);font-weight:300">Nous allons construire votre portefeuille ETF personnalisé</div>
-        </div>
-        <div style="padding:2rem 2.25rem">
-          <div style="font-size:10px;color:var(--gold);font-family:'DM Mono',monospace;letter-spacing:.16em;text-transform:uppercase;margin-bottom:1rem">Ce que vous allez recevoir</div>
-          <div style="display:grid;gap:.625rem;margin-bottom:1.75rem">
-            <div style="display:flex;gap:.75rem;align-items:flex-start;padding:.75rem 1rem;background:var(--cta-pale);border-radius:7px;border:1px solid rgba(26,107,69,.15)">
-              <span style="color:var(--cta);font-weight:700;flex-shrink:0">✓</span>
-              <div><strong style="font-size:13px;color:var(--ink)">Portefeuille 4 à 6 ETF sélectionnés sur mesure</strong><div style="font-size:12px;color:var(--text3);font-weight:300;margin-top:2px">Chaque ETF choisi pour votre profil, votre fiscalité et votre horizon</div></div>
-            </div>
-            <div style="display:flex;gap:.75rem;align-items:flex-start;padding:.75rem 1rem;background:var(--cta-pale);border-radius:7px;border:1px solid rgba(26,107,69,.15)">
-              <span style="color:var(--cta);font-weight:700;flex-shrink:0">✓</span>
-              <div><strong style="font-size:13px;color:var(--ink)">Répartition précise en pourcentage</strong><div style="font-size:12px;color:var(--text3);font-weight:300;margin-top:2px">Combien investir dans chaque ligne — prêt à exécuter</div></div>
-            </div>
-            <div style="display:flex;gap:.75rem;align-items:flex-start;padding:.75rem 1rem;background:var(--cta-pale);border-radius:7px;border:1px solid rgba(26,107,69,.15)">
-              <span style="color:var(--cta);font-weight:700;flex-shrink:0">✓</span>
-              <div><strong style="font-size:13px;color:var(--ink)">Rôle détaillé de chaque ETF</strong><div style="font-size:12px;color:var(--text3);font-weight:300;margin-top:2px">Pourquoi cet ETF, ce qu'il apporte à votre allocation</div></div>
-            </div>
-            <div style="display:flex;gap:.75rem;align-items:flex-start;padding:.75rem 1rem;background:var(--cta-pale);border-radius:7px;border:1px solid rgba(26,107,69,.15)">
-              <span style="color:var(--cta);font-weight:700;flex-shrink:0">✓</span>
-              <div><strong style="font-size:13px;color:var(--ink)">Strategie d entree personnalisee</strong><div style="font-size:12px;color:var(--text3);font-weight:300;margin-top:2px">One shot ou DCA mensuel avec montants indicatifs</div></div>
-            </div>
-            <div style="display:flex;gap:.75rem;align-items:flex-start;padding:.75rem 1rem;background:var(--cta-pale);border-radius:7px;border:1px solid rgba(26,107,69,.15)">
-              <span style="color:var(--cta);font-weight:700;flex-shrink:0">✓</span>
-              <div><strong style="font-size:13px;color:var(--ink)">3 scénarios de marché</strong><div style="font-size:12px;color:var(--text3);font-weight:300;margin-top:2px">Prudent / Neutre / Dynamique avec projections chiffrées</div></div>
-            </div>
-            <div style="display:flex;gap:.75rem;align-items:flex-start;padding:.75rem 1rem;background:var(--cta-pale);border-radius:7px;border:1px solid rgba(26,107,69,.15)">
-              <span style="color:var(--cta);font-weight:700;flex-shrink:0">✓</span>
-              <div><strong style="font-size:13px;color:var(--ink)">Plan de suivi et rééquilibrage</strong><div style="font-size:12px;color:var(--text3);font-weight:300;margin-top:2px">Fréquence recommandée, seuils d'alerte, règles simples</div></div>
-            </div>
-            <div style="display:flex;gap:.75rem;align-items:flex-start;padding:.75rem 1rem;background:var(--cta-pale);border-radius:7px;border:1px solid rgba(26,107,69,.15)">
-              <span style="color:var(--cta);font-weight:700;flex-shrink:0">✓</span>
-              <div><strong style="font-size:13px;color:var(--ink)">Note fiscale adaptée à votre enveloppe</strong><div style="font-size:12px;color:var(--text3);font-weight:300;margin-top:2px">Optimisation PEA / CTO selon votre situation</div></div>
-            </div>
-            <div style="display:flex;gap:.75rem;align-items:flex-start;padding:.75rem 1rem;background:var(--gold-pale);border-radius:7px;border:1px solid var(--border)">
-              <span style="color:var(--gold);font-weight:700;flex-shrink:0">✓</span>
-              <div><strong style="font-size:13px;color:var(--ink)">Ordres précis à passer chez votre courtier</strong><div style="font-size:12px;color:var(--text3);font-weight:300;margin-top:2px">Les instructions exactes pour investir immédiatement</div></div>
-            </div>
-          </div>
-          <div style="background:var(--dark);border-radius:8px;padding:1.25rem 1.5rem;display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem">
-            <span style="font-size:28px;flex-shrink:0">⏱️</span>
-            <div>
-              <div style="font-size:13px;font-weight:500;color:var(--gold2)">Délai de livraison : sous 48h</div>
-              <div style="font-size:12px;color:rgba(255,255,255,.5);font-weight:300;margin-top:3px">Votre portefeuille est construit à la main par Michael — traitement manuel et personnalisé</div>
-            </div>
-          </div>
-          <div style="text-align:center;padding:1rem;background:var(--paper);border-radius:8px;border:1px solid var(--border2)">
-            <div style="font-size:12px;color:var(--text3);font-weight:300">Une question ? Contactez-nous directement</div>
-            <a href="https://wa.me/33640939078" style="display:inline-flex;align-items:center;gap:6px;margin-top:.5rem;font-size:13px;color:var(--cta);font-weight:500;text-decoration:none">
-              💬 WhatsApp : (+33) 6 40 93 90 78
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="portfolio-result" id="portfolio-result" style="display:none">
-      <div class="portfolio-header">
-        <div class="portfolio-eyebrow">ETF Blueprint · Portefeuille personnalisé</div>
-        <div class="portfolio-title" id="portfolio-title">Votre allocation sur mesure</div>
-        <div class="portfolio-sub" id="portfolio-sub">Généré à partir de vos 10 réponses</div>
-      </div>
-      <div class="portfolio-body">
-        <div class="result-content" id="result-content"></div>
-        <div class="error-banner" id="error-banner">Une erreur est survenue lors de la génération. Veuillez réessayer.</div>
-      </div>
-      <div class="portfolio-actions">
-        <button class="btn-print" onclick="window.print()">🖨️ Imprimer / Sauvegarder PDF</button>
-        <button class="btn-restart" onclick="restart()">↺ Refaire le questionnaire</button>
-        <a href="checkout.html?formule=premium" style="padding:10px 20px;background:var(--cta);color:white;font-family:'Jost',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;border-radius:5px;text-decoration:none;display:inline-flex;align-items:center;gap:6px">
-          🌐 Obtenir mon portail Premium →
-        </a>
-      </div>
-    </div>
-  </div>
-
-</div><!-- /main -->
+</div>
 
 <script>
+const answers={q1:"",q2:"",q3:"",q4:"",q5:"",q5detail:"",q6:"",revenuMontant:"",q7:"",q7existants:[],q8:"",q9:[],exclusionsLibres:"",q10:"",prefLibre:"",q11:"",q11detail:"",formule:"premium"};
+const urlP=new URLSearchParams(window.location.search);
+answers.formule=urlP.get("formule")||"premium";
+const TOTAL=11;
+const progressLabels=["Objectif principal","Horizon","Liquidite du capital","Capital a investir","Residence fiscale","Revenus mensuels","Placements existants","Niveau en investissement","Exclusions","Preferences geo/sectorielles","Evenement de vie"];
 
-// ══ GESTION CLÉ API ══
-function getApiKey() {
-  let key = localStorage.getItem('etf_api_key');
-  if (!key) {
-    key = prompt('Clé API Anthropic (confidentielle — stockée localement) :');
-    if (key && key.startsWith('sk-ant-')) {
-      localStorage.setItem('etf_api_key', key);
-    }
+function sel(el,qId,value){
+  document.querySelectorAll("#"+qId+" .opt:not(.multi):not(.multi-sub)").forEach(o=>o.classList.remove("selected"));
+  el.classList.add("selected");
+  answers[qId]=value;
+  const n=qId.replace("q","");
+  const btn=document.getElementById("next"+n);
+  if(btn)btn.disabled=false;
+}
+
+function selRevenu(el,value){
+  document.querySelectorAll("#q6 .opt").forEach(o=>o.classList.remove("selected"));
+  el.classList.add("selected");
+  answers.q6=value;
+  document.getElementById("revenu-field").classList.toggle("visible",value==="oui");
+  document.getElementById("next6").disabled=false;
+}
+
+function selExistant(el,value){
+  document.querySelectorAll("#q7-opts .opt").forEach(o=>o.classList.remove("selected"));
+  el.classList.add("selected");
+  answers.q7=value;
+  const showSub=(value==="quelques"||value==="portefeuille");
+  document.getElementById("sub-q7").classList.toggle("visible",showSub);
+  document.getElementById("next7").disabled=false;
+}
+
+const q7SubSet=new Set();
+function toggleSub(el,value){
+  if(el.classList.contains("selected")){el.classList.remove("selected");q7SubSet.delete(value);}
+  else{el.classList.add("selected");q7SubSet.add(value);}
+  answers.q7existants=[...q7SubSet];
+}
+
+const q9Set=new Set();
+function toggleMulti(el,value){
+  if(value==="aucune"){
+    q9Set.clear();
+    document.querySelectorAll("#q9-opts .opt").forEach(o=>o.classList.remove("selected"));
+    el.classList.add("selected");q9Set.add("aucune");
+  }else{
+    document.querySelectorAll("#q9-opts .opt").forEach(o=>{if(o.getAttribute("onclick")&&o.getAttribute("onclick").includes("aucune"))o.classList.remove("selected");});
+    q9Set.delete("aucune");
+    if(el.classList.contains("selected")){el.classList.remove("selected");q9Set.delete(value);}
+    else{el.classList.add("selected");q9Set.add(value);}
   }
-  return key;
+  answers.q9=[...q9Set];
 }
 
-// ══ STATE ══
-const answers = {
-  q1:'', q2:'', q3:'', q4:'', q5:'', q6:'', q7:'', q8:'',
-  q9:[], q10:'', formule:'premium'
-};
-
-// Récupérer la formule depuis l'URL
-const urlParams = new URLSearchParams(window.location.search);
-answers.formule = urlParams.get('formule') || 'premium';
-
-const progressLabels = [
-  'Objectif principal','Horizon de placement','Capital à investir',
-  'Tolérance au risque','Enveloppe fiscale','Préférence de revenus',
-  'Situation personnelle','Expérience','Contraintes','Informations complémentaires'
-];
-
-// ══ SINGLE SELECT ══
-function select(el, qId, value) {
-  document.querySelectorAll('#'+qId+' .opt:not(.multi)').forEach(o => o.classList.remove('selected'));
-  el.classList.add('selected');
-  answers[qId] = value;
-  const btn = document.getElementById('next'+qId.replace('q',''));
-  if(btn) btn.disabled = false;
+function next(n){
+  document.getElementById("q"+n).classList.remove("active");
+  if(n<TOTAL){document.getElementById("q"+(n+1)).classList.add("active");updateProgress(n+1);}
 }
-
-// ══ MULTI SELECT (Q9) ══
-const q9Selected = new Set();
-function toggleMulti(el, qId, value) {
-  if(value === 'aucune') {
-    // désélectionne tout sauf aucune
-    q9Selected.clear();
-    document.querySelectorAll('#q9-opts .opt').forEach(o => o.classList.remove('selected'));
-    el.classList.add('selected');
-    q9Selected.add('aucune');
-  } else {
-    // désélectionne "aucune" si présent
-    document.querySelectorAll('#q9-opts .opt').forEach(o => {
-      if(o.onclick && o.onclick.toString().includes("'aucune'")) o.classList.remove('selected');
-    });
-    q9Selected.delete('aucune');
-    if(el.classList.contains('selected')) {
-      el.classList.remove('selected');
-      q9Selected.delete(value);
-    } else {
-      el.classList.add('selected');
-      q9Selected.add(value);
-    }
-  }
-  answers.q9 = [...q9Selected];
-}
-
-// ══ NAVIGATION ══
-function next(n) {
-  document.getElementById('q'+n).classList.remove('active');
-  if(n < 10) {
-    document.getElementById('q'+(n+1)).classList.add('active');
-    updateProgress(n+1);
-  }
-}
-
-function back(n) {
-  document.getElementById('q'+n).classList.remove('active');
-  document.getElementById('q'+(n-1)).classList.add('active');
+function back(n){
+  document.getElementById("q"+n).classList.remove("active");
+  document.getElementById("q"+(n-1)).classList.add("active");
   updateProgress(n-1);
 }
-
-function updateProgress(n) {
-  const pct = (n / 10) * 100;
-  document.getElementById('progress-fill').style.width = pct+'%';
-  document.getElementById('step-label').textContent = 'Question '+n+' / 10';
-  document.getElementById('progress-label').textContent = progressLabels[n-1];
+function updateProgress(n){
+  document.getElementById("progress-fill").style.width=(n/TOTAL*100)+"%";
+  document.getElementById("step-label").textContent="Question "+n+" / "+TOTAL;
+  document.getElementById("progress-label").textContent=progressLabels[n-1];
 }
 
-// ══ GENERATE PORTFOLIO ══
 function generatePortfolio(){
-  // Masquer toutes les questions
-  for(let i=1;i<=10;i++) document.getElementById('q'+i).classList.remove('active');
-  
-  // Afficher la section résultat
-  document.getElementById('result-section').style.display='block';
-  document.getElementById('loading-state').style.display='none';
-  document.getElementById('portfolio-result').style.display='none';
-  
-  // Envoyer email à Michael
-  sendEmailNotification('');
-  
-  // Afficher la confirmation client
+  for(let i=1;i<=TOTAL;i++)document.getElementById("q"+i).classList.remove("active");
+  document.getElementById("result-section").style.display="block";
+  sendEmailNotification();
   showConfirmation();
-  
-  window.scrollTo({top:0,behavior:'smooth'});
+  window.scrollTo({top:0,behavior:"smooth"});
 }
 
 function showConfirmation(){
-  const mapQ1={revenus:'Générer des revenus',croissance:'Faire croître le capital',capitalisation:'Intérêts composés',performance:'Performance maximale',preservation:'Préserver le patrimoine',mix:'Mix des approches'};
-  const mapQ2={'moins3ans':'Moins de 3 ans','3-10ans':'3 à 10 ans','plus10ans':'Plus de 10 ans'};
-  const mapQ3={securise:'Prudent',attends:'Équilibré',renforce:'Dynamique'};
-  const mapQ4={oneshot:'One shot','mensuel':'DCA mensuel','les-deux':'One shot + DCA mensuel'};
-  const mapQ5={pea:'PEA','pea-cto':'PEA + CTO',international:'CTO International','les-deux':'PEA + International'};
-  const mapQ7={priorite:'Priorité absolue',important:'Important',secondaire:'Secondaire'};
-  const mapQ8={'priorite-esg':'ESG prioritaire','secondaire-esg':'ESG secondaire','non-esg':'Aucune contrainte ESG'};
-  const mapQ10={libre:'Aucune préférence',regions:'Régions spécifiques',secteurs:'Secteurs spécifiques',eviter:'Éviter certaines zones'};
-  const exclus=answers.q9.length>0&&!answers.q9.includes('aucune')?answers.q9.join(', '):'Aucune';
-  const revenu=answers.q6==='oui'?'Oui'+(answers.revenuMontant?' — '+answers.revenuMontant+'€/mois':''):'Non';
-  const date=new Date().toLocaleDateString('fr-FR');
-  const ref='ETF-'+Date.now().toString().slice(-6);
+  const mapQ1={revenus:"Générer des revenus",croissance:"Faire croître le capital",capitalisation:"Intérêts composés",retraite:"Préparer la retraite",performance:"Performance maximale",preservation:"Préserver le patrimoine"};
+  const mapQ2={"moins3ans":"Moins de 3 ans","3-7ans":"3 à 7 ans","7-15ans":"7 à 15 ans","plus15ans":"Plus de 15 ans"};
+  const mapQ3={non:"Non - epargne long terme","peu-probable":"Peu probable",possible:"Possible 3-5 ans",oui:"Oui - sous 2 ans"};
+  const mapQ4={"moins10k":"< 10 000","10k-50k":"10 000 - 50 000","50k-150k":"50 000 - 150 000","150k-500k":"150 000 - 500 000","500k+":"> 500 000"};
+  const mapQ5={france:"France (PEA)","benelux-suisse":"Belgique/Luxembourg/Suisse",israel:"Israel/Moyen-Orient","uk-usa":"UK/USA","europe-autre":"Europe autre",autre:"Autre pays"};
+  const mapQ7={non:"Zéro — je pars de zéro",livrets:"Livrets/AV uniquement",quelques:"Quelques ETF/actions",portefeuille:"Portefeuille structuré"};
+  const mapQ8={debutant:"Débutant complet",curieux:"Curieux",intermediaire:"Intermédiaire",avance:"Avancé",expert:"Expert"};
+  const mapQ10={libre:"Aucune preference",regions:"Regions specifiques",secteurs:"Secteurs specifiques",eviter:"Eviter certaines zones"};
+  const mapQ11={rien:"Aucun projet",immo:"Achat immobilier","retraite-proche":"Retraite < 5 ans",transmission:"Transmission patrimoniale","autre-projet":"Autre projet"};
+  const exclus=answers.q9.length>0&&!answers.q9.includes("aucune")?answers.q9.join(", "):"Aucune";
+  const revenu=answers.q6==="oui"?"Oui"+(answers.revenuMontant?" - "+answers.revenuMontant+"/mois":""):"Non";
+  const date=new Date().toLocaleDateString("fr-FR");
+  const ref="ETF-"+Date.now().toString().slice(-6);
 
   const recap=[
-    {l:'Objectif',v:mapQ1[answers.q1]||answers.q1},
-    {l:'Horizon',v:mapQ2[answers.q2]||answers.q2},
-    {l:'Profil risque',v:mapQ3[answers.q3]||answers.q3},
-    {l:'Mode investissement',v:mapQ4[answers.q4]||answers.q4},
-    {l:'Enveloppe fiscale',v:mapQ5[answers.q5]||answers.q5},
-    {l:'Revenus mensuels',v:revenu},
-    {l:'Sensibilité aux frais',v:mapQ7[answers.q7]||answers.q7},
-    {l:'Critères ESG',v:mapQ8[answers.q8]||answers.q8},
-    {l:'Exclusions',v:exclus},
-    {l:'Préférences',v:mapQ10[answers.q10]||answers.q10||'Aucune'},
-    {l:'Formule',v:answers.formule.toUpperCase()},
+    {l:"Objectif",v:mapQ1[answers.q1]||answers.q1},
+    {l:"Horizon",v:mapQ2[answers.q2]||answers.q2},
+    {l:"Liquidite",v:mapQ3[answers.q3]||answers.q3},
+    {l:"Capital",v:(mapQ4[answers.q4]||answers.q4)+" EUR"},
+    {l:"Residence fiscale",v:(mapQ5[answers.q5]||answers.q5)+(answers.q5detail?" - "+answers.q5detail:"")},
+    {l:"Revenus mensuels",v:revenu},
+    {l:"Placements existants",v:mapQ7[answers.q7]||answers.q7},
+    {l:"Niveau",v:mapQ8[answers.q8]||answers.q8},
+    {l:"Exclusions",v:exclus},
+    {l:"Preferences",v:mapQ10[answers.q10]||answers.q10||"Aucune"},
+    {l:"Projet a venir",v:(mapQ11[answers.q11]||answers.q11||"Aucun")+(answers.q11detail?" - "+answers.q11detail:"")},
+    {l:"Formule",v:answers.formule.toUpperCase()},
   ];
 
-  const recapHTML=recap.map(r=>`<div style="display:flex;justify-content:space-between;align-items:center;padding:.625rem 0;border-bottom:1px solid rgba(155,125,58,.08);font-size:13px"><span style="color:var(--text3);font-family:'DM Mono',monospace;font-size:11px">${r.l}</span><span style="color:var(--text);font-weight:500;text-align:right;max-width:60%">${r.v||'—'}</span></div>`).join('');
+  const recapHTML=recap.map(r=>"<div style='display:flex;justify-content:space-between;align-items:flex-start;padding:.625rem 0;border-bottom:1px solid rgba(155,125,58,.08);font-size:13px;gap:1rem'><span style='color:var(--text3);font-family:DM Mono,monospace;font-size:10px;flex-shrink:0'>"+r.l+"</span><span style='color:var(--text);font-weight:500;text-align:right'>"+( r.v||"—")+"</span></div>").join("");
 
-  document.getElementById('confirmation-client').style.display='block';
-  document.getElementById('confirmation-client').innerHTML=`
-    <div style="background:white;border:1px solid var(--border2);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)">
-      <div style="background:var(--cta);padding:2rem 2.25rem;text-align:center">
-        <div style="font-size:48px;margin-bottom:.75rem">✅</div>
-        <div style="font-family:'Cormorant Garamond',serif;font-size:26px;color:white;font-weight:400;margin-bottom:.375rem">Demande bien enregistrée !</div>
-        <div style="font-size:12px;color:rgba(255,255,255,.7);font-weight:300">Référence : ${ref} · ${date}</div>
-      </div>
-      <div style="background:#FBF6EA;border-bottom:1px solid var(--border2);padding:1rem 2rem;display:flex;align-items:center;gap:.75rem">
-        <span style="font-size:20px">🛡️</span>
-        <div style="font-size:13px;color:var(--text);font-weight:400"><strong>Livraison garantie sous 48h</strong> — ou remboursement intégral sans condition</div>
-      </div>
-      <div style="padding:1.75rem 2rem">
-        <div style="font-size:9px;color:var(--gold);font-family:'DM Mono',monospace;letter-spacing:.16em;text-transform:uppercase;margin-bottom:1rem">Récapitulatif de votre commande</div>
-        ${recapHTML}
-      </div>
-      <div style="padding:0 2rem 1.75rem">
-        <div style="font-size:9px;color:var(--gold);font-family:'DM Mono',monospace;letter-spacing:.16em;text-transform:uppercase;margin-bottom:1rem">Ce que vous allez recevoir</div>
-        <div style="display:grid;gap:.5rem">
-          ${['Portefeuille 4 à 6 ETF sélectionnés sur mesure','Répartition précise en % — prête à exécuter','Rôle détaillé de chaque ETF','Strategie d entree personnalisee','3 scénarios de marché : prudent / neutre / dynamique','Plan de suivi et rééquilibrage','Note fiscale adaptée à votre enveloppe','Ordres précis à passer chez votre courtier'].map(item=>`<div style="display:flex;gap:.75rem;align-items:center;font-size:13px;color:var(--text2);font-weight:300;padding:.5rem .875rem;background:var(--cta-pale);border-radius:6px"><span style="color:var(--cta);font-weight:700;flex-shrink:0">✓</span>${item}</div>`).join('')}
-        </div>
-      </div>
-      <div style="background:var(--dark);padding:1.25rem 2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem">
-        <div style="display:flex;align-items:center;gap:.75rem">
-          <span style="font-size:24px">⏱️</span>
-          <div>
-            <div style="font-size:13px;font-weight:500;color:var(--gold2)">Livraison sous 48h</div>
-            <div style="font-size:11px;color:rgba(255,255,255,.4);font-weight:300">Portefeuille construit à la main par Michael</div>
-          </div>
-        </div>
-        <a href="https://wa.me/33640939078" style="display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--gold2);text-decoration:none;font-weight:500">💬 Une question ? WhatsApp</a>
-      </div>
-      <div style="padding:1.25rem 2rem;border-top:1px solid var(--border2);text-align:center">
-        <button onclick="window.print()" style="padding:11px 24px;background:var(--dark);color:var(--gold2);font-family:'Jost',sans-serif;font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;border:1px solid rgba(196,163,90,.3);border-radius:5px;cursor:pointer;margin-right:.75rem">🖨️ Imprimer / Sauvegarder PDF</button>
-        <a href="index.html" style="padding:11px 24px;background:transparent;color:var(--text3);font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;border:1.5px solid var(--border);border-radius:5px;text-decoration:none">← Retour au site</a>
-      </div>
-    </div>`;
+  document.getElementById("confirmation-client").style.display="block";
+  document.getElementById("confirmation-client").innerHTML="<div style='background:white;border:1px solid var(--border2);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)'><div style='background:var(--cta);padding:2rem 2.25rem;text-align:center'><div style='font-size:48px;margin-bottom:.75rem'>&#9989;</div><div style='font-family:Cormorant Garamond,serif;font-size:26px;color:white;font-weight:400;margin-bottom:.375rem'>Demande bien enregistree !</div><div style='font-size:12px;color:rgba(255,255,255,.7);font-weight:300'>Reference : "+ref+" &middot; "+date+"</div></div><div style='background:#FBF6EA;border-bottom:1px solid var(--border2);padding:1rem 2rem;display:flex;align-items:center;gap:.75rem'><span style='font-size:20px'>&#128737;&#65039;</span><div style='font-size:13px;color:var(--text)'><strong>Livraison garantie sous 48h</strong> &mdash; ou remboursement integral sans condition</div></div><div style='padding:1.75rem 2rem'><div style='font-size:9px;color:var(--gold);font-family:DM Mono,monospace;letter-spacing:.16em;text-transform:uppercase;margin-bottom:1rem'>Recapitulatif de votre commande</div>"+recapHTML+"</div><div style='padding:0 2rem 1.75rem'><div style='font-size:9px;color:var(--gold);font-family:DM Mono,monospace;letter-spacing:.16em;text-transform:uppercase;margin-bottom:1rem'>Ce que vous allez recevoir</div><div style='display:grid;gap:.5rem'>"+["Portefeuille 4 a 6 ETF selectionnes sur mesure","Repartition precise en % - prete a executer","Role detaille de chaque ETF en langage clair","Strategie entree personnalisee (one shot ou DCA)","3 scenarios de marche : prudent / neutre / dynamique","Plan de suivi et reequilibrage","Note fiscale adaptee a votre situation","Ordres precis a passer chez votre courtier","Lexique des termes financiers expliques simplement"].map(item=>"<div style='display:flex;gap:.75rem;align-items:center;font-size:13px;color:var(--text2);font-weight:300;padding:.5rem .875rem;background:var(--cta-pale);border-radius:6px'><span style='color:var(--cta);font-weight:700;flex-shrink:0'>&#10003;</span>"+item+"</div>").join("")+"</div></div><div style='background:var(--dark);padding:1.25rem 2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem'><div style='display:flex;align-items:center;gap:.75rem'><span style='font-size:24px'>&#9201;&#65039;</span><div><div style='font-size:13px;font-weight:500;color:var(--gold2)'>Livraison sous 48h</div><div style='font-size:11px;color:rgba(255,255,255,.4);font-weight:300'>Portefeuille construit a la main par Michael</div></div></div><a href='https://wa.me/33640939078' style='display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--gold2);text-decoration:none;font-weight:500'>&#128172; Une question ? WhatsApp</a></div><div style='padding:1.25rem 2rem;border-top:1px solid var(--border2);text-align:center'><button onclick='window.print()' style='padding:11px 24px;background:var(--dark);color:var(--gold2);font-family:Jost,sans-serif;font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;border:1px solid rgba(196,163,90,.3);border-radius:5px;cursor:pointer;margin-right:.75rem'>&#128424;&#65039; Imprimer / PDF</button><a href='index.html' style='padding:11px 24px;background:transparent;color:var(--text3);font-family:Jost,sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;border:1.5px solid var(--border);border-radius:5px;text-decoration:none'>← Retour au site</a></div></div>";
 }
 
+function sendEmailNotification(){
+  const mapQ1={revenus:"Revenus",croissance:"Croissance capital",capitalisation:"Intérêts composés",retraite:"Retraite",performance:"Performance maximale",preservation:"Preservation"};
+  const mapQ2={"moins3ans":"Moins de 3 ans","3-7ans":"3-7 ans","7-15ans":"7-15 ans","plus15ans":"Plus de 15 ans"};
+  const mapQ3={non:"Non - LT","peu-probable":"Peu probable",possible:"3-5 ans",oui:"Oui <2 ans"};
+  const mapQ4={"moins10k":"<10k","10k-50k":"10-50k","50k-150k":"50-150k","150k-500k":"150-500k","500k+":">500k"};
+  const mapQ5={france:"France (PEA)","benelux-suisse":"Benelux/Suisse",israel:"Israel",autres:"UK/USA","europe-autre":"Europe","uk-usa":"UK/USA",autre:"Autre"};
+  const mapQ7={non:"Zéro — je pars de zéro",livrets:"Livrets / Assurance-vie",quelques:"Quelques ETF / actions",portefeuille:"Portefeuille structuré"};
+  const mapQ8={debutant:"Débutant",curieux:"Curieux",intermediaire:"Intermédiaire",avance:"Avancé",expert:"Expert"};
+  const mapQ10={libre:"Libre",regions:"Regions",secteurs:"Secteurs",eviter:"Eviter zones"};
+  const mapQ11={rien:"Aucun projet",immo:"Achat immobilier","retraite-proche":"Retraite dans moins de 5 ans",transmission:"Transmission patrimoniale","autre-projet":"Autre projet"};
+  const exclus=answers.q9.length>0&&!answers.q9.includes("aucune")?answers.q9.join(", "):"Aucune";
+  const revenu=answers.q6==="oui"?"Oui"+(answers.revenuMontant?" "+answers.revenuMontant+"e/mois":""):"Non";
+  const existants=answers.q7existants.length>0?answers.q7existants.join(", "):"";
 
-function buildPrompt() {
-  const map = {
-    q1:{
-      retraite:'Préparer sa retraite', revenus:'Générer des revenus complémentaires',
-      patrimoine:'Constituer/faire fructifier son patrimoine', transmission:'Transmission patrimoniale',
-      tresorerie:'Faire fructifier une trésorerie'
-    },
-    q4:{
-      'tres-prudent':'Très prudent (vend en cas de baisse)','prudent':'Prudent (inquiet mais attend)',
-      'equilibre':'Équilibré (calme, attend la remontée)','dynamique':'Dynamique (renforce en cas de baisse)'
-    },
-    q5:{
-      pea:'PEA',cto:'CTO (Compte-titres ordinaire)','pea-cto':'PEA + CTO combinés',
-      'assurance-vie':'Assurance-vie en UC','pas-sur':'À déterminer'
-    },
-    q6:{
-      'revenus-reguliers':'Revenus réguliers (ETF distribuants)','capitalisation':'Capitalisation (ETF accumulants)',
-      'mixte':'Mix revenus + capitalisation'
-    },
-    q7:{
-      salarie:'Salarié',independant:'Indépendant/entrepreneur',retraite:'Retraité',
-      'pre-retraite':'Pré-retraite (5-10 ans)',investisseur:'Investisseur actif',autre:'Autre'
-    },
-    q8:{debutant:'Débutant',intermediaire:'Intermédiaire',avance:'Avancé'}
-  };
+  const msg=[
+    "NOUVEAU QUESTIONNAIRE ETF BLUEPRINT",
+    "=====================================",
+    "",
+    "Q1 Objectif : "+(mapQ1[answers.q1]||answers.q1),
+    "Q2 Horizon : "+(mapQ2[answers.q2]||answers.q2),
+    "Q3 Liquidite : "+(mapQ3[answers.q3]||answers.q3),
+    "Q4 Capital : "+(mapQ4[answers.q4]||answers.q4),
+    "Q5 Residence : "+(mapQ5[answers.q5]||answers.q5)+(answers.q5detail?" - "+answers.q5detail:""),
+    "Q6 Revenus mensuels : "+revenu,
+    "Q7 Placements existants : "+(mapQ7[answers.q7]||answers.q7),
+    existants?"  Detail ETF existants : "+existants:"",
+    "Q8 Niveau : "+(mapQ8[answers.q8]||answers.q8),
+    "Q9 Exclusions : "+exclus,
+    answers.exclusionsLibres?"  Detail : "+answers.exclusionsLibres:"",
+    "Q10 Preferences : "+(mapQ10[answers.q10]||answers.q10||"Aucune"),
+    answers.prefLibre?"  Detail : "+answers.prefLibre:"",
+    "Q11 Projet a venir : "+(mapQ11[answers.q11]||answers.q11||"Aucun"),
+    answers.q11detail?"  Detail : "+answers.q11detail:"",
+    "",
+    "Formule : "+answers.formule.toUpperCase(),
+    "Date : "+new Date().toLocaleString("fr-FR")
+  ].filter(Boolean).join("\n");
 
-  const contraintes = answers.q9.length > 0 && !answers.q9.includes('aucune')
-    ? answers.q9.join(', ')
-    : 'Aucune contrainte particulière';
-
-  return `Construis un portefeuille ETF personnalisé pour ce client.
-
-PROFIL CLIENT :
-- Objectif : ${map.q1[answers.q1] || answers.q1}
-- Horizon : ${answers.q2}
-- Capital à investir : ${answers.q3}
-- Tolérance au risque : ${map.q4[answers.q4] || answers.q4}
-- Enveloppe fiscale : ${map.q5[answers.q5] || answers.q5}
-- Préférence de revenus : ${map.q6[answers.q6] || answers.q6}
-- Situation personnelle : ${map.q7[answers.q7] || answers.q7}
-- Expérience : ${map.q8[answers.q8] || answers.q8}
-- Contraintes/préférences : ${contraintes}
-- Informations complémentaires : ${answers.q10 || 'Aucune'}
-- Formule souscrite : ${answers.formule}
-
-STRUCTURE ATTENDUE DE TA RÉPONSE :
-1. Un paragraphe d’introduction (profil resume, logique de construction)
-2. Le portefeuille : entre 4 et 6 ETF avec ticker, nom, allocation % et rôle précis (utilise les div class="etf-row")
-3. La strategie d’entree (one shot ou DCA, montants indicatifs)
-4. 3 scénarios : prudent / neutre / dynamique avec rendements estimés sur ${answers.q2}
-5. Conseils de suivi (frequence de reequilibrage, seuils d’alerte)
-6. Note fiscale adaptee a l’enveloppe ${map.q5[answers.q5] || answers.q5}
-
-Sois précis sur les tickers (MSCI World = CW8 sur PEA, IWDA sur CTO, etc.).`;
-}
-
-// ══ EMAILJS — NOTIFICATION MICHAEL ══
-function sendEmailNotification(portfolioContent) {
-  // Mapping lisible des réponses
-  const mapQ1 = {revenus:'Générer des revenus (ETF distribuants)',croissance:'Faire croître le capital',capitalisation:'Intérêts composés (capitalisation)',performance:'Performance maximale',preservation:'Préserver le patrimoine',mix:'Mix des approches'};
-  const mapQ2 = {'moins3ans':'Moins de 3 ans','3-10ans':'3 à 10 ans','plus10ans':'Plus de 10 ans'};
-  const mapQ3 = {securise:'Prudent — sécurise en cas de baisse',attends:'Équilibré — ne touche à rien',renforce:'Dynamique — renforce en cas de baisse'};
-  const mapQ4 = {oneshot:'One shot (investissement unique)',mensuel:'DCA mensuel','les-deux':'One shot + DCA mensuel'};
-  const mapQ5 = {pea:'PEA (résident français)','pea-cto':'PEA + CTO combinés',international:'CTO International (non-résident)','les-deux':'PEA + version internationale'};
-  const mapQ7 = {priorite:'Priorité absolue (frais les plus bas)',important:'Important mais pas au détriment de la qualité',secondaire:'Secondaire si la stratégie est pertinente'};
-  const mapQ8 = {'priorite-esg':'ESG prioritaire','secondaire-esg':'ESG secondaire','non-esg':'Aucune contrainte ESG'};
-  const mapQ10 = {libre:'Aucune préférence',regions:'Favoriser certaines régions',secteurs:'Favoriser certains secteurs',eviter:'Éviter certaines régions/secteurs'};
-
-  const exclus = answers.q9.length > 0 && !answers.q9.includes('aucune') ? answers.q9.join(', ') : 'Aucune';
-  const revenu = answers.q6 === 'oui' ? 'Oui — ' + (answers.revenuMontant ? answers.revenuMontant + '€/mois' : 'montant non précisé') : 'Non';
-
-  const resumeReponses = [
-    '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━',
-    'NOUVEAU QUESTIONNAIRE SOUMIS',
-    '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━',
-    '',
-    '📋 PROFIL CLIENT',
-    '• Objectif principal : ' + (mapQ1[answers.q1] || answers.q1),
-    '• Horizon : ' + (mapQ2[answers.q2] || answers.q2),
-    '• Comportement face au risque : ' + (mapQ3[answers.q3] || answers.q3),
-    '• Mode investissement : ' + (mapQ4[answers.q4] || answers.q4),
-    '• Enveloppe fiscale : ' + (mapQ5[answers.q5] || answers.q5),
-    '• Revenus mensuels souhaités : ' + revenu,
-    '• Sensibilité aux frais : ' + (mapQ7[answers.q7] || answers.q7),
-    '• Critères ESG : ' + (mapQ8[answers.q8] || answers.q8),
-    '• Exclusions : ' + exclus,
-    answers.exclusionsLibres ? '• Autres exclusions : ' + answers.exclusionsLibres : '',
-    '• Préférences géo/sectorielles : ' + (mapQ10[answers.q10] || answers.q10 || 'Aucune'),
-    answers.prefLibre ? '• Détail : ' + answers.prefLibre : '',
-    '• Formule souscrite : ' + answers.formule.toUpperCase(),
-    '',
-    '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━',
-    '📊 PORTEFEUILLE GÉNÉRÉ',
-    '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━',
-    portfolioContent.replace(/<[^>]+>/g, '').replace(/\s+/g,' ').trim()
-  ].filter(Boolean).join('\n');
-
-  emailjs.send('service_roo405k', 'template_v6otlqo', {
-    to_email: 'assedou@gmail.com',
-    subject: '🎯 ETF Blueprint — Nouveau client · Formule ' + answers.formule.toUpperCase() + ' · ' + new Date().toLocaleDateString('fr-FR'),
-    title: 'Nouveau questionnaire ETF Blueprint',
-    name: 'ETF Blueprint',
-    message: resumeReponses,
-    email: 'assedou@gmail.com',
-    time: new Date().toLocaleString('fr-FR')
-  }).then(() => {
-    console.log('Email envoyé à assedou@gmail.com');
-  }).catch((err) => {
-    console.warn('Erreur email (non bloquant):', err);
-  });
-}
-
-function restart() {
-  answers.q1=''; answers.q2=''; answers.q3=''; answers.q4='';
-  answers.q5=''; answers.q6=''; answers.q7=''; answers.q8='';
-  answers.q9=[]; answers.q10='';
-  q9Selected.clear();
-  document.querySelectorAll('.opt').forEach(o => o.classList.remove('selected'));
-  document.querySelectorAll('.btn-next').forEach(b => {
-    if(b.id !== 'next9' && b.id !== 'next10') b.disabled = true;
-  });
-  document.getElementById('result-section').style.display = 'none';
-  document.getElementById('q1').classList.add('active');
-  updateProgress(1);
+  emailjs.send("service_roo405k","template_v6otlqo",{
+    to_email:"assedou@gmail.com",
+    subject:"ETF Blueprint - Nouveau client - "+answers.formule.toUpperCase()+" - "+new Date().toLocaleDateString("fr-FR"),
+    title:"Nouveau questionnaire ETF Blueprint",
+    name:"ETF Blueprint",
+    message:msg,
+    email:"assedou@gmail.com",
+    time:new Date().toLocaleString("fr-FR")
+  }).then(()=>console.log("OK")).catch(e=>console.warn(e));
 }
 </script>
-
 </body>
 </html>
