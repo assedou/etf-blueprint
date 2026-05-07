@@ -443,6 +443,9 @@ function selectPortfolio(answers) {
 }
 
 function sendEmailNotification(){
+  // Sélection automatique du portefeuille
+  const portfolio = selectPortfolio(answers);
+
   const mapQ1={revenus:"Revenus",croissance:"Croissance capital",capitalisation:"Intérêts composés",retraite:"Retraite",performance:"Performance maximale",preservation:"Preservation"};
   const mapQ2={"moins3ans":"Moins de 3 ans","3-7ans":"3-7 ans","7-15ans":"7-15 ans","plus15ans":"Plus de 15 ans"};
   const mapQ3={non:"Non - LT","peu-probable":"Peu probable",possible:"3-5 ans",oui:"Oui <2 ans"};
