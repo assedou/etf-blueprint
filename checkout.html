@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ETF Blueprint — Finaliser votre commande</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@200;300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-<script src="https://js.stripe.com/v3/"></script>
+
 <style>
 :root {
   --ink: #0A0A0A;
@@ -656,13 +656,28 @@ footer {
 
       <div class="error-msg" id="error-msg"></div>
 
-      <button class="pay-btn" id="pay-btn" onclick="handlePayment()">
+      <button class="pay-btn" id="pay-btn" disabled style="opacity:.4;cursor:not-allowed" onclick="handlePayment()">
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
           <path d="M7 1L1 4v3.5c0 3.6 2.6 6.9 6 7.5 3.4-.6 6-3.9 6-7.5V4L7 1z" stroke="white" stroke-width="1.2" fill="none"/>
         </svg>
         Payer maintenant
         <span class="amount-badge" id="btn-amount">70€</span>
       </button>
+
+      <!-- MESSAGE TEST -->
+      <div style="background:#FBF6EA;border:1px solid rgba(196,163,90,.3);border-radius:6px;padding:.75rem 1rem;margin-bottom:.5rem;text-align:center">
+        <div style="font-size:11px;color:var(--gold);font-weight:500">⚙️ Paiement en cours de configuration</div>
+        <div style="font-size:10px;color:var(--text3);font-weight:300;margin-top:2px">Utilisez le bouton ci-dessous pour tester le questionnaire</div>
+      </div>
+      <!-- BOUTON TEST — À RETIRER EN PRODUCTION -->
+      <div style="text-align:center;margin-top:.75rem">
+        <button id="bypass-btn" onclick="
+          const f = new URLSearchParams(window.location.search).get('formule') || 'essentiel';
+          window.location.href = 'questionnaire.html?formule=' + f;
+        " style="background:transparent;border:none;color:var(--text3);font-family:'Jost',sans-serif;font-size:11px;font-weight:300;cursor:pointer;padding:6px 12px;text-decoration:underline;text-underline-offset:3px;transition:.2s" onmouseover="this.style.color='var(--cta)'" onmouseout="this.style.color='var(--text3)'">
+          ↪ Passer cette étape (mode test)
+        </button>
+      </div>
 
       <div style="display:flex;align-items:center;justify-content:center;gap:1.25rem;margin-top:1rem;padding:.75rem;background:var(--paper2);border-radius:5px;border:1px solid var(--border2)">
         <div style="display:flex;align-items:center;gap:5px;font-size:10px;color:var(--text3)">🔒 SSL 256-bit</div>
@@ -802,141 +817,8 @@ document.addEventListener('DOMContentLoaded', function() {
 <script>
 // ── STRIPE INIT ──
 // ⚠️ Remplace 'pk_test_...' par ta clé publique Stripe
-const stripe = Stripe('pk_test_REMPLACE_PAR_TA_CLE_PUBLIQUE_STRIPE');
-const elements = stripe.elements({
-  fonts: [{ cssSrc: 'https://fonts.googleapis.com/css2?family=Jost:wght@300;400&display=swap' }]
-});
-const style = {
-  base: {
-    fontFamily: "'Jost', sans-serif",
-    fontSize: '14px',
-    color: '#1A1814',
-    fontWeight: '300',
-    '::placeholder': { color: '#8A8278' }
-  },
-  invalid: { color: '#C53030' }
-};
-
-const cardNumber = elements.create('cardNumber', { style });
-const cardExpiry = elements.create('cardExpiry', { style });
-const cardCvc   = elements.create('cardCvc',   { style });
-
-cardNumber.mount('#card-number-element');
-cardExpiry.mount('#card-expiry-element');
-cardCvc.mount('#card-cvc-element');
-
-[cardNumber, cardExpiry, cardCvc].forEach(el => {
-  el.on('focus',  () => el._element.closest('.stripe-container').style.borderColor = '#C4A35A');
-  el.on('blur',   () => el._element.closest('.stripe-container').style.borderColor = 'rgba(0,0,0,0.08)');
-  el.on('change', e => { if (e.error) showError(e.error.message); else hideError(); });
-});
-
-// ── FORMULE SELECTION ──
-let selectedFormule = 'premium';
-
-const formuleData = {
-  essentiel: {
-    price: '45€', amount: 4500,
-    name: 'Formule Essentiel',
-    item: 'Portefeuille ETF sur mesure',
-    delivery: '48h',
-    includes: [
-      'Analyse de profil investisseur',
-      'Portefeuille 4 à 6 ETF sur mesure',
-      'Allocation en % prête à investir',
-      'Rôle de chaque ETF expliqué',
-      'Stratégie d\'entrée + 3 scénarios de marché',
-    ]
-  },
-  premium: {
-    price: '70€', amount: 7000,
-    name: 'Formule Premium',
-    item: 'Portefeuille ETF + site web dédié',
-    delivery: '48-72h',
-    includes: [
-      'Tout de la formule Essentiel (7 livrables)',
-      'Site web dédié à votre nom',
-      'Simulateur interactif personnalisé',
-      'Projection sur 10 ans avec vos chiffres',
-      'Lien privé partageable bilingue FR/EN',
-    ]
-  }
-};
-
-function selectFormule(f) {
-  selectedFormule = f;
-  const d = formuleData[f];
-
-  // Cards UI
-  document.getElementById('card-essentiel').classList.toggle('selected', f === 'essentiel');
-  document.getElementById('card-premium').classList.toggle('selected', f === 'premium');
-  document.getElementById('check-essentiel').innerHTML = f === 'essentiel'
-    ? '<svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>' : '';
-  document.getElementById('check-premium').innerHTML = f === 'premium'
-    ? '<svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>' : '';
-
-  // Summary update
-  document.getElementById('summary-formule-name').textContent = d.name;
-  document.getElementById('summary-item').textContent = d.item;
-  document.getElementById('summary-price-line').textContent = d.price;
-  document.getElementById('summary-total').textContent = d.price;
-  document.getElementById('btn-amount').textContent = d.price;
-
-  // Includes list
-  const list = document.getElementById('summary-includes-list');
-  list.innerHTML = d.includes.map(i =>
-    `<div class="include-item"><span>✓</span><span>${i}</span></div>`
-  ).join('');
-}
-
-// ── PAYMENT HANDLER ──
-async function handlePayment() {
-  const prenom = document.getElementById('inp-prenom').value.trim();
-  const nom    = document.getElementById('inp-nom').value.trim();
-  const email  = document.getElementById('inp-email').value.trim();
-
-  if (!prenom || !nom) return showError('Merci de renseigner votre prénom et nom.');
-  if (!email || !email.includes('@')) return showError('Veuillez entrer une adresse email valide.');
-
-  const btn = document.getElementById('pay-btn');
-  btn.classList.add('loading');
-  btn.textContent = 'Traitement en cours…';
-  hideError();
-
-  // ── INTÉGRATION STRIPE ──
-  // Pour aller en production, tu dois :
-  // 1. Créer un PaymentIntent côté serveur (Node/Python/PHP) qui retourne un client_secret
-  // 2. Remplacer le bloc ci-dessous par un appel à ton backend :
-  //    const res = await fetch('/create-payment-intent', { method:'POST', body: JSON.stringify({ amount, email }) })
-  //    const { clientSecret } = await res.json()
-  //    const { error } = await stripe.confirmCardPayment(clientSecret, { ... })
-
-  // SIMULATION (démo — à remplacer par le vrai flux backend)
-  setTimeout(() => {
-    btn.classList.remove('loading');
-    btn.innerHTML = `<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1L1 4v3.5c0 3.6 2.6 6.9 6 7.5 3.4-.6 6-3.9 6-7.5V4L7 1z" stroke="white" stroke-width="1.2" fill="none"/></svg> Payer maintenant <span class="amount-badge">${formuleData[selectedFormule].price}</span>`;
-    showSuccess(prenom, email);
-  }, 1800);
-}
-
-function showSuccess(prenom, email) {
-  document.getElementById('success-name').textContent  = prenom;
-  document.getElementById('success-email').textContent = email;
-  document.getElementById('success-overlay').classList.add('show');
-}
-
-function showError(msg) {
-  const el = document.getElementById('error-msg');
-  el.textContent = msg;
-  el.classList.add('show');
-}
-function hideError() {
-  document.getElementById('error-msg').classList.remove('show');
-}
-
-// Pré-sélection depuis URL param (?formule=essentiel)
-const params = new URLSearchParams(window.location.search);
-if (params.get('formule') === 'essentiel') selectFormule('essentiel');
-</script>
+// Stripe non configuré — mode test
+// Le bouton "Passer cette étape" permet d'accéder directement au questionnaire
+console.log('Mode test — Stripe non configuré');</script>
 </body>
 </html>

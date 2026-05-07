@@ -28,7 +28,7 @@ body{font-family:'Jost',sans-serif;background:var(--paper);color:var(--text);min
 .header-cta{font-size:10px;color:rgba(196,163,90,0.5);letter-spacing:.1em;text-transform:uppercase;margin-bottom:3px}
 .header-phone{font-family:'DM Mono',monospace;font-size:15px;color:var(--gold2);letter-spacing:.08em}
 
-.nav{background:#161208;display:flex;gap:0;border-bottom:1px solid rgba(196,163,90,0.2);padding:0 2.5rem;overflow-x:auto}
+.nav{background:#161208;display:flex;gap:0;border-bottom:1px solid rgba(196,163,90,0.2);padding:0 2.5rem;overflow-x:auto;box-shadow:0 4px 20px rgba(10,8,4,0.25)}
 .nav-btn{font-family:'Jost',sans-serif;font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(240,236,228,0.7);padding:13px 16px;cursor:pointer;border:none;background:transparent;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap}
 .nav-btn:hover{color:white}
 .nav-btn.active{color:var(--gold2);border-bottom-color:var(--gold2)}
@@ -146,8 +146,8 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.3)}
 
 /* ── OFFRES REDESIGN ── */
 .offres-wrap{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;max-width:100%;margin:0 auto}
-.offre-new{background:white;border:1px solid rgba(155,125,58,0.18);border-radius:8px;overflow:hidden;display:flex;flex-direction:column;transition:box-shadow .25s}
-.offre-new:hover{box-shadow:0 8px 40px rgba(155,125,58,0.12)}
+.offre-new{background:white;border:1px solid rgba(155,125,58,0.18);border-radius:8px;overflow:hidden;display:flex;flex-direction:column;transition:box-shadow .3s ease,transform .3s ease}
+.offre-new:hover{box-shadow:0 12px 48px rgba(155,125,58,0.18);transform:translateY(-3px)}
 .offre-new.featured-new{border:2px solid var(--gold2);box-shadow:0 4px 24px rgba(155,125,58,0.15)}
 .offre-popular-new{text-align:center;background:var(--gold2);color:#1A1208;font-family:'DM Mono',monospace;font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;padding:7px 0}
 .offre-head-new{padding:2rem 2.25rem 1.5rem}
@@ -212,6 +212,18 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.3)}
   #s-accueil > div[style*="repeat(3,1fr)"]{grid-template-columns:1fr !important}
   .header-name{font-size:16px}
 }
+
+/* ── MODAL DÉMO ── */
+.demo-modal-overlay{display:none;position:fixed;inset:0;background:rgba(10,10,10,.88);backdrop-filter:blur(8px);z-index:9999;align-items:center;justify-content:center;padding:20px;}
+.demo-modal-overlay.open{display:flex;}
+.demo-modal-box{position:relative;width:min(900px,95vw);height:min(640px,90vh);background:var(--ink2);border:1px solid rgba(196,163,90,.25);border-radius:12px;overflow:hidden;box-shadow:0 48px 96px rgba(0,0,0,.7);}
+.demo-modal-close{position:absolute;top:12px;right:14px;z-index:10;background:rgba(196,163,90,.12);border:1px solid rgba(196,163,90,.25);color:rgba(196,163,90,.8);width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:.2s;}
+.demo-modal-close:hover{background:rgba(196,163,90,.25);color:var(--gold2);}
+.demo-modal-iframe{width:100%;height:100%;border:none;display:block;}
+/* Bouton aperçu — réutilisé sur accueil et offres */
+.btn-demo-preview{display:inline-flex;align-items:center;gap:8px;padding:10px 20px;background:transparent;color:var(--gold2);font-family:'Jost',sans-serif;font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;border:1px solid rgba(196,163,90,.4);border-radius:3px;cursor:pointer;transition:all .2s;}
+.btn-demo-preview:hover{background:rgba(196,163,90,.08);border-color:var(--gold2);color:var(--gold);}
+.btn-demo-preview .demo-icon{font-size:14px;}
 </style>
 </head>
 <body>
@@ -251,19 +263,73 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.3)}
   <!-- HERO COMPACT -->
   <div style="text-align:center;padding:1.75rem 1rem 1.5rem;margin-bottom:1.5rem;position:relative">
     <div style="font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:.625rem;font-weight:300" id="acc-eyebrow">CGP indépendant · 25 ans d'expérience · Certifié IAS · AMF</div>
-    <h1 style="font-family:'Cormorant Garamond',serif;font-size:clamp(26px,3.5vw,46px);font-weight:400;line-height:1.1;color:var(--ink);margin-bottom:.75rem" id="acc-h1">Recevez votre allocation <em style="color:var(--gold)">ETF sur mesure</em><br><span style="font-size:.65em;font-style:normal;color:var(--text2);font-weight:300">4 à 6 ETF sélectionnés à la main · livrés en 48h</span></h1>
+    <h1 style="font-family:'Cormorant Garamond',serif;font-size:clamp(28px,3.8vw,50px);font-weight:400;line-height:1.08;color:var(--ink);margin-bottom:.875rem;letter-spacing:-.01em" id="acc-h1">Recevez votre allocation <em style="color:var(--gold)">ETF sur mesure</em><br><span style="font-size:.65em;font-style:normal;color:var(--text2);font-weight:300">4 à 6 ETF sélectionnés à la main · livrés en 48h</span></h1>
         <p style="font-size:13px;color:var(--gold);max-width:580px;margin:0 auto .75rem;font-weight:400;line-height:1.7;font-style:italic" id="acc-accroche">Il existe plus de 11 000 ETF dans le monde. Savoir lesquels choisir, dans quelles proportions et pour quel profil — c'est précisément notre métier.</p>
     <p style="font-size:14px;color:var(--text2);max-width:600px;margin:0 auto .5rem;font-weight:300;line-height:1.85" id="acc-p">Paiement unique — pas d'abonnement, pas de commission, pas de conflit d'intérêt.</p>
     <div style="font-size:11px;color:var(--text3);font-weight:300;margin-bottom:1.125rem;font-style:italic" id="acc-p2">Retraite · Revenus complémentaires · Constitution de patrimoine · Transmission · Trésorerie · Indépendance financière</div>
     <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
-      <button onclick="window.location.href='checkout.html?formule=essentiel'" style="padding:13px 28px;background:var(--cta);color:white;font-family:'Jost',sans-serif;font-size:12px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;border:none;border-radius:4px;cursor:pointer;transition:all .2s;box-shadow:0 4px 14px rgba(26,107,69,0.35)" onmouseover="this.style.background='var(--cta2)';this.style.transform='translateY(-1px)'" onmouseout="this.style.background='var(--cta)';this.style.transform='translateY(0)'" id="acc-cta1">Recevoir mon allocation personnalisée →</button>
+      <button onclick="window.location.href='checkout.html?formule=essentiel'" style="padding:13px 28px;background:var(--cta);color:white;font-family:'Jost',sans-serif;font-size:12px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;border:none;border-radius:4px;cursor:pointer;transition:all .2s;box-shadow:0 4px 14px rgba(26,107,69,0.35)" onmouseover="this.style.background='var(--cta2)';this.style.transform='translateY(-1px)'" onmouseout="this.style.background='var(--cta)';this.style.transform='translateY(0)'" id="acc-cta1">Recevoir mon portefeuille d'ETF sur mesure →</button>
       <button onclick="show('contact',document.getElementById('nav-contact'))" style="padding:11px 24px;background:transparent;color:var(--text2);font-family:'Jost',sans-serif;font-size:11px;font-weight:400;letter-spacing:.12em;text-transform:uppercase;border:1px solid var(--border);border-radius:3px;cursor:pointer" id="acc-cta2">Prendre contact →</button>
     </div>
     <div style="position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:40px;height:1px;background:var(--gold2)"></div>
   </div>
 
+
+  <!-- BLOC ÉMOTIONNEL -->
+  <div style="background:linear-gradient(135deg,var(--paper2) 0%,white 100%);border:1px solid var(--border2);border-radius:8px;padding:1.625rem 2rem;margin-bottom:1.75rem">
+    <div style="text-align:center;margin-bottom:1.25rem">
+      <div style="font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:.375rem;font-family:'DM Mono',monospace">Vous investissez, ou vous y pensez</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:400;color:var(--ink)" id="emo-title">Vous reconnaissez-vous ?</div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,minmax(180px,1fr));gap:.75rem">
+      <div style="display:flex;gap:.75rem;align-items:flex-start;padding:.875rem;background:white;border-radius:6px;border:1px solid var(--border2)">
+        <div style="font-size:20px;flex-shrink:0">😵</div>
+        <div>
+          <div style="font-size:12px;font-weight:600;color:var(--ink);margin-bottom:.25rem" id="emo-1t">Paralysé par le choix</div>
+          <div style="font-size:11px;color:var(--text2);font-weight:300;line-height:1.7" id="emo-1b">Il existe plus de 11 000 ETF. Vous ne savez pas par où commencer ni lesquels choisir pour votre situation.</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:.75rem;align-items:flex-start;padding:.875rem;background:white;border-radius:6px;border:1px solid var(--border2)">
+        <div style="font-size:20px;flex-shrink:0">💸</div>
+        <div>
+          <div style="font-size:12px;font-weight:600;color:var(--ink);margin-bottom:.25rem" id="emo-2t">Des frais qui grignotent tout</div>
+          <div style="font-size:11px;color:var(--text2);font-weight:300;line-height:1.7" id="emo-2b">Votre banque ou assurance-vie prend 1,5 à 2% par an. Sur 10 ans, c'est des dizaines de milliers d'euros qui partent en frais.</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:.75rem;align-items:flex-start;padding:.875rem;background:white;border-radius:6px;border:1px solid var(--border2)">
+        <div style="font-size:20px;flex-shrink:0">🤯</div>
+        <div>
+          <div style="font-size:12px;font-weight:600;color:var(--ink);margin-bottom:.25rem" id="emo-3t">Trop d'informations contradictoires</div>
+          <div style="font-size:11px;color:var(--text2);font-weight:300;line-height:1.7" id="emo-3b">YouTube, forums, influenceurs — chacun dit l'inverse de l'autre. Impossible de savoir qui croire et quoi faire.</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:.75rem;align-items:flex-start;padding:.875rem;background:white;border-radius:6px;border:1px solid var(--border2)">
+        <div style="font-size:20px;flex-shrink:0">🏦</div>
+        <div>
+          <div style="font-size:12px;font-weight:600;color:var(--ink);margin-bottom:.25rem" id="emo-4t">Votre banquier vous vend ses produits</div>
+          <div style="font-size:11px;color:var(--text2);font-weight:300;line-height:1.7" id="emo-4b">Il vous recommande ce qui l'arrange. Ses conseils dépendent de ses commissions — pas de vos intérêts.</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:.75rem;align-items:flex-start;padding:.875rem;background:white;border-radius:6px;border:1px solid var(--border2)">
+        <div style="font-size:20px;flex-shrink:0">📉</div>
+        <div>
+          <div style="font-size:12px;font-weight:600;color:var(--ink);margin-bottom:.25rem" id="emo-5t">Vous n'osez pas investir seul</div>
+          <div style="font-size:11px;color:var(--text2);font-weight:300;line-height:1.7" id="emo-5b">Peur de faire une erreur, de choisir le mauvais moment ou le mauvais ETF. Alors votre argent dort sur un livret.</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:.75rem;align-items:flex-start;padding:.875rem;background:white;border-radius:6px;border:1px solid var(--border2)">
+        <div style="font-size:20px;flex-shrink:0">⏳</div>
+        <div>
+          <div style="font-size:12px;font-weight:600;color:var(--ink);margin-bottom:.25rem" id="emo-6t">Pas le temps de tout apprendre</div>
+          <div style="font-size:11px;color:var(--text2);font-weight:300;line-height:1.7" id="emo-6b">Vous avez une vie, un métier. Devenir expert en ETF n'est pas votre priorité — mais bien investir, oui.</div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:1.125rem;font-size:13px;color:var(--text2);font-style:italic;font-family:'Cormorant Garamond',serif" id="emo-close">C'est exactement pour ça qu'ETF Blueprint existe.</div>
+  </div>
+
   <!-- BLOC CRÉDIBILITÉ -->
-  <div style="display:grid;grid-template-columns:repeat(4,minmax(140px,1fr));gap:.625rem;margin-bottom:1.75rem;padding:.875rem 1.25rem;background:white;border:1px solid var(--border2);border-radius:6px">
+  <div style="display:grid;grid-template-columns:repeat(4,minmax(140px,1fr));gap:.625rem;margin-bottom:2rem;padding:1rem 1.375rem;background:white;border:1px solid var(--border2);border-radius:6px">
     <div style="text-align:center;padding:.5rem">
       <div style="font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--gold);font-weight:500;line-height:1">25 ans</div>
       <div style="font-size:10px;color:var(--text3);margin-top:3px;font-weight:300">d'expérience CGP</div>
@@ -278,39 +344,7 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.3)}
     </div>
     <div style="text-align:center;padding:.5rem;border-left:1px solid var(--border2)">
       <div style="font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--cta);font-weight:500;line-height:1">IAS · AMF</div>
-      <div style="margin-bottom:1.75rem">
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1rem">
-
-      <div style="background:white;border:1px solid var(--border2);border-radius:8px;padding:1.5rem;position:relative;overflow:hidden">
-        <div style="position:absolute;top:0;left:0;width:100%;height:3px;background:var(--cta)"></div>
-        <div style="font-size:22px;margin-bottom:.75rem">🎯</div>
-        <div style="font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:600;color:var(--ink);margin-bottom:.5rem">Votre portefeuille, pas un modèle standard</div>
-        <div style="font-size:12px;color:var(--text2);font-weight:300;line-height:1.75">Chaque allocation est construite à la main pour votre profil, votre fiscalité, votre horizon et vos objectifs. Aucun algorithme, aucun copier-coller.</div>
-      </div>
-
-      <div style="background:white;border:1px solid var(--border2);border-radius:8px;padding:1.5rem;position:relative;overflow:hidden">
-        <div style="position:absolute;top:0;left:0;width:100%;height:3px;background:var(--gold2)"></div>
-        <div style="font-size:22px;margin-bottom:.75rem">📋</div>
-        <div style="font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:600;color:var(--ink);margin-bottom:.5rem">Livré prêt à investir en 48h</div>
-        <div style="font-size:12px;color:var(--text2);font-weight:300;line-height:1.75">Vous recevez un rapport complet avec les ordres exacts à passer chez votre courtier. Pas de jargon — juste ce qu'il faut faire, dans quel ordre.</div>
-      </div>
-
-      <div style="background:white;border:1px solid var(--border2);border-radius:8px;padding:1.5rem;position:relative;overflow:hidden">
-        <div style="position:absolute;top:0;left:0;width:100%;height:3px;background:var(--cta)"></div>
-        <div style="font-size:22px;margin-bottom:.75rem">🔒</div>
-        <div style="font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:600;color:var(--ink);margin-bottom:.5rem">Votre argent reste chez vous</div>
-        <div style="font-size:12px;color:var(--text2);font-weight:300;line-height:1.75">Vous investissez vous-même, chez le courtier de votre choix — IBKR, Trade Republic, Degiro, BoursoBank. Zéro délégation de gestion.</div>
-      </div>
-
-      <div style="background:white;border:1px solid var(--border2);border-radius:8px;padding:1.5rem;position:relative;overflow:hidden">
-        <div style="position:absolute;top:0;left:0;width:100%;height:3px;background:var(--gold2)"></div>
-        <div style="font-size:22px;margin-bottom:.75rem">⚖️</div>
-        <div style="font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:600;color:var(--ink);margin-bottom:.5rem">Indépendant · Certifié · Sans conflit</div>
-        <div style="font-size:12px;color:var(--text2);font-weight:300;line-height:1.75">CGP indépendant, certifié IAS et AMF. Aucune banque derrière nous, aucun produit maison, zéro rétrocession. Nos seuls intérêts sont les vôtres.</div>
-      </div>
-
-    </div>
-  </div>
+      <div style="font-size:10px;color:var(--text3);margin-top:3px;font-weight:300">certifié · réglementé</div>
     </div>
   </div>
 
@@ -357,24 +391,7 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.3)}
 
     <!-- POURQUOI ETF BLUEPRINT -->
   <div style="margin-bottom:1.75rem;padding:1.5rem 2rem;background:white;border:1px solid var(--border2);border-radius:8px;position:relative;overflow:hidden">
-    <div style="margin-bottom:1.75rem;padding:1.5rem 2rem;background:white;border:1px solid var(--border2);border-radius:8px;position:relative;overflow:hidden">
     <div style="position:absolute;top:0;left:0;width:4px;height:100%;background:var(--cta)"></div>
-    <div style="font-size:9px;color:var(--gold);text-transform:uppercase;letter-spacing:.18em;font-family:'DM Mono',monospace;margin-bottom:1rem">Pourquoi ETF Blueprint ?</div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem">
-      <div>
-        <div style="font-size:13px;font-weight:500;color:var(--ink);margin-bottom:.375rem">🎯 Un conseil, pas un produit</div>
-        <div style="font-size:12px;color:var(--text2);font-weight:300;line-height:1.65">Nous construisons votre stratégie, pas celle d'une banque. Aucune rétrocession, aucun produit maison — uniquement ce qui est juste pour vous.</div>
-      </div>
-      <div>
-        <div style="font-size:13px;font-weight:500;color:var(--ink);margin-bottom:.375rem">📊 Simple, lisible, actionnable</div>
-        <div style="font-size:12px;color:var(--text2);font-weight:300;line-height:1.65">4 à 6 ETF maximum. Chaque ligne a un rôle précis. Tout est expliqué en langage clair — vous comprenez ce que vous possédez et pourquoi.</div>
-      </div>
-      <div>
-        <div style="font-size:13px;font-weight:500;color:var(--ink);margin-bottom:.375rem">⏱️ Paiement unique · Livraison 48h</div>
-        <div style="font-size:12px;color:var(--text2);font-weight:300;line-height:1.65">Pas d'abonnement, pas de frais cachés. Vous payez une fois, vous recevez un portefeuille sur mesure livré sous 48 heures, prêt à investir.</div>
-      </div>
-    </div>
-  </div>
     <div style="font-size:9px;color:var(--gold);text-transform:uppercase;letter-spacing:.18em;font-family:'DM Mono',monospace;margin-bottom:.75rem">Pourquoi ETF Blueprint ?</div>
     <div style="display:grid;grid-template-columns:repeat(3,minmax(180px,1fr));gap:1.25rem">
       <div>
@@ -392,6 +409,142 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.3)}
     </div>
   </div>
 
+
+
+  <!-- FAQ -->
+  <div style="background:white;border:1px solid var(--border2);border-radius:8px;padding:1.5rem 1.75rem;margin-bottom:1.75rem">
+    <div style="text-align:center;margin-bottom:1.25rem">
+      <div style="font-size:10px;text-transform:uppercase;letter-spacing:.15em;color:var(--gold);margin-bottom:3px;font-family:'DM Mono',monospace" id="faq-eyebrow">Questions fréquentes</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400" id="faq-title">Ce que vous voulez savoir</div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem">
+
+      <div style="border:1px solid var(--border2);border-radius:6px;overflow:hidden">
+        <div style="padding:1.125rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center" onclick="toggleFaq('faq1')" style="transition:background .2s">
+          <div style="font-size:13px;font-weight:500;color:var(--ink)" id="faq1-q">Quelle est la différence entre les deux formules ?</div>
+          <span id="faq1-arr" style="color:var(--gold);font-size:14px;flex-shrink:0;margin-left:.5rem">▼</span>
+        </div>
+        <div id="faq1" style="display:none;padding:0 1.125rem 1.125rem">
+          <div style="font-size:12px;color:var(--text2);font-weight:300;line-height:1.8">La formule Essentiel (45€) vous livre votre portefeuille ETF sur mesure — allocation, rôle de chaque ETF, stratégie d'entrée, 3 scénarios et ordres à passer. La formule Premium (70€) inclut tout cela, plus une page web personnalisée avec simulateur interactif et lien privé partageable.</div>
+        </div>
+      </div>
+
+      <div style="border:1px solid var(--border2);border-radius:6px;overflow:hidden">
+        <div style="padding:1.125rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center" onclick="toggleFaq('faq2')">
+          <div style="font-size:13px;font-weight:500;color:var(--ink)" id="faq2-q">Dois-je avoir des connaissances en bourse ?</div>
+          <span id="faq2-arr" style="color:var(--gold);font-size:14px;flex-shrink:0;margin-left:.5rem">▼</span>
+        </div>
+        <div id="faq2" style="display:none;padding:0 1.125rem 1.125rem">
+          <div style="font-size:12px;color:var(--text2);font-weight:300;line-height:1.8">Non. Chaque portefeuille livré est expliqué en langage clair — pas de jargon, pas d'acronymes inexpliqués. Vous comprenez ce que vous possédez, pourquoi, et exactement quoi faire. Un débutant complet peut investir avec notre rapport.</div>
+        </div>
+      </div>
+
+      <div style="border:1px solid var(--border2);border-radius:6px;overflow:hidden">
+        <div style="padding:1.125rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center" onclick="toggleFaq('faq3')">
+          <div style="font-size:13px;font-weight:500;color:var(--ink)" id="faq3-q">Êtes-vous réglementé ? Est-ce légal ?</div>
+          <span id="faq3-arr" style="color:var(--gold);font-size:14px;flex-shrink:0;margin-left:.5rem">▼</span>
+        </div>
+        <div id="faq3" style="display:none;padding:0 1.125rem 1.125rem">
+          <div style="font-size:12px;color:var(--text2);font-weight:300;line-height:1.8">Oui. Notre activité est exercée en conformité avec la réglementation française — statut CGP indépendant, certifié IAS et enregistré AMF. Nous ne gérons pas votre argent : nous vous conseillons. Votre capital reste toujours sur votre compte, chez votre courtier.</div>
+        </div>
+      </div>
+
+      <div style="border:1px solid var(--border2);border-radius:6px;overflow:hidden">
+        <div style="padding:1.125rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center" onclick="toggleFaq('faq4')">
+          <div style="font-size:13px;font-weight:500;color:var(--ink)" id="faq4-q">Que se passe-t-il exactement après la commande ?</div>
+          <span id="faq4-arr" style="color:var(--gold);font-size:14px;flex-shrink:0;margin-left:.5rem">▼</span>
+        </div>
+        <div id="faq4" style="display:none;padding:0 1.125rem 1.125rem">
+          <div style="font-size:12px;color:var(--text2);font-weight:300;line-height:1.8">1. Vous validez votre commande. 2. Vous recevez immédiatement un questionnaire d'une dizaine de questions. 3. Nous analysons vos réponses et construisons votre allocation à la main. 4. Vous recevez votre portefeuille complet sous 48h. 5. Vous passez vos ordres chez votre courtier — tout est détaillé.</div>
+        </div>
+      </div>
+
+      <div style="border:1px solid var(--border2);border-radius:6px;overflow:hidden">
+        <div style="padding:1.125rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center" onclick="toggleFaq('faq5')">
+          <div style="font-size:13px;font-weight:500;color:var(--ink)" id="faq5-q">Mon portefeuille est-il adapté à ma situation fiscale ?</div>
+          <span id="faq5-arr" style="color:var(--gold);font-size:14px;flex-shrink:0;margin-left:.5rem">▼</span>
+        </div>
+        <div id="faq5" style="display:none;padding:0 1.125rem 1.125rem">
+          <div style="font-size:12px;color:var(--text2);font-weight:300;line-height:1.8">Oui — c'est l'une des questions clés du questionnaire. Que vous soyez résident français (PEA), expatrié, ou dans une situation fiscale particulière, les ETF recommandés et l'enveloppe utilisée sont adaptés à votre situation spécifique.</div>
+        </div>
+      </div>
+
+      <div style="border:1px solid var(--border2);border-radius:6px;overflow:hidden">
+        <div style="padding:1.125rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center" onclick="toggleFaq('faq6')">
+          <div style="font-size:13px;font-weight:500;color:var(--ink)" id="faq6-q">Quelle différence avec un robo-advisor ou une banque ?</div>
+          <span id="faq6-arr" style="color:var(--gold);font-size:14px;flex-shrink:0;margin-left:.5rem">▼</span>
+        </div>
+        <div id="faq6" style="display:none;padding:0 1.125rem 1.125rem">
+          <div style="font-size:12px;color:var(--text2);font-weight:300;line-height:1.8">Un robo-advisor vous propose un portefeuille standardisé parmi 5 ou 6 modèles. Une banque vous vend ses propres produits avec des frais élevés. ETF Blueprint construit un portefeuille unique pour vous, sans conflit d'intérêt, avec des ETF accessibles à tous — et vous restez maître de votre argent.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- QUI SUIS-JE -->
+  <div style="background:var(--ink);border-radius:10px;padding:2rem 2.5rem;margin-bottom:1.75rem;position:relative;overflow:hidden">
+    <div style="position:absolute;top:0;right:0;width:200px;height:200px;background:radial-gradient(circle,rgba(196,163,90,0.08) 0%,transparent 70%);pointer-events:none"></div>
+    <div style="display:grid;grid-template-columns:auto 1fr;gap:2rem;align-items:start">
+
+      <!-- Avatar initiales -->
+      <div style="flex-shrink:0">
+        <div style="width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,var(--gold2),rgba(196,163,90,0.4));display:flex;align-items:center;justify-content:center;border:2px solid rgba(196,163,90,0.4)">
+          <span style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;color:white">A</span>
+        </div>
+        <div style="margin-top:.625rem;text-align:center">
+          <div style="display:inline-flex;flex-direction:column;gap:4px">
+            <span style="font-size:9px;background:rgba(196,163,90,0.15);color:var(--gold2);padding:3px 8px;border-radius:3px;letter-spacing:.08em;font-family:'DM Mono',monospace">CIF</span>
+            <span style="font-size:9px;background:rgba(29,78,137,0.2);color:#7ba7d4;padding:3px 8px;border-radius:3px;letter-spacing:.08em;font-family:'DM Mono',monospace">AMF</span>
+            <span style="font-size:9px;background:rgba(26,107,69,0.2);color:#5baa82;padding:3px 8px;border-radius:3px;letter-spacing:.08em;font-family:'DM Mono',monospace">IAS</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contenu -->
+      <div>
+        <div style="font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem;font-family:'DM Mono',monospace" id="who-eyebrow">Pourquoi me faire confiance</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:22px;color:white;font-weight:400;margin-bottom:1rem" id="who-title">25 ans au cœur des marchés financiers</div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.875rem;margin-bottom:1.125rem">
+          <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(196,163,90,0.15);border-radius:6px;padding:.875rem">
+            <div style="font-size:11px;color:var(--gold2);font-weight:500;margin-bottom:.375rem;display:flex;align-items:center;gap:6px"><span>🎓</span><span id="who-t1">Formation & certifications</span></div>
+            <div style="font-size:11px;color:rgba(240,236,228,0.6);font-weight:300;line-height:1.75" id="who-b1">MBA Finance · Certifié AMF (Autorité des Marchés Financiers) · CIF (Conseiller en Investissement Financier) · Statut IAS · Réglementé en France</div>
+          </div>
+          <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(196,163,90,0.15);border-radius:6px;padding:.875rem">
+            <div style="font-size:11px;color:var(--gold2);font-weight:500;margin-bottom:.375rem;display:flex;align-items:center;gap:6px"><span>🏛️</span><span id="who-t2">Expérience terrain</span></div>
+            <div style="font-size:11px;color:rgba(240,236,228,0.6);font-weight:300;line-height:1.75" id="who-b2">25 ans d'expérience en finance de marché · Passé par les salles de marché et le conseil patrimonial · Plus de 200 portefeuilles construits pour des particuliers et des professionnels</div>
+          </div>
+          <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(196,163,90,0.15);border-radius:6px;padding:.875rem">
+            <div style="font-size:11px;color:var(--gold2);font-weight:500;margin-bottom:.375rem;display:flex;align-items:center;gap:6px"><span>🧭</span><span id="who-t3">Ma philosophie</span></div>
+            <div style="font-size:11px;color:rgba(240,236,228,0.6);font-weight:300;line-height:1.75" id="who-b3">Les ETF sont l'outil le plus efficace pour l'investisseur particulier. Faibles frais, diversification maximale, transparence totale. Pas de produits maison, pas de conflit d'intérêt — jamais.</div>
+          </div>
+          <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(196,163,90,0.15);border-radius:6px;padding:.875rem">
+            <div style="font-size:11px;color:var(--gold2);font-weight:500;margin-bottom:.375rem;display:flex;align-items:center;gap:6px"><span>⚖️</span><span id="who-t4">Mon indépendance</span></div>
+            <div style="font-size:11px;color:rgba(240,236,228,0.6);font-weight:300;line-height:1.75" id="who-b4">Aucune banque derrière moi. Aucune rétrocession. Je suis rémunéré uniquement par vous, directement — ce qui signifie que mes conseils ne servent que vos intérêts.</div>
+          </div>
+        </div>
+
+        <div style="border-top:1px solid rgba(196,163,90,0.2);padding-top:.875rem">
+          <div style="font-size:12px;color:rgba(240,236,228,0.5);font-weight:300;line-height:1.8;font-style:italic" id="who-quote">"J'ai passé 25 ans à observer comment les grandes institutions gèrent leurs actifs. Les ETF, c'est cette même discipline — accessible à tous, sans les frais absurdes."</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- APERÇU RAPPORT — DÉMO -->
+  <div style="background:var(--ink2);border:1px solid rgba(196,163,90,.2);border-radius:8px;padding:1.75rem 2rem;margin-bottom:1.75rem;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap">
+    <div>
+      <div style="font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem;font-family:'DM Mono',monospace">Aperçu · Ce que vous recevez</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:20px;color:white;font-weight:400;margin-bottom:.375rem" id="acc-demo-title">Découvrez un exemple de rapport</div>
+      <div style="font-size:12px;color:rgba(240,236,228,0.45);font-weight:300;line-height:1.7;max-width:420px" id="acc-demo-sub">Couverture · allocation · fiches ETF · rente mensuelle · projections · simulateur interactif — exactement ce que vous recevrez sous 48h.</div>
+    </div>
+    <button class="btn-demo-preview" onclick="openDemoModal()">
+      <span class="demo-icon">▶</span>
+      <span id="acc-demo-btn">Voir l'aperçu du rapport</span>
+    </button>
+  </div>
 
 </div>
 
@@ -528,7 +681,7 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.3)}
         <div class="check-item-ghost"><div class="check-icon-ghost"><svg viewBox="0 0 12 12" fill="none"><path d="M3 6h6" stroke="#8A8278" stroke-width="1.5" stroke-linecap="round"/></svg></div><div class="check-text-ghost" id="f1-i10">Sans simulateur personnalisé</div></div>
       </div>
       <div class="offre-foot-new">
-        <button class="offre-btn-new" onclick="window.location.href='checkout.html?formule=essentiel'" style="background:var(--cta);color:white;border-color:var(--cta)" id="f1-btn">Recevoir mon allocation — 45€ →</button>
+        <button class="offre-btn-new" onclick="window.location.href='checkout.html?formule=essentiel'" style="background:var(--cta);color:white;border-color:var(--cta)" id="f1-btn">Recevoir mon portefeuille d'ETF sur mesure — 45€ →</button>
         <button class="offre-more-new" onclick="showDetail('f1-new')" id="f1-more">En savoir plus ↓</button>
       </div>
       <div class="offre-detail-new" id="detail-f1-new">
@@ -596,6 +749,18 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.3)}
       </div>
     </div>
 
+  </div>
+
+
+  <!-- APERÇU RAPPORT — DÉMO OFFRES -->
+  <div style="margin-top:2rem;background:linear-gradient(135deg,var(--ink2) 0%,rgba(30,26,18,.95) 100%);border:1px solid rgba(196,163,90,.22);border-radius:10px;padding:2rem 2.5rem;text-align:center">
+    <div style="font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:.75rem;font-family:'DM Mono',monospace">Avant de commander</div>
+    <div style="font-family:'Cormorant Garamond',serif;font-size:24px;color:white;font-weight:400;margin-bottom:.625rem">Voyez exactement ce que vous recevrez</div>
+    <div style="font-size:12px;color:rgba(240,236,228,0.45);font-weight:300;line-height:1.75;max-width:500px;margin:0 auto 1.25rem">Couverture personnalisée · Analyse de profil · Allocation 4–6 ETF · Fiches détaillées · Rente estimée · Projections · Simulateur · Signaux de rééquilibrage</div>
+    <button class="btn-demo-preview" onclick="openDemoModal()" style="margin:0 auto">
+      <span class="demo-icon">▶</span>
+      <span>Voir l'aperçu interactif du rapport →</span>
+    </button>
   </div>
 
 </div>
@@ -1285,7 +1450,7 @@ function setMarket(type, btn) {
       '<div style="font-family:\'DM Mono\',monospace;font-size:11px;color:'+a[1]+';width:36px;flex-shrink:0">'+a[0]+'</div>' +
       '<div style="flex:1;background:var(--paper2);border-radius:2px;height:8px;overflow:hidden">' +
       '<div style="height:100%;background:'+a[1]+';width:'+a[2]+'%;border-radius:2px;transition:width .4s"></div></div>' +
-      '' +
+      '<div style="font-family:\'DM Mono\',monospace;font-size:11px;color:var(--text2);width:32px;text-align:right">'+a[2]+'%</div>' +
       '</div>';
   });
   document.getElementById('mkt-bars').innerHTML = barsHtml;
@@ -1367,8 +1532,16 @@ function setLang(lang) {
   var ah=document.getElementById('acc-h1'); if(ah)ah.innerHTML=lang==='fr'?'Votre portefeuille <em style="color:var(--gold)">ETF sur mesure</em>':'Your <em style="color:var(--gold)">bespoke ETF</em> portfolio';
   var ap=document.getElementById('acc-p'); if(ap)ap.textContent=lang==='fr'?'Du patrimoine à faire fructifier, à constituer ou à préserver — selon votre situation, je construis entre 4 et 6 ETFs sélectionnés pour vous. Pas besoin de connaître les marchés. Tout est expliqué, tout est fait.':'Whether you want to grow, build or preserve wealth — I construct 4 to 6 ETFs tailored to your situation. No market knowledge needed. Everything is explained, everything is done.';
   var ap2=document.getElementById('acc-p2'); if(ap2)ap2.textContent=lang==='fr'?'Retraite · Revenus complémentaires · Constitution de patrimoine · Transmission · Trésorerie · Indépendance financière':'Retirement · Additional income · Wealth building · Estate planning · Cash management · Financial independence';
-  var ac1=document.getElementById('acc-cta1'); if(ac1)ac1.textContent=lang==='fr'?'Obtenir mon portefeuille →':'Get my portfolio →';
+  var ac1=document.getElementById('acc-cta1'); if(ac1)ac1.textContent=lang==='fr'?'Recevoir mon portefeuille d\'ETF sur mesure →':'Receive my bespoke ETF portfolio →';
   var ac2=document.getElementById('acc-cta2'); if(ac2)ac2.textContent=lang==='fr'?'Prendre contact →':'Get in touch →';
+  // Bloc émotionnel
+  var emoT=document.getElementById('emo-title'); if(emoT)emoT.textContent=lang==='fr'?'Vous reconnaissez-vous ?':'Do you recognise yourself?';
+  var emoC=document.getElementById('emo-close'); if(emoC)emoC.textContent=lang==='fr'?'C\'est exactement pour ça qu\'ETF Blueprint existe.':'This is exactly why ETF Blueprint exists.';
+  var emoItems=[['emo-1t','Paralysé par le choix','Paralysed by choice'],['emo-1b','Il existe plus de 11 000 ETF. Vous ne savez pas par où commencer ni lesquels choisir pour votre situation.','There are over 11,000 ETFs. You don\'t know where to start or which ones suit your situation.'],['emo-2t','Des frais qui grignotent tout','Fees that eat everything'],['emo-2b','Votre banque ou assurance-vie prend 1,5 à 2% par an. Sur 10 ans, c\'est des dizaines de milliers d\'euros qui partent en frais.','Your bank or life insurance takes 1.5 to 2% per year. Over 10 years, that\'s tens of thousands in fees.'],['emo-3t','Trop d\'informations contradictoires','Too much contradictory information'],['emo-3b','YouTube, forums, influenceurs — chacun dit l\'inverse de l\'autre. Impossible de savoir qui croire et quoi faire.','YouTube, forums, influencers — everyone says the opposite. Impossible to know who to trust.'],['emo-4t','Votre banquier vous vend ses produits','Your banker sells you his products'],['emo-4b','Il vous recommande ce qui l\'arrange. Ses conseils dépendent de ses commissions — pas de vos intérêts.','He recommends what suits him. His advice depends on his commissions — not your interests.'],['emo-5t','Vous n\'osez pas investir seul','You don\'t dare invest alone'],['emo-5b','Peur de faire une erreur, de choisir le mauvais moment ou le mauvais ETF. Alors votre argent dort sur un livret.','Fear of making a mistake or choosing the wrong ETF. So your money sits in a savings account.'],['emo-6t','Pas le temps de tout apprendre','No time to learn everything'],['emo-6b','Vous avez une vie, un métier. Devenir expert en ETF n\'est pas votre priorité — mais bien investir, oui.','You have a life and a job. Becoming an ETF expert isn\'t your priority — but investing well is.']];
+  emoItems.forEach(function(it){var el=document.getElementById(it[0]);if(el)el.textContent=lang==='fr'?it[1]:it[2];});
+  // Section qui suis-je
+  var whoItems=[['who-eyebrow','Pourquoi me faire confiance','Why trust me'],['who-title','25 ans au cœur des marchés financiers','25 years at the heart of financial markets'],['who-t1','Formation & certifications','Training & certifications'],['who-b1','MBA Finance · Certifié AMF (Autorité des Marchés Financiers) · CIF (Conseiller en Investissement Financier) · Statut IAS · Réglementé en France','MBA Finance · AMF certified (French Financial Markets Authority) · CIF (Financial Investment Advisor) · IAS status · Regulated in France'],['who-t2','Expérience terrain','Field experience'],['who-b2','25 ans d\'expérience en finance de marché · Passé par les salles de marché et le conseil patrimonial · Plus de 200 portefeuilles construits pour des particuliers et des professionnels','25 years in financial markets · Trading floor and wealth management background · Over 200 portfolios built for individuals and professionals'],['who-t3','Ma philosophie','My philosophy'],['who-b3','Les ETF sont l\'outil le plus efficace pour l\'investisseur particulier. Faibles frais, diversification maximale, transparence totale. Pas de produits maison, pas de conflit d\'intérêt — jamais.','ETFs are the most efficient tool for the individual investor. Low fees, maximum diversification, total transparency. No proprietary products, no conflict of interest — ever.'],['who-t4','Mon indépendance','My independence'],['who-b4','Aucune banque derrière moi. Aucune rétrocession. Je suis rémunéré uniquement par vous, directement — ce qui signifie que mes conseils ne servent que vos intérêts.','No bank behind me. No retrocession. I am paid solely by you, directly — which means my advice serves only your interests.'],['who-quote','"J\'ai passé 25 ans à observer comment les grandes institutions gèrent leurs actifs. Les ETF, c\'est cette même discipline — accessible à tous, sans les frais absurdes."','"I spent 25 years observing how major institutions manage their assets. ETFs are that same discipline — accessible to everyone, without the absurd fees."']];
+  whoItems.forEach(function(it){var el=document.getElementById(it[0]);if(el)el.textContent=lang==='fr'?it[1]:it[2];});
 
   // Piliers
   var ps=[['acc-s1-t','Sur mesure · 4 à 6 ETFs','Bespoke · 4 to 6 ETFs'],['acc-s1-b','Votre allocation est construite selon votre profil, votre âge, vos projets de vie et votre fiscalité. Pas de solution standard.','Your allocation is built around your profile, age, life goals and tax situation. No off-the-shelf solution.'],['acc-s2-t','Aucune connaissance requise','No knowledge required'],['acc-s2-b','Vous n\'avez pas besoin de connaître les ETFs. Chaque ligne est expliquée simplement. Vous comprenez ce que vous possédez et pourquoi.','You don\'t need to know ETFs. Every line is explained simply. You understand what you own and why.'],['acc-s3-t','Courtier de votre choix','Your choice of broker'],['acc-s3-b','Votre argent reste chez vous. Nous pouvons aussi vous orienter vers le courtier adapté.','Your money stays with you. We can also guide you to the right broker.'],['acc-s4-t','Indépendant · 0 conflit','Independent · 0 conflict'],['acc-s4-b','Zéro rétrocession. Zéro produit maison. Frais ETFs 0,09%/an vs 1,5-2% en gestion traditionnelle. Sur 10 ans : +150 000€ d\'économie.','Zero retrocessions. Zero proprietary products. ETF fees 0.09%/yr vs 1.5-2% traditional. Over 10 years: +€150,000 saved.']];
@@ -1832,92 +2005,29 @@ calc();
 </script>
 <!-- FOOTER -->
 <footer style="background:var(--ink2);border-top:1px solid rgba(196,163,90,0.15);padding:1.5rem 2.5rem;text-align:center;margin-top:2rem">
-
-  <!-- DEMO ANIMÉE -->
-  <div style="margin-bottom:1.75rem">
-    <div style="text-align:center;margin-bottom:1rem">
-      <div style="font-size:9px;text-transform:uppercase;letter-spacing:.18em;color:var(--gold);font-family:'DM Mono',monospace;margin-bottom:6px">Aperçu du rapport livré</div>
-      <div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;color:var(--ink)">Ce que vous recevez sous 48h</div>
-      <div style="font-size:12px;color:var(--text3);font-weight:300;margin-top:4px">Faites défiler pour voir chaque section — exactement tel que vos clients le reçoivent.</div>
-    </div>
-    <div style="background:white;border:1px solid var(--border2);border-radius:8px;padding:1.5rem 1.75rem;margin-bottom:1.75rem">
-    <div style="text-align:center;margin-bottom:1.25rem">
-      <div style="font-size:10px;text-transform:uppercase;letter-spacing:.15em;color:var(--gold);margin-bottom:3px;font-family:'DM Mono',monospace">Questions fréquentes</div>
-      <div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400">Ce que vous voulez savoir</div>
-    </div>
-    <div style="display:flex;flex-direction:column;gap:.75rem">
-
-      <div style="border:1px solid var(--border2);border-radius:6px;overflow:hidden">
-        <div style="padding:1.125rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center" onclick="toggleFaq('faq1')">
-          <div style="font-size:13px;font-weight:500;color:var(--ink)">Quelle est la différence entre les deux formules ?</div>
-          <span id="faq1-arr" style="color:var(--gold);font-size:14px;flex-shrink:0;margin-left:.5rem">▼</span>
-        </div>
-        <div id="faq1" style="display:none;padding:0 1.125rem 1.125rem">
-          <div style="font-size:12px;color:var(--text2);font-weight:300;line-height:1.8">La formule Essentiel (45€) vous livre votre portefeuille ETF sur mesure en PDF — allocation, rôle de chaque ETF, stratégie d'entrée, 3 scénarios et ordres à passer. La formule Premium (70€) inclut tout cela, plus une page web personnalisée avec simulateur interactif, projections dynamiques et lien privé partageable.</div>
-        </div>
-      </div>
-
-      <div style="border:1px solid var(--border2);border-radius:6px;overflow:hidden">
-        <div style="padding:1.125rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center" onclick="toggleFaq('faq2')">
-          <div style="font-size:13px;font-weight:500;color:var(--ink)">Dois-je avoir des connaissances en bourse ?</div>
-          <span id="faq2-arr" style="color:var(--gold);font-size:14px;flex-shrink:0;margin-left:.5rem">▼</span>
-        </div>
-        <div id="faq2" style="display:none;padding:0 1.125rem 1.125rem">
-          <div style="font-size:12px;color:var(--text2);font-weight:300;line-height:1.8">Non. Chaque portefeuille livré est expliqué en langage clair — pas de jargon, pas d'acronymes inexpliqués. Vous comprenez ce que vous possédez, pourquoi, et exactement quoi faire. Un débutant complet peut investir avec notre rapport.</div>
-        </div>
-      </div>
-
-      <div style="border:1px solid var(--border2);border-radius:6px;overflow:hidden">
-        <div style="padding:1.125rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center" onclick="toggleFaq('faq3')">
-          <div style="font-size:13px;font-weight:500;color:var(--ink)">Êtes-vous réglementé ? Est-ce légal ?</div>
-          <span id="faq3-arr" style="color:var(--gold);font-size:14px;flex-shrink:0;margin-left:.5rem">▼</span>
-        </div>
-        <div id="faq3" style="display:none;padding:0 1.125rem 1.125rem">
-          <div style="font-size:12px;color:var(--text2);font-weight:300;line-height:1.8">Oui. Notre activité est exercée en conformité avec la réglementation française — statut CGP indépendant, certifié IAS et enregistré AMF. Nous ne gérons pas votre argent : nous vous conseillons. Votre capital reste toujours sur votre compte, chez votre courtier.</div>
-        </div>
-      </div>
-
-      <div style="border:1px solid var(--border2);border-radius:6px;overflow:hidden">
-        <div style="padding:1.125rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center" onclick="toggleFaq('faq4')">
-          <div style="font-size:13px;font-weight:500;color:var(--ink)">Que se passe-t-il exactement après la commande ?</div>
-          <span id="faq4-arr" style="color:var(--gold);font-size:14px;flex-shrink:0;margin-left:.5rem">▼</span>
-        </div>
-        <div id="faq4" style="display:none;padding:0 1.125rem 1.125rem">
-          <div style="font-size:12px;color:var(--text2);font-weight:300;line-height:1.8">1. Vous validez votre commande. 2. Vous recevez immédiatement un questionnaire d'une dizaine de questions. 3. Nous analysons vos réponses et construisons votre allocation à la main. 4. Vous recevez votre portefeuille complet sous 48h. 5. Vous passez vos ordres chez votre courtier — tout est détaillé.</div>
-        </div>
-      </div>
-
-      <div style="border:1px solid var(--border2);border-radius:6px;overflow:hidden">
-        <div style="padding:1.125rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center" onclick="toggleFaq('faq5')">
-          <div style="font-size:13px;font-weight:500;color:var(--ink)">Mon portefeuille est-il adapté à ma situation fiscale ?</div>
-          <span id="faq5-arr" style="color:var(--gold);font-size:14px;flex-shrink:0;margin-left:.5rem">▼</span>
-        </div>
-        <div id="faq5" style="display:none;padding:0 1.125rem 1.125rem">
-          <div style="font-size:12px;color:var(--text2);font-weight:300;line-height:1.8">Oui — c'est une des questions clés du questionnaire. Que vous soyez résident français (PEA), expatrié, ou dans une situation fiscale particulière, les ETF recommandés et l'enveloppe sont adaptés à votre situation.</div>
-        </div>
-      </div>
-
-      <div style="border:1px solid var(--border2);border-radius:6px;overflow:hidden">
-        <div style="padding:1.125rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center" onclick="toggleFaq('faq6')">
-          <div style="font-size:13px;font-weight:500;color:var(--ink)">Quelle différence avec un robo-advisor ou une banque ?</div>
-          <span id="faq6-arr" style="color:var(--gold);font-size:14px;flex-shrink:0;margin-left:.5rem">▼</span>
-        </div>
-        <div id="faq6" style="display:none;padding:0 1.125rem 1.125rem">
-          <div style="font-size:12px;color:var(--text2);font-weight:300;line-height:1.8">Un robo-advisor vous propose un portefeuille standardisé parmi 5 ou 6 modèles. Une banque vous vend ses propres produits avec des frais élevés. ETF Blueprint construit un portefeuille unique pour vous, sans conflit d'intérêt, avec des ETF accessibles à tous — et vous restez maître de votre argent.</div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-    <div style="text-align:center;margin-top:.875rem">
-      <a href="checkout.html?formule=premium" style="display:inline-flex;align-items:center;gap:8px;padding:11px 24px;background:var(--cta);color:white;font-family:'Jost',sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;border-radius:5px;text-decoration:none;box-shadow:0 4px 14px rgba(26,107,69,.28)">
-        Recevoir mon rapport personnalisé →
-      </a>
-    </div>
-  </div>
-
   <div style="font-size:10px;color:rgba(196,163,90,0.4);letter-spacing:.06em;margin-bottom:.75rem">
     ETF Blueprint · Michael · CGP · IAS · AMF · France
   </div>
 
-
+<!-- ── MODAL DÉMO RAPPORT ── -->
+<div id="demoModal" style="display:none;position:fixed;inset:0;background:rgba(10,10,10,.88);backdrop-filter:blur(8px);z-index:9999;align-items:center;justify-content:center;padding:20px;" onclick="if(event.target===this)closeDemoModal()">
+  <div style="position:relative;width:min(900px,95vw);height:min(640px,90vh);background:#1E1A12;border:1px solid rgba(196,163,90,.25);border-radius:12px;overflow:hidden;box-shadow:0 48px 96px rgba(0,0,0,.7);">
+    <button onclick="closeDemoModal()" style="position:absolute;top:12px;right:14px;z-index:10;background:rgba(196,163,90,.12);border:1px solid rgba(196,163,90,.25);color:rgba(196,163,90,.8);width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:16px;line-height:1;display:flex;align-items:center;justify-content:center;">✕</button>
+    <iframe id="demoIframe" src="" style="width:100%;height:100%;border:none;display:block;" title="Aperçu rapport ETF Blueprint"></iframe>
+  </div>
+</div>
+<script>
+function openDemoModal(){
+  var m=document.getElementById('demoModal');
+  document.getElementById('demoIframe').src='demo_rapport.html';
+  m.style.display='flex';
+  document.body.style.overflow='hidden';
+}
+function closeDemoModal(){
+  document.getElementById('demoModal').style.display='none';
+  document.getElementById('demoIframe').src='';
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeDemoModal();});
+</script>
+</body></html>
