@@ -237,7 +237,25 @@ textarea.inp{resize:vertical;min-height:85px;font-size:13px;line-height:1.65;}
   <div class="free-field"><input class="inp" type="text" placeholder="Précisez votre projet (optionnel)..." oninput="answers.q11detail=this.value"></div>
   <div class="q-nav">
     <button class="btn-back" onclick="back(11)">← Retour</button>
-    <button class="btn-next" onclick="generatePortfolio()" id="next11" style="padding:13px 26px;font-size:12px">🎯 Envoyer ma demande →</button>
+    <button class="btn-next" onclick="next(11)" disabled id="next11">Suivant →</button>emande →</button>
+  </div>
+</div>
+
+<div class="q-card" id="q12">
+  <div class="q-number">Question 12 / 12</div>
+  <div class="q-title">Dans quelle devise souhaitez-vous vos ETF ?</div>
+  <div class="why-box">&#128161; <strong>Pourquoi cette question ?</strong> Si vous vivez en euros mais investissez dans des ETF en dollars, vous prenez un risque de change invisible. Nous veillons également à ce qu'il y ait le moins d'overlap possible entre vos ETF — certaines valeurs comme Apple ou Microsoft apparaissent dans plusieurs indices, et nous limitons cette surexposition pour garantir une vraie diversification.</div>
+  <div class="options">
+    <div class="opt" onclick="sel(this,'q12','euro')"><span class="opt-icon">&#127466;&#127482;</span><div><div class="opt-label">Tout en euros — je préfère limiter le risque de change</div><div class="opt-desc">ETF libellés en EUR ou hedgés EUR — stabilité maximale pour un résident européen</div></div></div>
+    <div class="opt" onclick="sel(this,'q12','diversifie')"><span class="opt-icon">&#127757;</span><div><div class="opt-label">Diversification des devises — j'accepte le risque de change</div><div class="opt-desc">Dollar, yen, franc suisse... la diversification monétaire fait partie de ma stratégie</div></div></div>
+    <div class="opt" onclick="sel(this,'q12','usd')"><span class="opt-icon">&#127482;&#127480;</span><div><div class="opt-label">Majoritairement en dollars — je suis à l'aise avec le change</div><div class="opt-desc">La plupart des grands ETF sont en USD — j'assume ce risque de change</div></div></div>
+    <div class="opt" onclick="sel(this,'q12','hedge')"><span class="opt-icon">&#128274;</span><div><div class="opt-label">Je veux être protégé contre les variations euro/dollar</div><div class="opt-desc">ETF hedgés : la couverture de change est déjà incluse dans le TER de l'ETF — prélevée automatiquement au prorata de votre durée de détention. Vous ne payez rien de plus, à personne.</div></div></div>
+  </div>
+  <div class="q-nav">
+    <button class="btn-back" onclick="back(12)">&#8592; Retour</button>
+    <button class="btn-next" onclick="generatePortfolio()" id="next12" style="padding:13px 26px;font-size:12px">
+      &#127919; Envoyer ma demande &#8594;
+    </button>
   </div>
 </div>
 
