@@ -264,11 +264,8 @@ function sel(el,qId,value){
 }
 
 function selRevenu(el,value){
-  document.querySelectorAll("#q6 .opt").forEach(o=>o.classList.remove("selected"));
-  el.classList.add("selected");
-  answers.q6=value;
-  document.getElementById("revenu-field").classList.toggle("visible",value==="oui");
-  document.getElementById("next6").disabled=false;
+  // Redirige vers sel() standard
+  sel(el,"q6",value);
 }
 
 function selExistant(el,value){
@@ -336,7 +333,7 @@ function showConfirmation(){
   const mapQ10={libre:"Aucune preference",regions:"Regions specifiques",secteurs:"Secteurs specifiques",eviter:"Eviter certaines zones"};
   const mapQ11={rien:"Aucun projet",immo:"Achat immobilier","retraite-proche":"Retraite < 5 ans",transmission:"Transmission patrimoniale","autre-projet":"Autre projet"};
   const exclus=answers.q9.length>0&&!answers.q9.includes("aucune")?answers.q9.join(", "):"Aucune";
-  const revenu=answers.q6==="oui"?"Oui"+(answers.revenuMontant?" - "+answers.revenuMontant+"/mois":""):"Non";
+  const revenu=({"revenus":"Revenus reguliers","capitalisation":"Capitalisation","mixte":"Mixte"}[answers.q6]||answers.q6||"Non precise");
   const date=new Date().toLocaleDateString("fr-FR");
   const ref="ETF-"+Date.now().toString().slice(-6);
 
