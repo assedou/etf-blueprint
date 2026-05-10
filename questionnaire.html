@@ -60,7 +60,7 @@ textarea.inp{resize:vertical;min-height:85px;font-size:13px;line-height:1.65;}
 <body>
 <div class="header">
   <div><div class="brand">ETF Blueprint</div><div class="brand-sub">Questionnaire investisseur</div></div>
-  <div class="step-indicator" id="step-label">Question 12 / 12</div>
+  <div class="step-indicator" id="step-label">Question 12 / 13</div>
 </div>
 <div class="progress-wrap">
   <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
@@ -253,7 +253,47 @@ textarea.inp{resize:vertical;min-height:85px;font-size:13px;line-height:1.65;}
   </div>
   <div class="q-nav">
     <button class="btn-back" onclick="back(12)">&#8592; Retour</button>
-    <button class="btn-next" onclick="generatePortfolio()" id="next12" style="padding:13px 26px;font-size:12px">
+    <button class="btn-next" onclick="goQ13()" id="next12" style="padding:13px 26px;font-size:12px">
+      Suivant &#8594;
+    </button>
+  </div>
+</div>
+
+
+<div class="q-card" id="q13">
+  <div class="q-number">Question 13 / 13</div>
+  <div class="q-title">Dernière étape — vos coordonnées</div>
+  <div style="display:flex;flex-direction:column;gap:1rem;margin-top:1.25rem">
+
+    <div>
+      <label style="font-size:11px;font-weight:600;color:var(--ink);letter-spacing:.05em;display:block;margin-bottom:.375rem">Prénom <span style="color:#c0392b">*</span></label>
+      <input type="text" id="input-prenom" placeholder="Votre prénom" autocomplete="given-name"
+        style="width:100%;padding:.75rem 1rem;border:1px solid #d4c9a8;border-radius:6px;font-family:'Jost',sans-serif;font-size:13px;color:#1e1a12;background:#fdfcf8;outline:none;box-sizing:border-box;transition:border-color .2s"
+        onfocus="this.style.borderColor='#c4a35a'" onblur="this.style.borderColor='#d4c9a8'">
+    </div>
+
+    <div>
+      <label style="font-size:11px;font-weight:600;color:var(--ink);letter-spacing:.05em;display:block;margin-bottom:.375rem">Nom <span style="color:#c0392b">*</span></label>
+      <input type="text" id="input-nom" placeholder="Votre nom" autocomplete="family-name"
+        style="width:100%;padding:.75rem 1rem;border:1px solid #d4c9a8;border-radius:6px;font-family:'Jost',sans-serif;font-size:13px;color:#1e1a12;background:#fdfcf8;outline:none;box-sizing:border-box;transition:border-color .2s"
+        onfocus="this.style.borderColor='#c4a35a'" onblur="this.style.borderColor='#d4c9a8'">
+    </div>
+
+    <div>
+      <label style="font-size:11px;font-weight:600;color:var(--ink);letter-spacing:.05em;display:block;margin-bottom:.375rem">Adresse e-mail <span style="color:#c0392b">*</span></label>
+      <input type="email" id="input-email" placeholder="votre@email.com" autocomplete="email"
+        style="width:100%;padding:.75rem 1rem;border:1px solid #d4c9a8;border-radius:6px;font-family:'Jost',sans-serif;font-size:13px;color:#1e1a12;background:#fdfcf8;outline:none;box-sizing:border-box;transition:border-color .2s"
+        onfocus="this.style.borderColor='#c4a35a'" onblur="this.style.borderColor='#d4c9a8'">
+      <div style="font-size:10px;color:#8a8278;margin-top:.375rem;font-weight:300">Utilisée uniquement pour vous envoyer votre portefeuille — aucun spam, jamais.</div>
+    </div>
+
+    <div id="q13-error" style="display:none;background:#fff0f0;border:1px solid #f5c6cb;border-radius:5px;padding:.625rem .875rem;font-size:12px;color:#c0392b"></div>
+
+  </div>
+
+  <div class="q-nav">
+    <button class="btn-back" onclick="back(13)">&#8592; Retour</button>
+    <button class="btn-next" onclick="submitQ13()" id="next13" style="padding:13px 26px;font-size:12px;background:#1a6b45">
       &#127919; Envoyer ma demande &#8594;
     </button>
   </div>
@@ -266,10 +306,10 @@ textarea.inp{resize:vertical;min-height:85px;font-size:13px;line-height:1.65;}
 </div>
 
 <script>
-const answers={q1:"",q2:"",q3:"",q4:"",q5:"",q5detail:"",q6:"",revenuMontant:"",q7:"",q7existants:[],q8:"",q9:[],exclusionsLibres:"",q10:"",prefLibre:"",q11:"",q11detail:"",q12:"",formule:"premium"};
+const answers={q1:"",q2:"",q3:"",q4:"",q5:"",q5detail:"",q6:"",revenuMontant:"",q7:"",q7existants:[],q8:"",q9:[],exclusionsLibres:"",q10:"",prefLibre:"",q11:"",q11detail:"",q12:"",q13prenom:"",q13nom:"",q13email:"",formule:"premium"};
 const urlP=new URLSearchParams(window.location.search);
 answers.formule=urlP.get("formule")||"premium";
-const TOTAL=12;
+const TOTAL=13;
 const progressLabels=["Objectif principal","Horizon","Liquidite du capital","Capital a investir","Residence fiscale","Revenus mensuels","Placements existants","Niveau en investissement","Exclusions","Preferences geo/sectorielles","Evenement de vie","Devise & couverture"];
 
 function sel(el,qId,value){
@@ -328,8 +368,44 @@ function back(n){
 }
 function updateProgress(n){
   document.getElementById("progress-fill").style.width=(n/TOTAL*100)+"%";
-  document.getElementById("step-label").textContent="Question "+n+" / "+TOTAL;
+  document.getElementById("step-label").textContent="Question "+n+" / 13";
   document.getElementById("progress-label").textContent=progressLabels[n-1];
+}
+
+
+function goQ13(){
+  if(!answers.q12){
+    alert("Veuillez sélectionner une option avant de continuer.");
+    return;
+  }
+  document.querySelectorAll(".q-card").forEach(el=>el.style.display="none");
+  document.getElementById("q13").style.display="block";
+  document.getElementById("step-label").textContent="Question 13 / 13";
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function submitQ13(){
+  var prenom = document.getElementById("input-prenom").value.trim();
+  var nom    = document.getElementById("input-nom").value.trim();
+  var email  = document.getElementById("input-email").value.trim();
+  var errEl  = document.getElementById("q13-error");
+
+  if(!prenom || !nom || !email){
+    errEl.textContent = "Merci de renseigner votre prénom, votre nom et votre adresse e-mail.";
+    errEl.style.display = "block";
+    return;
+  }
+  var emailReg = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if(!emailReg.test(email)){
+    errEl.textContent = "L'adresse e-mail ne semble pas valide.";
+    errEl.style.display = "block";
+    return;
+  }
+  errEl.style.display = "none";
+  answers.q13prenom = prenom;
+  answers.q13nom    = nom;
+  answers.q13email  = email;
+  generatePortfolio();
 }
 
 function generatePortfolio(){
@@ -480,6 +556,7 @@ function sendEmailNotification(){
   const msg=[
     "NOUVEAU QUESTIONNAIRE ETF BLUEPRINT",
     "=====================================",
+    "Client     : " + answers.q13prenom + "  |  " + answers.q13email,
     "",
     "Q1 Objectif : "+(mapQ1[answers.q1]||answers.q1),
     "Q2 Horizon : "+(mapQ2[answers.q2]||answers.q2),
@@ -512,11 +589,11 @@ function sendEmailNotification(){
 
   emailjs.send("service_roo405k","template_v6otlqo",{
     to_email:"assedou@gmail.com",
-    subject:"ETF Blueprint - "+portfolio.principal+"/"+portfolio.alternatif+" - Formule "+answers.formule.toUpperCase()+" - "+new Date().toLocaleDateString("fr-FR"),
+    subject:"ETF Blueprint - "+answers.q13prenom+" "+answers.q13nom+" - "+portfolio.principal+"/"+portfolio.alternatif+" - Formule "+answers.formule.toUpperCase()+" - "+new Date().toLocaleDateString("fr-FR"),
     title:"Nouveau questionnaire ETF Blueprint",
-    name:"ETF Blueprint",
+    name:(answers.q13prenom+" "+answers.q13nom).trim()||"ETF Blueprint",
     message:msg,
-    email:"assedou@gmail.com",
+    email:answers.q13email||"assedou@gmail.com",
     time:new Date().toLocaleString("fr-FR")
   }).then(()=>console.log("OK")).catch(e=>console.warn(e));
 }
