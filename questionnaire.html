@@ -70,7 +70,7 @@ textarea.inp{resize:vertical;min-height:85px;font-size:13px;line-height:1.65;}
 
 <div class="q-card active" id="q1">
   <div class="q-number">Question 01 / 12</div>
-  <div class="q-title">Quel est votre objectif principal ?</div>
+  <div class="q-title">Qu'est-ce que vous voulez faire avec cet argent ?</div>
   <div class="why-box">💡 <strong>Pourquoi cette question ?</strong> C'est le cap de tout le portefeuille. Chaque ETF sera sélectionné pour servir cet objectif précis. Un portefeuille orienté revenus n'a rien à voir avec un portefeuille orienté croissance.</div>
   <div class="options">
     <div class="opt" onclick="sel(this,&#39;q1&#39;,&#39;revenus&#39;)"><span class="opt-icon">&#128184;</span><div><div class="opt-label">Générer des revenus réguliers</div><div class="opt-desc">Percevoir des dividendes ou coupons périodiquement</div></div></div>
@@ -195,15 +195,15 @@ textarea.inp{resize:vertical;min-height:85px;font-size:13px;line-height:1.65;}
 
 <div class="q-card" id="q9">
   <div class="q-number">Question 09 / 12</div>
-  <div class="q-title">Souhaitez-vous exclure certaines classes d'actifs ?</div>
+  <div class="q-title">Y a-t-il des types de placements que vous ne voulez pas dans votre portefeuille ?</div>
   <div class="why-box">💡 <strong>Pourquoi cette question ?</strong> Certains actifs peuvent être incompatibles avec vos convictions ou votre situation. On les retire de la sélection pour construire un portefeuille qui vous ressemble vraiment.</div>
   <div class="options" id="q9-opts">
     <div class="opt multi" onclick="toggleMulti(this,&#39;aucune&#39;)"><span class="opt-icon">&#9989;</span><div><div class="opt-label">Aucune exclusion</div><div class="opt-desc">Liberté totale de sélection</div></div></div>
-    <div class="opt multi" onclick="toggleMulti(this,&#39;crypto&#39;)"><span class="opt-icon">&#8383;</span><div><div class="opt-label">Crypto-actifs</div><div class="opt-desc">Exclure tout ETF exposé aux cryptomonnaies</div></div></div>
+    <div class="opt multi" onclick="toggleMulti(this,&#39;crypto&#39;)"><span class="opt-icon">&#8383;</span><div><div class="opt-label">Crypto-actifs <span style="font-size:10px;color:var(--text3);font-weight:300">(Bitcoin, Ethereum…)</span></div><div class="opt-desc">Exclure tout ETF exposé aux cryptomonnaies</div></div></div>
     <div class="opt multi" onclick="toggleMulti(this,&#39;commodities&#39;)"><span class="opt-icon">&#128738;&#65039;</span><div><div class="opt-label">Matières premières</div><div class="opt-desc">Pétrole, gaz, métaux industriels, agricole</div></div></div>
     <div class="opt multi" onclick="toggleMulti(this,&#39;reits&#39;)"><span class="opt-icon">&#127962;</span><div><div class="opt-label">Immobilier cote (REITs)</div><div class="opt-desc">Foncières cotées, ETF immobilier</div></div></div>
-    <div class="opt multi" onclick="toggleMulti(this,&#39;high-yield&#39;)"><span class="opt-icon">&#9888;&#65039;</span><div><div class="opt-label">Obligations high yield</div><div class="opt-desc">Obligations d'entreprises à haut rendement / haut risque</div></div></div>
-    <div class="opt multi" onclick="toggleMulti(this,&#39;esg-exclu&#39;)"><span class="opt-icon">&#127807;</span><div><div class="opt-label">Secteurs non-ESG</div><div class="opt-desc">Armes, tabac, fossiles — exclure secteurs controversés</div></div></div>
+    <div class="opt multi" onclick="toggleMulti(this,&#39;high-yield&#39;)"><span class="opt-icon">&#9888;&#65039;</span><div><div class="opt-label">Obligations spéculatives <span style="font-size:10px;color:var(--text3);font-weight:300">(high yield)</span></div><div class="opt-desc">Dettes d'entreprises à rendement élevé mais risque de défaut important</div></div></div>
+    <div class="opt multi" onclick="toggleMulti(this,&#39;esg-exclu&#39;)"><span class="opt-icon">&#127807;</span><div><div class="opt-label">Secteurs controversés</div><div class="opt-desc">Exclure armes, tabac, énergies fossiles (critères éthiques)</div></div></div>
   </div>
   <div class="free-field"><input class="inp" type="text" placeholder="Autres exclusions spécifiques..." oninput="answers.exclusionsLibres=this.value"></div>
   <div class="q-nav"><button class="btn-back" onclick="back(9)">← Retour</button><button class="btn-next" onclick="next(9)" id="next9">Suivant →</button></div>
@@ -237,7 +237,7 @@ textarea.inp{resize:vertical;min-height:85px;font-size:13px;line-height:1.65;}
   <div class="free-field"><input class="inp" type="text" placeholder="Précisez votre projet (optionnel)..." oninput="answers.q11detail=this.value"></div>
   <div class="q-nav">
     <button class="btn-back" onclick="back(11)">← Retour</button>
-    <button class="btn-next" onclick="next(11)" disabled id="next11">Suivant →</button>emande →</button>
+    <button class="btn-next" onclick="next(11)" disabled id="next11">Suivant →</button>
   </div>
 </div>
 
@@ -422,7 +422,7 @@ function showConfirmation(){
   const mapQ3={non:"Non - epargne long terme","peu-probable":"Peu probable",possible:"Possible 3-5 ans",oui:"Oui - sous 2 ans"};
   const mapQ4={"moins10k":"< 10 000","10k-50k":"10 000 - 50 000","50k-150k":"50 000 - 150 000","150k-500k":"150 000 - 500 000","500k+":"> 500 000"};
   const mapQ5={france:"France (PEA)","benelux-suisse":"Belgique/Luxembourg/Suisse",expatrie:"Expatrié","uk-usa":"UK/USA","europe-autre":"Europe autre",autre:"Autre pays"};
-  const mapQ7={non:"Zéro — je pars de zéro",livrets:"Livrets/AV uniquement",quelques:"Quelques ETF/actions",portefeuille:"Portefeuille structuré"};
+  const mapQ7={non:"Je n'ai aucun placement pour l'instant",livrets:"Livrets/AV uniquement",quelques:"Quelques ETF/actions",portefeuille:"Portefeuille structuré"};
   const mapQ8={debutant:"Débutant complet",curieux:"Curieux",intermediaire:"Intermédiaire",avance:"Avancé",expert:"Expert"};
   const mapQ10={libre:"Aucune preference",regions:"Regions specifiques",secteurs:"Secteurs specifiques",eviter:"Eviter certaines zones"};
   const mapQ11={rien:"Aucun projet",immo:"Achat immobilier","retraite-proche":"Retraite < 5 ans",transmission:"Transmission patrimoniale","autre-projet":"Autre projet"};
@@ -545,7 +545,7 @@ function sendEmailNotification(){
   const mapQ3={non:"Non - LT","peu-probable":"Peu probable",possible:"3-5 ans",oui:"Oui <2 ans"};
   const mapQ4={"moins10k":"<10k","10k-50k":"10-50k","50k-150k":"50-150k","150k-500k":"150-500k","500k+":">500k"};
   const mapQ5={france:"France (PEA)","benelux-suisse":"Benelux/Suisse",expatrie:"Expatrié",autres:"UK/USA","europe-autre":"Europe","uk-usa":"UK/USA",autre:"Autre"};
-  const mapQ7={non:"Zéro — je pars de zéro",livrets:"Livrets / Assurance-vie",quelques:"Quelques ETF / actions",portefeuille:"Portefeuille structuré"};
+  const mapQ7={non:"Je n'ai aucun placement pour l'instant",livrets:"Livrets / Assurance-vie",quelques:"Quelques ETF / actions",portefeuille:"Portefeuille structuré"};
   const mapQ8={debutant:"Débutant",curieux:"Curieux",intermediaire:"Intermédiaire",avance:"Avancé",expert:"Expert"};
   const mapQ10={libre:"Libre",regions:"Regions",secteurs:"Secteurs",eviter:"Eviter zones"};
   const mapQ11={rien:"Aucun projet",immo:"Achat immobilier","retraite-proche":"Retraite dans moins de 5 ans",transmission:"Transmission patrimoniale","autre-projet":"Autre projet"};
