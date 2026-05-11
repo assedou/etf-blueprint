@@ -126,14 +126,11 @@ textarea.inp{resize:vertical;min-height:85px;font-size:13px;line-height:1.65;}
 <div class="q-card" id="q5">
   <div class="q-number">Question 05 / 12</div>
   <div class="q-title">Dans quel pays résidez-vous fiscalement ?</div>
-  <div class="why-box">💡 <strong>Pourquoi cette question ?</strong> La fiscalité locale change radicalement les ETF recommandés. Un résident français avec PEA peut économiser des dizaines de milliers d'euros. Un expatrié en Israël peut toucher des dividendes à 0%. Chaque pays a ses règles.</div>
+  <div class="why-box">💡 <strong>Pourquoi cette question ?</strong> Votre zone géographique détermine les ETF les plus adaptés et les enveloppes disponibles. Zone euro = accès au PEA (avantage fiscal important). Zone dollar ou autre = enveloppes différentes.</div>
   <div class="options">
-    <div class="opt" onclick="sel(this,&#39;q5&#39;,&#39;france&#39;)"><span class="opt-icon">&#127467;&#127479;</span><div><div class="opt-label">France</div><div class="opt-desc">PEA disponible — fiscalité avantageuse après 5 ans</div></div></div>
-    <div class="opt" onclick="sel(this,&#39;q5&#39;,&#39;benelux-suisse&#39;)"><span class="opt-icon">&#127463;&#127466;</span><div><div class="opt-label">Belgique / Luxembourg / Suisse</div><div class="opt-desc">Pas de PEA — CTO avec avantages locaux spécifiques</div></div></div>
-    <div class="opt" onclick="sel(this,&#39;q5&#39;,&#39;expatrie&#39;)"><span class="opt-icon">&#127470;&#127473;</span><div><div class="opt-label">Expatrié / Moyen-Orient</div><div class="opt-desc">Fiscalité avantageuse possible selon pays de résidence</div></div></div>
-    <div class="opt" onclick="sel(this,&#39;q5&#39;,&#39;uk-usa&#39;)"><span class="opt-icon">&#127468;&#127463;</span><div><div class="opt-label">UK / USA</div><div class="opt-desc">ISA / 401k / enveloppes locales spécifiques</div></div></div>
-    <div class="opt" onclick="sel(this,&#39;q5&#39;,&#39;europe-autre&#39;)"><span class="opt-icon">&#127466;&#127482;</span><div><div class="opt-label">Autre pays européen</div><div class="opt-desc">Allemagne, Espagne, Italie, Pays-Bas...</div></div></div>
-    <div class="opt" onclick="sel(this,&#39;q5&#39;,&#39;autre&#39;)"><span class="opt-icon">&#127757;</span><div><div class="opt-label">Autre pays hors Europe</div><div class="opt-desc">Asie, Amériques, Afrique — fiscalité à préciser</div></div></div>
+    <div class="opt" onclick="sel(this,&#39;q5&#39;,&#39;zone-euro&#39;)"><span class="opt-icon">&#127466;&#127482;</span><div><div class="opt-label">Zone euro</div><div class="opt-desc">France, Allemagne, Italie, Espagne, Pays-Bas…</div></div></div>
+    <div class="opt" onclick="sel(this,&#39;q5&#39;,&#39;zone-dollar&#39;)"><span class="opt-icon">&#127482;&#127480;</span><div><div class="opt-label">Zone dollar</div><div class="opt-desc">États-Unis, Canada, et pays liés au USD</div></div></div>
+    <div class="opt" onclick="sel(this,&#39;q5&#39;,&#39;autre&#39;)"><span class="opt-icon">&#127759;</span><div><div class="opt-label">Autre</div><div class="opt-desc">Asie, Moyen-Orient, Afrique, Amérique latine…</div></div></div>
   </div>
   <div class="free-field"><input class="inp" type="text" placeholder="Précisez votre pays si besoin..." oninput="answers.q5detail=this.value"></div>
   <div class="q-nav"><button class="btn-back" onclick="back(5)">← Retour</button><button class="btn-next" onclick="next(5)" disabled id="next5">Suivant →</button></div>
@@ -310,7 +307,7 @@ const answers={q1:"",q2:"",q3:"",q4:"",q5:"",q5detail:"",q6:"",revenuMontant:"",
 const urlP=new URLSearchParams(window.location.search);
 answers.formule=urlP.get("formule")||"premium";
 const TOTAL=13;
-const progressLabels=["Objectif principal","Horizon","Liquidite du capital","Capital a investir","Residence fiscale","Revenus mensuels","Placements existants","Niveau en investissement","Exclusions","Preferences geo/sectorielles","Evenement de vie","Devise & couverture"];
+const progressLabels=["Objectif principal","Horizon","Liquidite du capital","Capital a investir","Zone géographique","Revenus mensuels","Placements existants","Niveau en investissement","Exclusions","Preferences geo/sectorielles","Evenement de vie","Devise & couverture"];
 
 function sel(el,qId,value){
   document.querySelectorAll("#"+qId+" .opt:not(.multi):not(.multi-sub)").forEach(o=>o.classList.remove("selected"));
@@ -421,7 +418,7 @@ function showConfirmation(){
   const mapQ2={"moins3ans":"Moins de 3 ans","3-7ans":"3 à 7 ans","7-15ans":"7 à 15 ans","plus15ans":"Plus de 15 ans"};
   const mapQ3={non:"Non - epargne long terme","peu-probable":"Peu probable",possible:"Possible 3-5 ans",oui:"Oui - sous 2 ans"};
   const mapQ4={"moins10k":"< 10 000","10k-50k":"10 000 - 50 000","50k-150k":"50 000 - 150 000","150k-500k":"150 000 - 500 000","500k+":"> 500 000"};
-  const mapQ5={france:"France (PEA)","benelux-suisse":"Belgique/Luxembourg/Suisse",expatrie:"Expatrié","uk-usa":"UK/USA","europe-autre":"Europe autre",autre:"Autre pays"};
+  const mapQ5={"zone-euro":"Zone euro (PEA)","zone-dollar":"Zone dollar (USD)","autre":"Autre"};
   const mapQ7={non:"Je n'ai aucun placement pour l'instant",livrets:"Livrets/AV uniquement",quelques:"Quelques ETF/actions",portefeuille:"Portefeuille structuré"};
   const mapQ8={debutant:"Débutant complet",curieux:"Curieux",intermediaire:"Intermédiaire",avance:"Avancé",expert:"Expert"};
   const mapQ10={libre:"Aucune preference",regions:"Regions specifiques",secteurs:"Secteurs specifiques",eviter:"Eviter certaines zones"};
@@ -436,7 +433,7 @@ function showConfirmation(){
     {l:"Horizon",v:mapQ2[answers.q2]||answers.q2},
     {l:"Liquidite",v:mapQ3[answers.q3]||answers.q3},
     {l:"Capital",v:(mapQ4[answers.q4]||answers.q4)+" EUR"},
-    {l:"Residence fiscale",v:(mapQ5[answers.q5]||answers.q5)+(answers.q5detail?" - "+answers.q5detail:"")},
+    {l:"Zone géographique",v:(mapQ5[answers.q5]||answers.q5)+(answers.q5detail?" - "+answers.q5detail:"")},
     {l:"Utilisation des gains",v:(({"revenus":"Revenus reguliers","capitalisation":"Capitalisation — interets composes","mixte":"Mixte"})[answers.q6]||answers.q6||"Non precise")},
     {l:"Placements existants",v:mapQ7[answers.q7]||answers.q7},
     {l:"Niveau",v:mapQ8[answers.q8]||answers.q8},
@@ -544,7 +541,7 @@ function sendEmailNotification(){
   const mapQ2={"moins3ans":"Moins de 3 ans","3-7ans":"3-7 ans","7-15ans":"7-15 ans","plus15ans":"Plus de 15 ans"};
   const mapQ3={non:"Non - LT","peu-probable":"Peu probable",possible:"3-5 ans",oui:"Oui <2 ans"};
   const mapQ4={"moins10k":"<10k","10k-50k":"10-50k","50k-150k":"50-150k","150k-500k":"150-500k","500k+":">500k"};
-  const mapQ5={france:"France (PEA)","benelux-suisse":"Benelux/Suisse",expatrie:"Expatrié",autres:"UK/USA","europe-autre":"Europe","uk-usa":"UK/USA",autre:"Autre"};
+  const mapQ5={"zone-euro":"Zone euro (PEA)","zone-dollar":"Zone dollar (USD)","autre":"Autre"};
   const mapQ7={non:"Je n'ai aucun placement pour l'instant",livrets:"Livrets / Assurance-vie",quelques:"Quelques ETF / actions",portefeuille:"Portefeuille structuré"};
   const mapQ8={debutant:"Débutant",curieux:"Curieux",intermediaire:"Intermédiaire",avance:"Avancé",expert:"Expert"};
   const mapQ10={libre:"Libre",regions:"Regions",secteurs:"Secteurs",eviter:"Eviter zones"};
